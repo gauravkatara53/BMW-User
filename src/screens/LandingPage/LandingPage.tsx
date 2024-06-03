@@ -1,5 +1,9 @@
+import Hero from "./containers/Hero";
+
 export default function LandingPage() {
   return (
-    <div>LandingPage</div>
-  )
+    <div>
+      <Hero/>
+    </div>
+  );
 }
