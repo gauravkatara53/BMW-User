@@ -1,19 +1,25 @@
-import ChevronWhiteSVG from "../common/WHChevronWhiteSVG";
 import WHFillButton from "../common/WHFillButton";
 
-export default function LPSearchBar() {
+type TProps = {
+buttonTitle?:string,
+placeholder?:string,
+iconUrl?:string,
+buttonChild?:React.JSX.Element
+}
+
+export default function LPSearchBar({buttonTitle="",iconUrl,placeholder,buttonChild}:TProps) {
   return (
-    <div className="border border-WH-light-gray flex rounded-full items-center overflow-hidden pl-4 pr-1 py-1 bg-white">
-      <img src="location-pin.png" alt="" />
+    <div className="border border-WH-light-gray flex rounded-full items-center overflow-hidden pl-6 pr-1 py-1 bg-white">
+      <img src={iconUrl} alt="" />
       <input
-        className="flex-1 px-4"
+        className="flex-1 px-3"
         type="text"
-        placeholder="Search for the location you want!"
+        placeholder={placeholder}
         name=""
         id=""
       />
-      <WHFillButton title="Search">
-        <ChevronWhiteSVG />
+      <WHFillButton title={buttonTitle}>
+        {buttonChild}
       </WHFillButton>
     </div>
   );

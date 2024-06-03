@@ -1,3 +1,4 @@
+import ChevronWhiteSVG from "@/components/common/WHChevronWhiteSVG";
 import WHNavbar from "@/components/common/WHNavbar";
 import LPAchievementCard from "@/components/landing-page/LPAchievementCard";
 import LPSearchBar from "@/components/landing-page/LPSearchBar";
@@ -22,7 +23,12 @@ export default function Hero() {
             Everything you need about finding your place to live will be here,
             where it will be easier for you
           </p>
-          <LPSearchBar />
+          <LPSearchBar
+            buttonChild={<ChevronWhiteSVG />}
+            iconUrl="location-pin.png"
+            buttonTitle="Search"
+            placeholder="Search for the location you want!"
+          />
           <div>
             <h4 className="text-WH-light-purple text-lg mb-2">
               Our Partnership
@@ -50,16 +56,12 @@ export default function Hero() {
             <LPAchievementCard
               subtitle="Sold monthly"
               title="56 Houses"
-              images={[
-                "dummy-resort.png",
-              ]}
+              images={["dummy-resort.png"]}
             />
             <LPAchievementCard
               subtitle="Peoples looking for new home"
               title="4K+"
-              images={[
-                "dummy-user-img-4.png",
-              ]}
+              images={["dummy-user-img-4.png"]}
             />
           </div>
         </div>

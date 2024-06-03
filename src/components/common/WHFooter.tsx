@@ -1,5 +1,3 @@
-import WHSvg from "./WHSvg";
-
 const Footer = () => {
   return (
     <div className="hidden md:block w-full h-[450px] lg:h-[440px]  shadow-FooterBox bg-gradient-to-br from-white via-white to-cyan-100">
@@ -8,10 +6,7 @@ const Footer = () => {
           <div className="w-[30%]">
             <div className="font-Lexend font-normal text-[#0E1735] px-[1rem] lg:px-[2rem] pt-[1.5rem] flex items-center">
               <div className="flex items-center gap-3">
-                <WHSvg />
-                <h1 className="text-lg font-semibold text-deep-blue-1B">
-                  Warehouse On Hire
-                </h1>
+                <img src="logo1.png" className="h-12" alt="" />
               </div>
             </div>
             <div>

@@ -2,6 +2,7 @@ import ChevronWhiteSVG from "@/components/common/WHChevronWhiteSVG";
 import LPFeaturedWrapper from "@/components/landing-page/LPFeaturedWrapper";
 import LPSectionHeading from "@/components/landing-page/LPSectionHeading";
 import LPSelector from "@/components/landing-page/LPSelector";
+import { FEATURED } from "@/data/landing-page";
 
 export default function OurRecommendation() {
   return (
@@ -22,10 +23,17 @@ export default function OurRecommendation() {
         </div>
       </div>
       <div className="flex">
-        <LPFeaturedWrapper />
-        <LPFeaturedWrapper />
-        <LPFeaturedWrapper />
-        <LPFeaturedWrapper />
+        {FEATURED.map((property, i) => (
+          <LPFeaturedWrapper
+            key={`FEATURED_PROPERTY_${i}`}
+            ownerImage={property.ownerImage}
+            ownerName={property.ownerName}
+            img={property.img}
+            place={property.city}
+            price={Number(property.price).toLocaleString()}
+            propertyName={property.propertyName}
+          />
+        ))}
       </div>
     </div>
   );
