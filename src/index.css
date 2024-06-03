@@ -3,7 +3,11 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+body {
   margin: 0;
   font-family: "Lexend", sans-serif;
+}
+
+.css-text-stroke {
+  -webkit-text-stroke: 4px navy;
 }
