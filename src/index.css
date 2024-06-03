@@ -8,6 +8,10 @@ body {
   font-family: "Lexend", sans-serif;
 }
 
+*{
+  box-sizing: border-box;
+}
+
 .css-text-stroke {
   -webkit-text-stroke: 4px navy;
 }
