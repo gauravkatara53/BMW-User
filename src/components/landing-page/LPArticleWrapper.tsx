@@ -29,7 +29,7 @@ export default function LPArticleWrapper({
         'h-80': large,
       })} src={img} alt="" />
       <div className="flex flex-col gap-4 justify-between">
-        <LPIdentityCard size="small" />
+        <LPIdentityCard size="small" img="dummy-user-img-3.png" name="Dianne Russell" />
         <p className="text-lg font-medium">{title}</p>
         {large && <p className=" text-WH-light-purple">{description}</p>}
         <div className="flex gap-2">

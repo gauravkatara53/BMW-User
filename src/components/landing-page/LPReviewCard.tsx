@@ -14,7 +14,7 @@ export default function LPReviewCard() {
           able to find information on the house we want.
         </p>
         <div className="flex justify-between">
-            <LPIdentityCard/>
+            <LPIdentityCard img="dummy-user-img-1.png" name="Dianne Russell" subtitle="Manager Director"/>
             <div className="flex gap-2 items-center">
                 <img src="star.png" alt="" />
                 <p className="font-semibold text-xl ">4.5</p>

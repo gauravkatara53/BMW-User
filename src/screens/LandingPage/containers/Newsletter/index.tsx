@@ -8,7 +8,7 @@ export default function Newsletter() {
         <p> And Update From Warehouse On Hire</p>
       </h3>
       <div className="w-2/5">
-        <LPSearchBar />
+        <LPSearchBar iconUrl="mail.png" buttonTitle="Subscribe Now" placeholder="Your Email here"/>
       </div>
     </div>
   );
