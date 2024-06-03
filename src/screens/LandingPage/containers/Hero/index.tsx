@@ -1,6 +1,6 @@
 import WHNavbar from "@/components/common/WHNavbar";
 import LPAchievementCard from "@/components/landing-page/LPAchievementCard";
-import LPSearchLocationBar from "@/components/landing-page/LPSearchLocationBar";
+import LPSearchBar from "@/components/landing-page/LPSearchBar";
 
 export default function Hero() {
   return (
@@ -22,7 +22,7 @@ export default function Hero() {
             Everything you need about finding your place to live will be here,
             where it will be easier for you
           </p>
-          <LPSearchLocationBar />
+          <LPSearchBar />
           <div>
             <h4 className="text-WH-light-purple text-lg mb-2">
               Our Partnership
