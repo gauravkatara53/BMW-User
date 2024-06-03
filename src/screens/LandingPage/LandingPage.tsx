@@ -3,6 +3,7 @@ import Hero from "./containers/Hero";
 import OurRecommendation from "./containers/OurRecommendation";
 import ReadyToSell from "./containers/ReadyToSell";
 import Newsletter from "./containers/Newsletter";
+import ArticleSection from "./containers/ArticlesSection";
 
 export default function LandingPage() {
   return (
@@ -10,6 +11,7 @@ export default function LandingPage() {
       <Hero />
       <OurRecommendation />
       <ReadyToSell />
+      <ArticleSection/>
       <Newsletter/>
       <WHFooter/>
     </div>
