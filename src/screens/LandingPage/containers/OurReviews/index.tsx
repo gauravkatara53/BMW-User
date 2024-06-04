@@ -14,7 +14,7 @@ export default function OurReviews() {
         alignment="center"
         superHeading="What Our User Say About Us"
       />
-      <div className="mt-12 flex justify-center gap-12 w-[125rem]">
+      <div className="mt-12 flex justify-center gap-12 lg:w-[125rem] md:w-[110rem] sm:w-[80rem] w-[70rem]">
         <Swiper
           modules={[Autoplay]}
           speed={1000}

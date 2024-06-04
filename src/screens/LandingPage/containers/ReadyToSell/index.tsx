@@ -37,11 +37,13 @@ export default function ReadyToSell() {
           title="Ready to Sell!"
         />
         <div className="md:ml-10 flex flex-col gap-8 xl:max-w-[30rem] max-w-[40rem]">
-          <p className="text-WH-light-purple ">
+          <p className="text-WH-light-purple sm:text-start text-center ">
             Warehouses recommended by our partners that have been curated to
             become the office of your dreams!
           </p>
-          <p className="font-semibold text-deep-blue-1B">House Detail</p>
+          <p className="font-semibold text-deep-blue-1B sm:text-start text-center">
+            House Detail
+          </p>
           <div className="grid grid-cols-2 gap-8 border-b-2 pb-10 border-WH-light-purple/10">
             {PROPERTY_DETAILS.map((property, i) => (
               <LPHouseDetailChip
@@ -51,11 +53,17 @@ export default function ReadyToSell() {
               />
             ))}
           </div>
-          <div className="flex flex-col gap-4 md:gap-0 md:flex-row md:items-center justify-between">
-            <LPIdentityCard img="dummy-user-img-2.png" name="James Smith" subtitle="Owner"/>
-            <WHFillButton title="Contact Now">
-              <PhoneSVG />
-            </WHFillButton>
+          <div className="flex flex-col gap-6 md:gap-0 md:flex-row items-center justify-between">
+            <LPIdentityCard
+              img="dummy-user-img-2.png"
+              name="James Smith"
+              subtitle="Owner"
+            />
+            <div className="flex flex-col w-full">
+              <WHFillButton title="Contact Now">
+                <PhoneSVG />
+              </WHFillButton>
+            </div>
           </div>
         </div>
       </div>
