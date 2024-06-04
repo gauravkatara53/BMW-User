@@ -28,7 +28,7 @@ export default function LPSectionHeading({
         <div className="bg-WH-gold h-[1px] w-8"></div>
         <p className="text-sm text-WH-gold font-medium">{title}</p>
       </div>
-      <p className="ml-10 font-semibold text-deep-blue-1B text-3xl">
+      <p className="md:ml-10 font-semibold text-deep-blue-1B text-2xl md:text-3xl">
         {superHeading}
       </p>
     </div>

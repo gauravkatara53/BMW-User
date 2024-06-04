@@ -19,12 +19,12 @@ export default function LPIdentityCard({
     })}>
       <img className={cn({
         "w-8 h-8" : size==="small",
-        "w-14 h-14" : size==="base",
+        "lg:w-14 lg:h-14 w-12 h-12" : size==="base",
       })} src={img} alt="" />
       <div>
         <p className={cn("",{
             "text-sm": size==="small",
-            "text-lg font-medium": size==="base"
+            "xl:text-lg text-base font-medium": size==="base"
         })}>{name}</p>
         {size === "base" && (
           <p className="text-sm font-medium text-WH-mild-gray">{subtitle}</p>

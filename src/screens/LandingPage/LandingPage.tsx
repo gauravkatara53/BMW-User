@@ -10,15 +10,15 @@ import RecommendationProvider from "@/providers/RecommendationProvider";
 export default function LandingPage() {
   return (
     <div className="flex flex-col gap-40 overflow-x-hidden">
-      <Hero />
+      {/* <Hero />
       <RecommendationProvider>
         <OurRecommendation />
-      </RecommendationProvider>
+      </RecommendationProvider> */}
       <ReadyToSell />
-      <OurReviews />
-      <ArticleSection />
-      <Newsletter />
-      <WHFooter />
+      {/* <OurReviews /> */}
+      {/* <ArticleSection /> */}
+      {/* <Newsletter /> */}
+      {/* <WHFooter /> */}
     </div>
   );
 }
