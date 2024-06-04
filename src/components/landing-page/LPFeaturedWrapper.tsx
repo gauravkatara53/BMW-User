@@ -1,15 +1,6 @@
 import WHChip from "../common/WHChip";
 import LPIdentityCard from "./LPIdentityCard";
 
-type TProps = {
-  propertyName?: string;
-  price?: string;
-  img?: string;
-  ownerImage?: string;
-  ownerName?: string;
-  place?: string;
-};
-
 export default function LPFeaturedWrapper({
   propertyName,
   price,
@@ -17,7 +8,7 @@ export default function LPFeaturedWrapper({
   ownerImage,
   ownerName,
   place,
-}: TProps) {
+}: LPFeatured) {
   return (
     <div className="flex flex-col gap-4 ml-10">
       <div className="relative">

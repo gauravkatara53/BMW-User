@@ -1,8 +1,7 @@
-import ChevronWhiteSVG from "@/components/common/WHChevronWhiteSVG";
-import LPFeaturedWrapper from "@/components/landing-page/LPFeaturedWrapper";
+import ChevronSVG from "@/assets/svgs/ChevronSVG";
+import LPFeaturedContainer from "@/components/landing-page/LPFeaturedContainer";
 import LPSectionHeading from "@/components/landing-page/LPSectionHeading";
 import LPSelector from "@/components/landing-page/LPSelector";
-import { FEATURED } from "@/data/landing-page";
 
 export default function OurRecommendation() {
   return (
@@ -14,27 +13,15 @@ export default function OurRecommendation() {
         />
         <LPSelector />
         <div className="flex gap-4">
-          <div className=" bg-WH-light-gray px-6 py-4 rounded-full">
-            <ChevronWhiteSVG />
+          <div className=" bg-WH-light-gray px-6 py-4 rounded-full flex justify-center items-center">
+            <ChevronSVG direction="left" strokeWidth={2} />
           </div>
-          <div className=" bg-WH-light-green-01 px-6 py-4 rounded-full">
-            <ChevronWhiteSVG />
+          <div className=" bg-WH-light-green-01 px-6 py-4 rounded-full flex justify-center items-center">
+            <ChevronSVG direction="right" color="white" strokeWidth={2} />
           </div>
         </div>
       </div>
-      <div className="flex">
-        {FEATURED.map((property, i) => (
-          <LPFeaturedWrapper
-            key={`FEATURED_PROPERTY_${i}`}
-            ownerImage={property.ownerImage}
-            ownerName={property.ownerName}
-            img={property.img}
-            place={property.city}
-            price={Number(property.price).toLocaleString()}
-            propertyName={property.propertyName}
-          />
-        ))}
-      </div>
+      <LPFeaturedContainer />
     </div>
   );
 }
