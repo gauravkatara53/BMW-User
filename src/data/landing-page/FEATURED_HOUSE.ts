@@ -1,4 +1,4 @@
-export const FEATURED:Array<LPFeatured> = [
+export const FEATURED_HOUSE:Array<LPFeatured> = [
     {
         _id:"LPF98675634",
         img:"dummy-featured1.png",

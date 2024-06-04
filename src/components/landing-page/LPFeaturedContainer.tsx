@@ -1,4 +1,3 @@
-import { FEATURED } from "@/data/landing-page";
 import LPFeaturedWrapper from "./LPFeaturedWrapper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination,Parallax } from "swiper/modules";
@@ -7,8 +6,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "swiper/css/parallax";
+import { useContext } from "react";
+import { RecommendationContext } from "@/providers/RecommendationProvider";
 
 export default function LPFeaturedContainer() {
+  const RC = useContext(RecommendationContext)
   return (
     <div className="flex">
       <Swiper
@@ -22,7 +24,7 @@ export default function LPFeaturedContainer() {
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
       >
-        {FEATURED.map((property) => (
+        {RC?.recommendations.map((property) => (
           <SwiperSlide>
             <LPFeaturedWrapper
               key={property._id}
