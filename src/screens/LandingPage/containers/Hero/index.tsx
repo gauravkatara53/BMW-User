@@ -1,10 +1,9 @@
-import ChevronSVG from "@/assets/svgs/ChevronSVG";
+import { ChevronSVG } from "@/assets/svgs";
 import WHNavbar from "@/components/common/WHNavbar";
 import LPAchievementContainer from "@/components/landing-page/LPAchievementContainer";
 import LPSearchBar from "@/components/landing-page/LPSearchBar";
 
 export default function Hero() {
-  
   return (
     <div className="pl-32">
       <WHNavbar />

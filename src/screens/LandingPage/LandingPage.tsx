@@ -11,14 +11,14 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col gap-40 overflow-x-hidden">
       <Hero />
-      <RecommendationProvider>
+      {/* <RecommendationProvider>
         <OurRecommendation />
       </RecommendationProvider>
       <ReadyToSell />
       <OurReviews />
       <ArticleSection />
       <Newsletter />
-      <WHFooter />
+      <WHFooter /> */}
     </div>
   );
 }
