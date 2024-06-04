@@ -4,3 +4,14 @@ interface LPAchievement {
   subtitle?: string;
   images?: Array<string>;
 }
+
+interface LPFeatured {
+  _id?:string
+  propertyName?: string;
+  price?: string;
+  img?: string;
+  ownerImage?: string;
+  ownerName?: string;
+  place?: string;
+  tag?:string
+}
