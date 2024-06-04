@@ -1,4 +1,4 @@
-import ChevronWhiteSVG from "@/components/common/WHChevronWhiteSVG";
+import ChevronSVG from "@/assets/svgs/ChevronSVG";
 import LPFeaturedWrapper from "@/components/landing-page/LPFeaturedWrapper";
 import LPSectionHeading from "@/components/landing-page/LPSectionHeading";
 import LPSelector from "@/components/landing-page/LPSelector";
@@ -14,11 +14,11 @@ export default function OurRecommendation() {
         />
         <LPSelector />
         <div className="flex gap-4">
-          <div className=" bg-WH-light-gray px-6 py-4 rounded-full">
-            <ChevronWhiteSVG />
+          <div className=" bg-WH-light-gray px-6 py-4 rounded-full flex justify-center items-center">
+            <ChevronSVG direction="left" strokeWidth={2}/>
           </div>
-          <div className=" bg-WH-light-green-01 px-6 py-4 rounded-full">
-            <ChevronWhiteSVG />
+          <div className=" bg-WH-light-green-01 px-6 py-4 rounded-full flex justify-center items-center">
+            <ChevronSVG direction="right" color="white" strokeWidth={2} />
           </div>
         </div>
       </div>

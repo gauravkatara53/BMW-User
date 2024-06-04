@@ -1,14 +1,10 @@
 import React from "react";
 
-type TProps = {
-  title?: string;
-  subtitle?: string;
-  images?: Array<string>;
-};
-
 export default function LPAchievementCard({
-  images,subtitle,title
-}: TProps): React.JSX.Element {
+  images,
+  subtitle,
+  title,
+}: LPAchievement): React.JSX.Element {
   return (
     <div className="bg-white flex py-4 pl-4 pr-6 rounded-[2rem] gap-4 items-center flex-shrink-0">
       <div className="flex">
@@ -23,9 +19,7 @@ export default function LPAchievementCard({
       </div>
       <div>
         <p className="font-semibold">{title}</p>
-        <p className="text-xs text-WH-light-purple">
-          {subtitle}
-        </p>
+        <p className="text-xs text-WH-light-purple">{subtitle}</p>
       </div>
     </div>
   );

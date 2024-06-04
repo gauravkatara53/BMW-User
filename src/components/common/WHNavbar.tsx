@@ -2,7 +2,7 @@ import WHNavLink from "./WHNavLink";
 
 export default function WHNavbar() {
   return (
-    <div className="py-8 px-32 flex justify-between w-full absolute top-0 left-0">
+    <div className="py-8 px-32 flex justify-between w-full absolute top-0 left-0 z-20">
       <div className="flex items-center gap-3">
         <img src="logo1.png" className="h-12" alt="" />
         {/* <WHSvg />

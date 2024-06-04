@@ -1,13 +1,14 @@
-import ChevronWhiteSVG from "@/components/common/WHChevronWhiteSVG";
+import ChevronSVG from "@/assets/svgs/ChevronSVG";
 import WHNavbar from "@/components/common/WHNavbar";
-import LPAchievementCard from "@/components/landing-page/LPAchievementCard";
+import LPAchievementContainer from "@/components/landing-page/LPAchievementContainer";
 import LPSearchBar from "@/components/landing-page/LPSearchBar";
 
 export default function Hero() {
+  
   return (
     <div className="pl-32">
       <WHNavbar />
-      <div className="flex justify-between relative -z-10">
+      <div className="flex justify-between relative z-10">
         <img
           className="absolute top-[-12rem] left-[-24rem] -z-20"
           src="green-blur-blob.png"
@@ -24,7 +25,9 @@ export default function Hero() {
             where it will be easier for you
           </p>
           <LPSearchBar
-            buttonChild={<ChevronWhiteSVG />}
+            buttonChild={
+              <ChevronSVG direction="right" color="white" strokeWidth={2} />
+            }
             iconUrl="location-pin.png"
             buttonTitle="Search"
             placeholder="Search for the location you want!"
@@ -42,28 +45,14 @@ export default function Hero() {
           </div>
         </div>
         <div className="relative">
-          <img src="hero.png" alt="" />
-          <div className="absolute bottom-11 left-11 flex gap-4 overflow-hidden">
-            <LPAchievementCard
-              subtitle="Successfully Getting Home"
-              title="1K+ People"
-              images={[
-                "dummy-user-img-1.png",
-                "dummy-user-img-2.png",
-                "dummy-user-img-3.png",
-              ]}
-            />
-            <LPAchievementCard
-              subtitle="Sold monthly"
-              title="56 Houses"
-              images={["dummy-resort.png"]}
-            />
-            <LPAchievementCard
-              subtitle="Peoples looking for new home"
-              title="4K+"
-              images={["dummy-user-img-4.png"]}
+          <div className="overflow-hidden rounded-bl-[4.8rem]">
+            <img
+              className="hover:scale-110 object-cover"
+              src="hero.png"
+              alt=""
             />
           </div>
+          <LPAchievementContainer />
         </div>
       </div>
     </div>

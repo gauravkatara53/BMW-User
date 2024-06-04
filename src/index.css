@@ -8,8 +8,9 @@ body {
   font-family: "Lexend", sans-serif;
 }
 
-*{
+* {
   box-sizing: border-box;
+  transition: all 0.5s;
 }
 
 .css-text-stroke {
