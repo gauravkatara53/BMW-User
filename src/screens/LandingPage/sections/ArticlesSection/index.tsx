@@ -4,7 +4,7 @@ import LPSectionHeading from "@/components/landing-page/LPSectionHeading";
 
 export default function ArticleSection() {
   return (
-    <div className="px-32 flex flex-col items-center gap-6 relative">
+    <div className="lg:px-32 md:px-16 sm:px-8 px-4 flex flex-col items-center gap-6 relative">
       <img className="absolute -left-80 -z-10 -top-16" src="blur-blob-3.png" alt="" />
       <LPSectionHeading
         alignment="center"
@@ -12,8 +12,8 @@ export default function ArticleSection() {
         superHeading="Find Out More About Selling And Buying Homes"
       />
       <WHFillButton title="More Articles" />
-      <div className="grid grid-cols-7 gap-16 mt-12">
-        <div className="col-span-3 flex flex-col gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-7 gap-6 md:gap-16 mt-12 w-full">
+        <div className="md:col-span-3 flex flex-col gap-10 md:gap-12">
           <LPArticleWrapper
             img="article1.png"
             title="The things we need to check when we want to buy a house"
@@ -33,7 +33,7 @@ export default function ArticleSection() {
             readTime="2"
           />
         </div>
-        <div className="col-span-4">
+        <div className="hidden md:block md:col-span-4">
           <LPArticleWrapper
             large
             img="article4.png"
@@ -42,7 +42,6 @@ export default function ArticleSection() {
             date={917}
             readTime="2"
           />
-          {/* <img className="w-full" src="article4.png" alt="" /> */}
         </div>
       </div>
     </div>
