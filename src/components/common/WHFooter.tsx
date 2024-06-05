@@ -27,7 +27,7 @@ export default function WHFooter() {
         <div className="mb-6 md:mb-0 flex flex-col items-center mt-4 md:mt-[-40px]" style={{ backgroundColor: "" }}>
           <div className="flex flex-col items-center mb-6">
             <img src="logo.png" alt="Company Logo" className="w-32 h-24 md:w-48 md:h-40 mx-auto mb-2 md:mb-2" />
-            <p className="text-center text-[#8a8ca5] text-base md:text-lg leading-relaxed mt-4 md:mt-[-40px]">
+            <p className="text-center md:text-left text-[#8a8ca5] text-base md:text-lg leading-relaxed mt-4 md:mt-[-40px]">
               We provide information about properties such <br /> as houses, villas and apartments to help people <br /> find their dream home.
             </p>
           </div>
