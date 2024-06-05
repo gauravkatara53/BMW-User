@@ -13,21 +13,21 @@ export default function LPIdentityCard({
   img,name,subtitle
 }: TProps): React.JSX.Element {
   return (
-    <div className={cn("flex gap-4 items-center",{
-        "gap-4": size==="base",
+    <div className={cn("flex sm:gap-4 items-center",{
+        "gap-2 sm:gap-4": size==="base",
         "gap-2": size==="small",
     })}>
       <img className={cn({
         "w-8 h-8" : size==="small",
-        "w-14 h-14" : size==="base",
+        "lg:w-14 lg:h-14 w-12 h-12" : size==="base",
       })} src={img} alt="" />
       <div>
         <p className={cn("",{
             "text-sm": size==="small",
-            "text-lg font-medium": size==="base"
+            "xl:text-lg md:text-base text-sm font-medium": size==="base"
         })}>{name}</p>
         {size === "base" && (
-          <p className="text-sm font-medium text-WH-mild-gray">{subtitle}</p>
+          <p className="text-xs sm:text-sm font-medium text-WH-mild-gray">{subtitle}</p>
         )}
       </div>
     </div>
