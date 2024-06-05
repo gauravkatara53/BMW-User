@@ -1,5 +1,4 @@
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
-
 export default function WHFooter() {
   return (
     <footer className="relative text-gray-800 p-20">
