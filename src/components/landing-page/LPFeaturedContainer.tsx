@@ -1,33 +1,51 @@
+import { useContext, useEffect, useState } from "react";
 import LPFeaturedWrapper from "./LPFeaturedWrapper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination,Parallax } from "swiper/modules";
+import { Autoplay, Pagination } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
-import "swiper/css/parallax";
-import { useContext } from "react";
 import { RecommendationContext } from "@/providers/RecommendationProvider";
 
 export default function LPFeaturedContainer() {
-  const RC = useContext(RecommendationContext)
+  const RC = useContext(RecommendationContext);
+  const [slidesPerView, setSlidesPerView] = useState(4);
+
+  const updateSlidesPerView = () => {
+    const width = window.innerWidth;
+    if (width < 640) {
+      setSlidesPerView(1);
+    } else if (width < 768) {
+      setSlidesPerView(2);
+    } else if (width < 1024) {
+      setSlidesPerView(3);
+    } else {
+      setSlidesPerView(4);
+    }
+  };
+
+  useEffect(() => {
+    updateSlidesPerView();
+    window.addEventListener("resize", updateSlidesPerView);
+    return () => window.removeEventListener("resize", updateSlidesPerView);
+  }, []);
+
   return (
-    <div className="flex">
+    <div className="flex w-full justify-center">
       <Swiper
-        modules={[Pagination,Autoplay,Parallax]}
+        modules={[Autoplay, Pagination]}
         speed={1000}
-        pagination={true}
-        autoplay={true}
-        parallax={true}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        // pagination={{ clickable: true }}
         spaceBetween={16}
-        slidesPerView={4}
+        slidesPerView={slidesPerView}
         onSlideChange={() => console.log("slide change")}
         onSwiper={(swiper) => console.log(swiper)}
       >
         {RC?.recommendations.map((property) => (
-          <SwiperSlide>
+          <SwiperSlide key={property._id}>
             <LPFeaturedWrapper
-              key={property._id}
               ownerImage={property.ownerImage}
               ownerName={property.ownerName}
               img={property.img}

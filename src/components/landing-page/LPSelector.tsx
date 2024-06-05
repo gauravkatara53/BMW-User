@@ -26,13 +26,13 @@ const TABS: Array<{ name: RecommendationType; icon: React.JSX.Element }> = [
 export default function LPSelector(): React.JSX.Element {
   const RC = useContext(RecommendationContext);
   return (
-    <div className=" flex gap-8">
+    <div className=" flex md:gap-8 gap-2">
       {TABS.map((tab, i) => (
         <div
           key={`OR_TAB_${i}`}
           onClick={() => RC?.changeTab(tab.name)}
           className={cn(
-            "border py-3 capitalize cursor-pointer border-WH-light-gray px-6 rounded-full text-WH-light-purple flex gap-2 items-center font-medium",
+            "border md:py-3 py-1 capitalize cursor-pointer border-WH-light-gray md:text-base sm:text-sm text-xs px-2 md:px-6 rounded-full text-WH-light-purple flex gap-2 items-center font-medium",
             {
               "bg-WH-light-green text-WH-light-green-01 border-WH-light-green":
                 RC?.selected === tab.name,
