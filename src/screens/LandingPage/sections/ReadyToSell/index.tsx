@@ -54,12 +54,12 @@ export default function ReadyToSell() {
             ))}
           </div>
           <div className="flex flex-col gap-6 md:gap-0 md:flex-row items-center justify-between">
-            <LPIdentityCard
+            <LPIdentityCard changeDirnSmall
               img="dummy-user-img-2.png"
               name="James Smith"
               subtitle="Owner"
             />
-            <div className="flex flex-col w-full">
+            <div className="flex flex-col sm:items-end items-center w-full">
               <WHFillButton title="Contact Now">
                 <PhoneSVG />
               </WHFillButton>

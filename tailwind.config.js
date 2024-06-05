@@ -17,6 +17,9 @@ export default {
         "WH-light-red": "#FEE2E2",
         "WH-dark-red": "#EF4444",
       },
+      screens: {
+        xs: "440px",
+      },
     },
   },
   plugins: [],
