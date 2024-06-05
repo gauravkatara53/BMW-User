@@ -24,14 +24,14 @@ export default function WHFooter() {
     <footer className="relative text-gray-800 p-6 md:p-20">
       <div className="absolute top-0 right-0 w-32 h-32 md:w-64 md:h-64 bg-no-repeat bg-contain" style={{ backgroundImage: 'url(green-blur-blob.png)' }}></div>
       <div className="container mx-auto flex flex-col md:flex-row justify-between relative z-10">
-        <div className="mb-6 md:mb-0 flex flex-col items-center mt-4 md:mt-[-40px]" style={{ backgroundColor: "" }}>
-          <div className="flex flex-col items-center mb-6">
-            <img src="logo.png" alt="Company Logo" className="w-32 h-24 md:w-48 md:h-40 mx-auto mb-2 md:mb-2" />
+        <div className="mb-6 md:mb-0 flex flex-col items-center md:items-start mt-4 md:mt-[-40px]">
+          <div className="flex flex-col items-center md:items-start mb-6">
+            <img src="logo.png" alt="Company Logo" className="w-32 h-24 md:w-48 md:h-40 mx-auto mb-2" />
             <p className="text-center md:text-left text-[#8a8ca5] text-base md:text-lg leading-relaxed mt-4 md:mt-[-40px]">
               We provide information about properties such <br /> as houses, villas and apartments to help people <br /> find their dream home.
             </p>
           </div>
-          <div className="flex space-x-4 md:space-x-8 mt-4 md:mt-0">
+          <div className="flex space-x-4 md:space-x-8 mt-4 md:mt-0 justify-center md:justify-start">
             <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
               <FaFacebook className="text-xl md:text-2xl text-gray-800 hover:text-blue-600 transition-colors duration-200" />
             </a>
