@@ -1,0 +1,62 @@
+import APAchievementCard from "@/components/about-page/APAchievementCard";
+import APSectionHeading from "@/components/about-page/APSectionHeading";
+
+export default function WhoWeAre() {
+  return (
+    <div className="flex flex-col items-center lg:px-32 md:px-16 sm:px-8 px-4 gap-8 mt-32">
+      <APSectionHeading bgTitle="COMPANY" smallTitle="Who we are?" />
+      <div className="w-full bg-WH-light-pink/30 rounded-[5rem] flex p-16">
+        <div className="max-w-[38rem] flex flex-col gap-8 ">
+          <p className="text-lg font-normal text-black/80">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            sed urna in justo euismod condimentum. Fusce placerat enim et odio
+            molestie sagittis.
+          </p>
+          <p className="text-lg font-normal text-black/70">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+            sed urna in justo euismod condimentum. Fusce placerat enim et odio
+            molestie sagittis. Vestibulum dignissim orci vitae eros rutrum
+            euismod. Vestibulum tempor, sem et molestie egestas, dui tortor
+            laoreet tellus, id rhoncus mauris neque malesuada augue.
+          </p>
+          <div>
+            <img src="quote.png" alt="" />
+            <p className="italic font-semibold text-2xl -mt-[1.5rem]">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit
+            </p>
+          </div>
+        </div>
+
+        <div className=" relative flex-1 mx-16">
+          <div className="absolute top-0 left-0">
+            <APAchievementCard
+              imgUrl="article1.png"
+              title="Developers"
+              value="300+"
+              height={350}
+              width={350}
+            />
+          </div>
+          <div className="absolute top-[-5rem] right-0">
+            <APAchievementCard
+              imgUrl="article1.png"
+              title="Founded in"
+              value="2011"
+              width={250}
+              height={250}
+            />
+          </div>
+          <div className="absolute bottom-0 right-0">
+            <APAchievementCard
+              imgUrl="article1.png"
+              title="Projects"
+              value="1000+"
+              width={400}
+              height={200}
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
