@@ -1,7 +1,5 @@
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
-
 export default function WHFooter() {
   const propertyLinks = [
     { href: "#house", label: "House" },
@@ -22,24 +20,6 @@ export default function WHFooter() {
     { href: "#mail-id", label: "info@warehouseonhire.com" },
   ];
 
-  const propertyLinks = [
-    { href: "#house", label: "House" },
-    { href: "#apartment", label: "Apartment" },
-    { href: "#villa", label: "Villa" },
-  ];
-
-  const articleLinks = [
-    { href: "#new-article", label: "New Article" },
-    { href: "#popular-article", label: "Popular Article" },
-    { href: "#most-read", label: "Most Read" },
-    { href: "#tips-tricks", label: "Tips & Tricks" },
-  ];
-
-  const contactLinks = [
-    { href: "#new-delhi", label: "New Delhi" },
-    { href: "#mobile-number", label: "+91 1234567890" },
-    { href: "#mail-id", label: "info@warehouseonhire.com" },
-  ];
 
   return (
     <footer className="relative text-gray-800 p-6 md:p-20">
