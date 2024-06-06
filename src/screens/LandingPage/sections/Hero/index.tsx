@@ -2,6 +2,7 @@ import { ChevronSVG } from "@/assets/svgs";
 import WHNavbar from "@/components/common/WHNavbar";
 import LPAchievementContainer from "@/components/landing-page/LPAchievementContainer";
 import LPSearchBar from "@/components/landing-page/LPSearchBar";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
@@ -13,7 +14,7 @@ export default function Hero() {
           src="green-blur-blob.png"
           alt=""
         />
-        <div className="max-w-[37rem] sm:mt-48 mt-44 flex flex-col gap-8">
+        <div className="max-w-[37rem] sm:mt-48 mt-44 flex flex-col sm:items-start items-center gap-8">
           <div className="capitalize text-2xl sm:text-4xl xl:text-5xl text-deep-blue-1B font-bold sm:flex hidden flex-col sm:items-start items-center sm:gap-2">
             <p className="sm:text-start text-center">find the warehouse of</p>
             <p>your dreams</p>
@@ -36,7 +37,7 @@ export default function Hero() {
             <h4 className="text-WH-light-purple text-lg mb-2">
               Our Partnership
             </h4>
-            <div className="grid sm:grid-cols-4 grid-cols-2 items-center justify-center sm:justify-start sm:gap-12 gap-4">
+            <div className="grid xs:grid-cols-4 grid-cols-2 items-center justify-center sm:justify-start sm:gap-12 gap-4">
               <img src="traveloka.png" alt="" />
               <img src="ticket.png" alt="" />
               <img src="airbnb.png" alt="" />
@@ -46,8 +47,10 @@ export default function Hero() {
         </div>
         <div className="relative xl:w-[45rem] w-[60rem] h-full hidden lg:block">
           <div className="overflow-hidden rounded-bl-[4.8rem] w-full">
-            <img
-              className="hover:scale-110 object-cover w-full"
+            <motion.img
+            whileHover={{scale:1.2}}
+            transition={{duration:1}}
+              className="object-cover w-full"
               src="hero.png"
               alt=""
             />

@@ -1,4 +1,5 @@
 import { cn } from "@/utilities";
+import { motion } from "framer-motion";
 import React from "react";
 
 export default function WHFillButton({
@@ -20,9 +21,9 @@ export default function WHFillButton({
   rounded?: "sm" | "md" | "lg" | "none" | "full";
 }) {
   return (
-    <button
+    <motion.button
       onClick={onClick}
-      // whileTap={{ scale: 0.9 }}
+      whileTap={{ scale: 0.90 }}
       className={cn(
         `rounded-full text-nowrap justify-center border-2 tracking-[1px] font-normal px-4 lg:px-8 py-2 lg:py-4 text-sm xl:text-base flex items-center gap-2`,
         {
@@ -47,6 +48,6 @@ export default function WHFillButton({
     >
       {title}
       {children}
-    </button>
+    </motion.button>
   );
 }
