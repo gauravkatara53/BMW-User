@@ -20,14 +20,15 @@ export default function WHFooter() {
     { href: "#mail-id", label: "info@warehouseonhire.com" },
   ];
 
+
   return (
-    <footer className="relative text-gray-800 px-6 pb-6 pt-6 md:px-32 md:pb-16 md:pt-8 overflow-hidden">
-      <div className="absolute top-0 right-0 w-32 h-32 md:w-[30rem] md:h-[30rem] bg-no-repeat bg-contain" style={{ backgroundImage: 'url(blur-blob-3.png)' }}></div>
+    <footer className="relative text-gray-800 p-6 md:p-20">
+      <div className="absolute top-0 right-0 w-32 h-32 md:w-64 md:h-64 bg-no-repeat bg-contain" style={{ backgroundImage: 'url(green-blur-blob.png)' }}></div>
       <div className="container mx-auto flex flex-col md:flex-row justify-between relative z-10">
         <div className="mb-6 md:mb-0 flex flex-col items-center md:items-start mt-4 md:mt-[-40px]">
-          <div className="flex flex-col items-center sm:items-start mb-6">
-            <img src="logo1.png" alt="Company Logo" className=" h-16 mb-2" />
-            <p className="text-center md:text-left text-[#8a8ca5] text-base md:text-lg leading-relaxed mt-4">
+          <div className="flex flex-col items-center md:items-start mb-6">
+            <img src="logo.png" alt="Company Logo" className="w-56 h-52 md:w-56 md:h-52 mx-[-50px] mb-2" />
+            <p className="text-center md:text-left text-[#8a8ca5] text-base md:text-lg leading-relaxed mt-4 md:mt-[-60px]">
               We provide information about properties such <br /> as houses, villas and apartments to help people <br /> find their dream home.
             </p>
           </div>

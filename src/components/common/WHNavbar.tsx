@@ -13,9 +13,9 @@ export default function WHNavbar() {
       </div>
       <div className=" flex xl:gap-16 gap-4 items-center">
       <div className="lg:flex hidden gap-4 items-center">
-        <WHNavLink title="About Us" />
-        <WHNavLink title="Article" />
-        <WHNavLink title="Property" />
+        <WHNavLink title="About Us" to="/about" />
+        <WHNavLink title="Article"  to="/article"/>
+        <WHNavLink title="Property" to="/property"/>
       </div>
       <motion.div whileTap={{scale:0.9}} className="py-3 px-6 text-WH-dark-green cursor-pointer hover:border-WH-light-green-01 border border-WH-light-green bg-WH-light-green text-sm xl:text-base  rounded-full font-semibold">Sign Up!</motion.div>
 
