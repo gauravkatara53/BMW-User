@@ -3,7 +3,7 @@ import APSectionHeading from "@/components/about-page/APSectionHeading";
 
 export default function WhoWeAre() {
   return (
-    <div className="flex flex-col items-center lg:px-32 md:px-16 sm:px-8 px-4 gap-8 mt-32">
+    <div className="flex flex-col items-center lg:px-32 md:px-16 sm:px-8 px-4 gap-8 mt-0">
       <APSectionHeading bgTitle="COMPANY" smallTitle="Who we are?" />
       <div className="w-full bg-WH-light-pink/30 rounded-[5rem] flex p-16">
         <div className="max-w-[38rem] flex flex-col gap-8 ">
@@ -44,6 +44,7 @@ export default function WhoWeAre() {
               value="2011"
               width={250}
               height={250}
+              gradient="TYPE-2"
             />
           </div>
           <div className="absolute bottom-0 right-0">
@@ -53,6 +54,7 @@ export default function WhoWeAre() {
               value="1000+"
               width={400}
               height={200}
+              gradient="TYPE-3"
             />
           </div>
         </div>
