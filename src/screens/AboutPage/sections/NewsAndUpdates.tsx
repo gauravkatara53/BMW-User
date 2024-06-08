@@ -48,7 +48,13 @@ const NewsAndUpdates = () => {
   return (
     <div className="container mx-auto px-4 py-8 text-center overflow-hidden">
       <h1 className="text-5xl font-bold mb-8">News and Updates</h1>
-      <p className="text-[#212121] mb-8">
+      <div className="flex items-center justify-center ">
+      <div className="flex gap-3">
+        <div className="w-4 h-4 bg-gradient-to-br from-[#84FFFF] via-[#D1C4E9] to-[#F8BBD0] rounded-full"></div>
+        <div className="w-24 h-4 bg-gradient-to-br from-[#84FFFF] via-[#D1C4E9] to-[#F8BBD0] rounded-full"></div>
+      </div>
+    </div>
+      <p className="text-[#212121] mb-8 mt-6">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed urna in justo <br /> euismod condimentum.
       </p>
       <div className="my-8">
@@ -64,6 +70,25 @@ const NewsAndUpdates = () => {
             </div>
           ))}
         </Slider>
+        <style>{`
+        .slick-dots li button:before {
+          font-size: 16px;
+          color: #D1C4E9;
+        }
+        .slick-dots li.slick-active button:before {
+          color: #F8BBD0;
+        }
+        .slick-dots li {
+          margin: 0 3px;
+        }
+        .slick-dots li button {
+          width: 20px;
+          height: 20px;
+        }
+        .slick-dots {
+          bottom: -35px;
+        }
+      `}</style>
       </div>
     </div>
   );
