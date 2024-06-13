@@ -11,7 +11,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
         <div className="lg:flex hidden gap-4 items-center">
           <WHNavLink isDark={dark} title="About Us" to="/about" />
           <WHNavLink isDark={dark} title="Article" to="/article" />
-          <WHNavLink isDark={dark} title="Property" to="/property" />
+          <WHNavLink isDark={dark} title="Property" to="/PropertyPage" />
         </div>
         <motion.div
           whileTap={{ scale: 0.9 }}
