@@ -15,6 +15,7 @@ interface WarehouseCardProps {
   address: string;
   rating: string;
   onClick: () => void;
+  isSelected: boolean;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ setSearchQuery }) => {
@@ -120,10 +121,10 @@ const Navbar: React.FC<NavbarProps> = ({ setSearchQuery }) => {
   );
 };
 
-const WarehouseCard: React.FC<WarehouseCardProps> = ({ image, title, address, rating, onClick }) => (
+const WarehouseCard: React.FC<WarehouseCardProps> = ({ image, title, address, rating, onClick, isSelected }) => (
   <div
-    className="flex flex-col md:flex-row rounded-lg overflow-hidden mb-4 w-full h-auto md:h-[215px] shadow-lg cursor-pointer"
-    onClick={onClick}
+  className={`flex flex-col md:flex-row rounded-lg overflow-hidden mb-4 w-full h-auto md:h-[215px] shadow-lg cursor-pointer ${isSelected ? 'border-2 border-blue-600' : 'border-2 border-white'}`}
+  onClick={onClick}
   >
     <div className="p-2 flex-shrink-0">
       <img
@@ -149,16 +150,22 @@ const WarehouseCard: React.FC<WarehouseCardProps> = ({ image, title, address, ra
 const PropertyPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedLocation, setSelectedLocation] = useState<string>("");
+  const [selectedWarehouseIndex, setSelectedWarehouseIndex] = useState<number | null>(null);
 
   const warehouses: WarehouseCardProps[] = [
-    { image: image1, title: "Fully Furnished Smart Security Warehouse", address: "Entire Studio Apartment", rating: "4.8", onClick: () => setSelectedLocation("1.3521,103.8198") },
-    { image: image2, title: "Security Warehouse", address: "Entire Home", rating: "3.8", onClick: () => setSelectedLocation("1.290270,103.851959") },
-    { image: image3, title: "Classic Warehouse", address: "Share with Super Host", rating: "4.0", onClick: () => setSelectedLocation("1.2800945,103.8509491") }
+    { image: image1, title: "Fully Furnished Smart Security Warehouse", address: "Entire Studio Apartment", rating: "4.8", onClick: () => setSelectedLocation("1.3521,103.8198"), isSelected: selectedWarehouseIndex === 0 },
+    { image: image2, title: "Security Warehouse", address: "Entire Home", rating: "3.8", onClick: () => setSelectedLocation("1.290270,103.851959"), isSelected: selectedWarehouseIndex === 1  },
+    { image: image3, title: "Classic Warehouse", address: "Share with Super Host", rating: "4.0", onClick: () => setSelectedLocation("1.2800945,103.8509491"), isSelected: selectedWarehouseIndex === 2 }
   ];
 
   const filteredWarehouses = warehouses.filter(warehouse =>
     warehouse.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const handleWarehouseCardClick = (index: number) => {
+    setSelectedWarehouseIndex(index);
+    warehouses[index].onClick(); 
+  };
 
   return (
     <div className="pb-8">
@@ -193,7 +200,8 @@ const PropertyPage: React.FC = () => {
                 title={warehouse.title}
                 address={warehouse.address}
                 rating={warehouse.rating}
-                onClick={warehouse.onClick}
+                onClick={() => handleWarehouseCardClick(index)}
+                isSelected={warehouse.isSelected}
               />
             ))}
           </div>
