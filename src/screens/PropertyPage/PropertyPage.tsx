@@ -3,13 +3,24 @@ import image1 from '../../../public/image1.jpg';
 import image2 from '../../../public/image2.jpg';
 import image3 from '../../../public/image3.jpg';
 import Vector from '../../../public/Vector.png';
-import '@fortawesome/fontawesome-free/css/all.min.css'; 
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
-const Navbar = ({ setSearchQuery }) => {
+interface NavbarProps {
+  setSearchQuery: (query: string) => void;
+}
+
+interface WarehouseCardProps {
+  image: string;
+  title: string;
+  details: string;
+  rating: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ setSearchQuery }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const userName = "John Doe";
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
   };
 
@@ -108,8 +119,7 @@ const Navbar = ({ setSearchQuery }) => {
   );
 };
 
-
-const WarehouseCard = ({ image, title, details, rating }) => (
+const WarehouseCard: React.FC<WarehouseCardProps> = ({ image, title, details, rating }) => (
   <div className="flex flex-col md:flex-row rounded-lg overflow-hidden mb-4 w-full h-auto md:h-[215px] shadow-lg">
     <div className="p-2 flex-shrink-0">
       <img
@@ -132,18 +142,15 @@ const WarehouseCard = ({ image, title, details, rating }) => (
   </div>
 );
 
+const PropertyPage: React.FC = () => {
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
-const PropertyPage = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-
-  // List of warehouses
-  const warehouses = [
+  const warehouses: WarehouseCardProps[] = [
     { image: image1, title: "Fully Furnished Smart Security Warehouse", details: "Entire Studio Apartment", rating: "4.8" },
     { image: image2, title: "Security Warehouse", details: "Entire Home", rating: "3.8" },
     { image: image3, title: "Classic Warehouse", details: "Share with Super Host", rating: "4.0" }
   ];
 
-  // Filtered list of warehouses based on search query
   const filteredWarehouses = warehouses.filter(warehouse =>
     warehouse.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -166,7 +173,7 @@ const PropertyPage = () => {
               Instant Book
             </button>
             <div className="ml-auto">
-              <img 
+              <img
                 src={Vector}
                 alt="Vector"
                 className="w-6 h-6 ml-16  "
@@ -204,6 +211,3 @@ const PropertyPage = () => {
 };
 
 export default PropertyPage;
-
-
-
