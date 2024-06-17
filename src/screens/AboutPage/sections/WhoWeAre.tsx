@@ -5,8 +5,8 @@ export default function WhoWeAre() {
   return (
     <div className="flex flex-col items-center lg:px-32 md:px-16 sm:px-8 px-4 gap-8 mt-0">
       <APSectionHeading bgTitle="COMPANY" smallTitle="Who we are?" />
-      <div className="w-full bg-WH-light-pink/30 rounded-[5rem] flex p-16">
-        <div className="max-w-[38rem] flex flex-col gap-8 ">
+      <div className="w-full bg-WH-light-pink/30 rounded-[5rem] flex flex-col lg:flex-row lg:p-16">
+        <div className="max-w-[38rem] flex flex-col gap-8 lg:pr-16">
           <p className="text-lg font-normal text-black/80">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             sed urna in justo euismod condimentum. Fusce placerat enim et odio
@@ -19,16 +19,16 @@ export default function WhoWeAre() {
             euismod. Vestibulum tempor, sem et molestie egestas, dui tortor
             laoreet tellus, id rhoncus mauris neque malesuada augue.
           </p>
-          <div>
-            <img src="quote.png" alt="" />
+          <div className="lg:flex lg:items-center lg:justify-start">
+            <img src="quote.png" alt="" className="lg:mr-4" />
             <p className="italic font-semibold text-2xl -mt-[1.5rem]">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit
             </p>
           </div>
         </div>
 
-        <div className=" relative flex-1 mx-16">
-          <div className="absolute top-0 left-0">
+        <div className="flex-1 mx-0 lg:mx-16 mt-8 lg:mt-0 lg:relative">
+          <div className="lg:absolute lg:top-0 lg:left-0">
             <APAchievementCard
               imgUrl="article1.png"
               title="Developers"
@@ -37,7 +37,7 @@ export default function WhoWeAre() {
               width={350}
             />
           </div>
-          <div className="absolute top-[-5rem] right-0">
+          <div className="lg:absolute lg:top-[-5rem] lg:right-0">
             <APAchievementCard
               imgUrl="article1.png"
               title="Founded in"
@@ -47,7 +47,7 @@ export default function WhoWeAre() {
               gradient="TYPE-2"
             />
           </div>
-          <div className="absolute bottom-0 right-0">
+          <div className="lg:absolute lg:bottom-0 lg:right-0">
             <APAchievementCard
               imgUrl="article1.png"
               title="Projects"
