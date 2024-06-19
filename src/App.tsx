@@ -4,6 +4,8 @@ import NotFoundPage from "./components/common/WHNotFoundPage";
 import { AboutPage,LandingPage,PropertyPage } from "@/screens";
 
 import TestDeleteAccount from "./screens/TestDeleteAccount";
+import Signin from "./screens/Signup/Signin";
+import Signup from "./screens/Signup/Signup";
 
 export default function App() {
   return (
@@ -15,7 +17,8 @@ export default function App() {
         <Route path="/PropertyPage" element={<PropertyPage />} />
 
         <Route path="/delete-account" element={<TestDeleteAccount/>} />
-
+        <Route path="/Signin" element={<Signin/>} />
+        <Route path="/Signup" element={<Signup/>} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Router>
