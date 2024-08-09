@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import WHNavLink from "./WHNavLink";
-import { useNavigate } from 'react-router-dom';
-import { FaUserCircle } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom";
+import { FaUserCircle } from "react-icons/fa";
 
 interface User {
   _id: string;
@@ -12,14 +12,14 @@ interface User {
 
 export default function WHNavbar({ dark = false }: { dark?: boolean }) {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false); 
-  const [userDetails, setUserDetails] = useState<User | null>(null); 
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false); 
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [userDetails, setUserDetails] = useState<User | null>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
-    const refreshToken = localStorage.getItem('refreshToken');
-    const user = localStorage.getItem('user');
+    const accessToken = localStorage.getItem("accessToken");
+    const refreshToken = localStorage.getItem("refreshToken");
+    const user = localStorage.getItem("user");
 
     if (accessToken && refreshToken && user) {
       setIsLoggedIn(true);
@@ -28,18 +28,18 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
       setIsLoggedIn(false);
       setUserDetails(null);
     }
-  }, []); 
+  }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('isLoggedIn');
-    localStorage.removeItem('user');
-    
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("user");
+
     setIsLoggedIn(false);
     setUserDetails(null);
-    
-    navigate('/');
+
+    navigate("/");
   };
 
   const toggleDropdown = () => {
@@ -59,31 +59,59 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
         </div>
         {isLoggedIn ? (
           <div className="relative">
-             <FaUserCircle
+            <FaUserCircle
               id="avatarButton"
               className="w-10 h-10 rounded-full cursor-pointer"
               color={dark ? "white" : "white"}
               onClick={toggleDropdown}
             />
             {isDropdownOpen && userDetails && (
-              <div id="userDropdown" className="z-10 absolute right-0 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+              <div
+                id="userDropdown"
+                className="z-10 absolute right-0 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
+              >
                 <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
                   <div>{userDetails.username}</div>
-                  <div className="font-medium truncate">{userDetails.email}</div>
+                  <div className="font-medium truncate">
+                    {userDetails.email}
+                  </div>
                 </div>
-                <ul className="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+                <ul
+                  className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                  aria-labelledby="avatarButton"
+                >
                   <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Dashboard
+                    </a>
                   </li>
                   <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Settings
+                    </a>
                   </li>
                   <li>
-                    <a href="#" className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                    <a
+                      href="#"
+                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                      Earnings
+                    </a>
                   </li>
                 </ul>
                 <div className="py-1">
-                  <button onClick={handleLogout} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</button>
+                  <button
+                    onClick={handleLogout}
+                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+                  >
+                    Sign out
+                  </button>
                 </div>
               </div>
             )}
@@ -92,7 +120,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
           <motion.div
             whileTap={{ scale: 0.9 }}
             className="py-3 px-6 text-WH-dark-green cursor-pointer hover:border-WH-light-green-01 border border-WH-light-green bg-WH-light-green text-sm xl:text-base rounded-full font-semibold"
-            onClick={() => navigate('/Signin')}
+            onClick={() => navigate("/Signin")}
           >
             Sign Up!
           </motion.div>

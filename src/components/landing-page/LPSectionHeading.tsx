@@ -7,7 +7,7 @@ type TProps = {
   alignment?: "start" | "center";
 };
 
-export default function  LPSectionHeading({
+export default function LPSectionHeading({
   superHeading,
   title,
   alignment = "start",

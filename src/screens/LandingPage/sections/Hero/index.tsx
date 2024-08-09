@@ -2,6 +2,7 @@ import { ChevronSVG } from "@/assets/svgs";
 import WHNavbar from "@/components/common/WHNavbar";
 import LPAchievementContainer from "@/components/landing-page/LPAchievementContainer";
 import LPSearchBar from "@/components/landing-page/LPSearchBar";
+import "./style.css";
 import { motion } from "framer-motion";
 
 export default function Hero() {
@@ -14,21 +15,21 @@ export default function Hero() {
           src="green-blur-blob.png"
           alt=""
         />
-        <div className="max-w-[37rem] sm:mt-48 mt-44 flex flex-col sm:items-start items-center gap-8">
+        <div className="max-w-[38rem] sm:mt-48 mt-44 flex flex-col sm:items-start items-center gap-8">
           <div className="capitalize text-2xl sm:text-4xl xl:text-5xl text-deep-blue-1B font-bold sm:flex hidden flex-col sm:items-start items-center sm:gap-2">
             <p className="sm:text-start text-center">find the warehouse of</p>
-            <p>your dreams</p>
+            <p className="transparent-outline">your dreams</p>
             <p>easily here</p>
           </div>
-          <div className="text-2xl text-center capitalize font-bold text-deep-blue-1B sm:hidden block">find the warehouse of your dreams easily here</div>
+          <div className="text-2xl text-center capitalize font-bold text-deep-blue-1B sm:hidden block">
+            find the warehouse of your dreams easily here
+          </div>
           <p className="text-WH-light-purple text-sm sm:text-start text-center sm:text-lg">
             Everything you need about finding your place to live will be here,
             where it will be easier for you
           </p>
           <LPSearchBar
-            buttonChild={
-              <ChevronSVG direction="right" strokeWidth={2} />
-            }
+            buttonChild={<ChevronSVG direction="right" strokeWidth={2} />}
             iconUrl="location-pin.png"
             buttonTitle="Search"
             placeholder="Search for the location you want!"
@@ -48,8 +49,8 @@ export default function Hero() {
         <div className="relative xl:w-[45rem] w-[60rem] h-full hidden lg:block">
           <div className="overflow-hidden rounded-bl-[4.8rem] w-full">
             <motion.img
-            whileHover={{scale:1.2}}
-            transition={{duration:1}}
+              whileHover={{ scale: 1.2 }}
+              transition={{ duration: 1 }}
               className="object-cover w-full"
               src="hero.png"
               alt=""

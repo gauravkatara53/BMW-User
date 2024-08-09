@@ -24,5 +24,5 @@ interface LPReview {
   reviewerName?: string;
   reviewerImage?: string;
   reviewerdes?: string;
-  bgImageUrl?:string
+  bgImageUrl?: string;
 }

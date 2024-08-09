@@ -2,11 +2,11 @@ export const ACHIEVEMENTS: Array<LPAchievement> = [
   {
     _id: "LPA96946784",
     title: "1K+ People",
-    subtitle: "Successfully Getting Home",
+    subtitle: "Successfully Getting Home ",
     images: [
       "dummy-user-img-1.png",
-      // "dummy-user-img-2.png",
-      // "dummy-user-img-3.png",
+      "dummy-user-img-2.png",
+      "dummy-user-img-3.png",
     ],
   },
   {

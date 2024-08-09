@@ -16,7 +16,7 @@ export default {
         "WH-gold": "#F59E0B",
         "WH-light-red": "#FEE2E2",
         "WH-dark-red": "#EF4444",
-        "WH-light-pink": "#D1C4E9"
+        "WH-light-pink": "#D1C4E9",
       },
       screens: {
         xs: "440px",

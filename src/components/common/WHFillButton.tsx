@@ -23,7 +23,7 @@ export default function WHFillButton({
   return (
     <motion.button
       onClick={onClick}
-      whileTap={{ scale: 0.90 }}
+      whileTap={{ scale: 0.9 }}
       className={cn(
         `rounded-full text-nowrap justify-center border-2 tracking-[1px] font-normal px-4 lg:px-8 py-2 lg:py-4 text-sm xl:text-base flex items-center gap-2`,
         {
@@ -46,8 +46,8 @@ export default function WHFillButton({
         }
       )}
     >
-      {title}
       {children}
+      {title}
     </motion.button>
   );
 }

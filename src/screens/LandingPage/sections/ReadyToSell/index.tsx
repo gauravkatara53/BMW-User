@@ -26,11 +26,6 @@ const PROPERTY_DETAILS = [
 export default function ReadyToSell() {
   return (
     <div className="flex md:flex-row flex-col items-center lg:px-32 md:px-16 sm:px-8 px-4 gap-16 justify-between relative">
-      <img
-        src="red-yellow-blur-blob.png"
-        className="absolute md:-top-64 md:-right-0 top-96 left-[-10rem] -z-10"
-        alt=""
-      />
       <div className="flex flex-col gap-4">
         <LPSectionHeading
           superHeading="Let’s tour and see our Warehouse!"
@@ -54,7 +49,8 @@ export default function ReadyToSell() {
             ))}
           </div>
           <div className="flex flex-col gap-6 md:gap-0 md:flex-row items-center justify-between">
-            <LPIdentityCard changeDirnSmall
+            <LPIdentityCard
+              changeDirnSmall
               img="dummy-user-img-2.png"
               name="James Smith"
               subtitle="Owner"
@@ -67,7 +63,13 @@ export default function ReadyToSell() {
           </div>
         </div>
       </div>
+
       <div>
+        <img
+          src="red-yellow-blur-blob.png"
+          className="absolute md:-top-64 md:-right-0 top-96 left-[-10rem] -z-10"
+          alt=""
+        />
         <img src="ready-to-sell-dummy.png" alt="" />
       </div>
     </div>

@@ -18,10 +18,19 @@ export default function LPFeaturedWrapper({
         </div>
       </div>
       <div className="flex flex-col sm:items-start items-center ">
-        <p className="text-lg md:text-2xl text-deep-blue-1B font-medium">{propertyName}</p>
-        <p className="text-WH-dark-gray text-sm md:text-lg font-medium">Rs. {price}</p>
+        <p className="text-lg md:text-2xl text-deep-blue-1B font-medium">
+          {propertyName}
+        </p>
+        <p className="text-WH-dark-gray text-sm md:text-lg font-medium">
+          Rs. {price}
+        </p>
       </div>
-      <LPIdentityCard changeDirnSmall img={ownerImage} name={ownerName} subtitle={place} />
+      <LPIdentityCard
+        changeDirnSmall
+        img={ownerImage}
+        name={ownerName}
+        subtitle={place}
+      />
     </div>
   );
 }
