@@ -8,21 +8,20 @@ export default function WhoWeAre() {
       <div className="w-full bg-WH-light-pink/30 rounded-[5rem] flex flex-col lg:flex-row lg:p-16">
         <div className="max-w-[38rem] flex flex-col gap-8 lg:pr-16">
           <p className="text-lg font-normal text-black/80">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            sed urna in justo euismod condimentum. Fusce placerat enim et odio
-            molestie sagittis.
+            At Book My Warehouse, we provide flexible and secure warehouse
+            solutions tailored to your business needs. Our tech-driven platform
+            simplifies storage management, allowing you to book and monitor
+            space in real-time.
           </p>
           <p className="text-lg font-normal text-black/70">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            sed urna in justo euismod condimentum. Fusce placerat enim et odio
-            molestie sagittis. Vestibulum dignissim orci vitae eros rutrum
-            euismod. Vestibulum tempor, sem et molestie egestas, dui tortor
-            laoreet tellus, id rhoncus mauris neque malesuada augue.
+            We're more than just a storage provider—we're your strategic partner
+            in ensuring efficient inventory management, helping your business
+            grow and thrive.
           </p>
           <div className="lg:flex lg:items-center lg:justify-start">
             <img src="quote.png" alt="" className="lg:mr-4" />
             <p className="italic font-semibold text-2xl -mt-[1.5rem]">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit
+              Effortless Storage Solutions for Every Business
             </p>
           </div>
         </div>
