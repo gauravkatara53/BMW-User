@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import WHNavLink from "./WHNavLink";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 
 interface User {
@@ -48,9 +48,11 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
 
   return (
     <div className="py-8 lg:px-32 md:px-16 sm:px-8 px-4 flex justify-between w-full absolute top-0 left-0 z-20">
-      <div className="flex items-center gap-3">
-        <img src="logo1.png" className="h-12" alt="Logo" />
-      </div>
+      <Link to="/">
+        <div className="flex items-center gap-3">
+          <img src="logo1.png" className="h-12" alt="Logo" />
+        </div>
+      </Link>
       <div className="flex xl:gap-16 gap-4 items-center">
         <div className="lg:flex hidden gap-4 items-center">
           <WHNavLink isDark={dark} title="About Us" to="/about" />

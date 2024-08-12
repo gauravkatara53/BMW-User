@@ -56,7 +56,12 @@ export default function ReadyToSell() {
               subtitle="Owner"
             />
             <div className="flex flex-col sm:items-end items-center w-full">
-              <WHFillButton title="Contact Now">
+              <WHFillButton
+                title="Contact Now"
+                onClick={() =>
+                  (window.location.href = "mailto:care@bookmywarehouse.ac.in")
+                }
+              >
                 <PhoneSVG />
               </WHFillButton>
             </div>

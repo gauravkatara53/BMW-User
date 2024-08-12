@@ -16,9 +16,18 @@ export default function WHFooter() {
   ];
 
   const contactLinks = [
-    { href: "#new-delhi", label: "New Delhi" },
-    { href: "#mobile-number", label: "+91 1234567890" },
-    { href: "#mail-id", label: "info@warehouseonhire.com" },
+    {
+      href: "https://www.google.com/maps/search/?api=1&query=Chandni+Chowk,+Delhi",
+      label: "New Delhi",
+    },
+    {
+      href: "tel:+911234567890",
+      label: "+91 1234567890",
+    },
+    {
+      href: "mailto:info@warehouseonhire.com",
+      label: "info@warehouseonhire.com",
+    },
   ];
 
   return (
@@ -97,9 +106,7 @@ export default function WHFooter() {
           </div>
           <div className="text-center md:text-left">
             <div className="flex justify-between items-center">
-              <h3 className="text-centertext-lg md:text-xl font-semibold mb-4">
-                Contact
-              </h3>
+              <h3 className="text-lg md:text-xl font-semibold mb-4">Contact</h3>
             </div>
             <ul className="space-y-2 text-[#8a8ca5]">
               {contactLinks.map((link, index) => (
@@ -119,6 +126,7 @@ export default function WHFooter() {
     </footer>
   );
 }
+
 // import WHLinksList from "./WHLinksList";
 
 // export default function WHFooter() {
