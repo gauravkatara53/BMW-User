@@ -1,9 +1,9 @@
 import { useState } from "react";
-import image1 from '../../../public/image1.jpg';
-import image2 from '../../../public/image2.jpg';
-import image3 from '../../../public/image3.jpg';
-import Vector from '../../../public/Vector.png';
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import image1 from "../../../public/image1.jpg";
+import image2 from "../../../public/image2.jpg";
+import image3 from "../../../public/image3.jpg";
+import Vector from "../../../public/Vector.png";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 interface NavbarProps {
   setSearchQuery: (query: string) => void;
@@ -55,7 +55,8 @@ const Navbar: React.FC<NavbarProps> = ({ setSearchQuery }) => {
         </div>
         <div className="flex items-center space-x-4 md:space-x-8">
           <span className="text-gray-400 text-sm md:text-base hidden md:inline">
-            <i className="text-black fa fa-phone" aria-hidden="true"></i> +1 (234) 567890
+            <i className="text-black fa fa-phone" aria-hidden="true"></i> +1
+            (234) 567890
           </span>
           <div className="relative">
             <button
@@ -121,10 +122,19 @@ const Navbar: React.FC<NavbarProps> = ({ setSearchQuery }) => {
   );
 };
 
-const WarehouseCard: React.FC<WarehouseCardProps> = ({ image, title, address, rating, onClick, isSelected }) => (
+const WarehouseCard: React.FC<WarehouseCardProps> = ({
+  image,
+  title,
+  address,
+  rating,
+  onClick,
+  isSelected,
+}) => (
   <div
-  className={`flex flex-col md:flex-row rounded-lg overflow-hidden mb-4 w-full h-auto md:h-[215px] shadow-lg cursor-pointer ${isSelected ? 'border-2 border-blue-600' : 'border-2 border-white'}`}
-  onClick={onClick}
+    className={`flex flex-col md:flex-row rounded-lg overflow-hidden mb-4 w-full h-auto md:h-[215px] shadow-lg cursor-pointer ${
+      isSelected ? "border-2 border-blue-600" : "border-2 border-white"
+    }`}
+    onClick={onClick}
   >
     <div className="p-2 flex-shrink-0">
       <img
@@ -150,28 +160,54 @@ const WarehouseCard: React.FC<WarehouseCardProps> = ({ image, title, address, ra
 const PropertyPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [selectedLocation, setSelectedLocation] = useState<string>("");
-  const [selectedWarehouseIndex, setSelectedWarehouseIndex] = useState<number | null>(null);
+  const [selectedWarehouseIndex, setSelectedWarehouseIndex] = useState<
+    number | null
+  >(null);
 
   const warehouses: WarehouseCardProps[] = [
-    { image: image1, title: "Fully Furnished Smart Security Warehouse", address: "Entire Studio Apartment", rating: "4.8", onClick: () => setSelectedLocation("1.3521,103.8198"), isSelected: selectedWarehouseIndex === 0 },
-    { image: image2, title: "Security Warehouse", address: "Entire Home", rating: "3.8", onClick: () => setSelectedLocation("1.290270,103.851959"), isSelected: selectedWarehouseIndex === 1  },
-    { image: image3, title: "Classic Warehouse", address: "Share with Super Host", rating: "4.0", onClick: () => setSelectedLocation("1.2800945,103.8509491"), isSelected: selectedWarehouseIndex === 2 }
+    {
+      image: image1,
+      title: "Fully Furnished Smart Security Warehouse",
+      address: "Entire Studio Apartment",
+      rating: "4.8",
+      onClick: () => setSelectedLocation("1.3521,103.8198"),
+      isSelected: selectedWarehouseIndex === 0,
+    },
+    {
+      image: image2,
+      title: "Security Warehouse",
+      address: "Entire Home",
+      rating: "3.8",
+      onClick: () => setSelectedLocation("1.290270,103.851959"),
+      isSelected: selectedWarehouseIndex === 1,
+    },
+    {
+      image: image3,
+      title: "Classic Warehouse",
+      address: "Share with Super Host",
+      rating: "4.0",
+      onClick: () => setSelectedLocation("1.2800945,103.8509491"),
+      isSelected: selectedWarehouseIndex === 2,
+    },
   ];
 
-  const filteredWarehouses = warehouses.filter(warehouse =>
+  const filteredWarehouses = warehouses.filter((warehouse) =>
     warehouse.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const handleWarehouseCardClick = (index: number) => {
     setSelectedWarehouseIndex(index);
-    warehouses[index].onClick(); 
+    warehouses[index].onClick();
   };
 
   return (
     <div className="pb-8">
       <Navbar setSearchQuery={setSearchQuery} />
       <div className="container mx-auto mt-8 px-4 md:px-8 flex flex-col md:flex-row">
-      <div className="w-full md:w-1/2 md:pr-8 mb-8 md:mb-0 overflow-y-auto custom-scrollbar" style={{ height: 'calc(100vh - 200px)' }}>
+        <div
+          className="w-full md:w-1/2 md:pr-8 mb-8 md:mb-0 overflow-y-auto custom-scrollbar"
+          style={{ height: "calc(100vh - 200px)" }}
+        >
           <span className="font-roboto">430 + Stays</span>
           <h1 className="text-3xl font-bold mb-4">Warehouses in Noida</h1>
           <div className="flex flex-wrap space-x-2 md:space-x-5 mb-4 items-center">
@@ -185,11 +221,7 @@ const PropertyPage: React.FC = () => {
               Instant Book
             </button>
             <div className="ml-auto">
-              <img
-                src={Vector}
-                alt="Vector"
-                className="w-6 h-6 ml-14"
-              />
+              <img src={Vector} alt="Vector" className="w-6 h-6 ml-14" />
             </div>
           </div>
           <div>
@@ -209,7 +241,11 @@ const PropertyPage: React.FC = () => {
         <div className="w-full md:w-3/5 md:pl-4">
           <div className="h-[400px] md:h-full bg-gray-200 rounded sticky top-8">
             <iframe
-              src={`https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12573.995343291042!2d${selectedLocation.split(",")[1]}!3d${selectedLocation.split(",")[0]}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sau!4v1649531195318!5m2!1sen!2sau&q=${selectedLocation}`}
+              src={`https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d12573.995343291042!2d${
+                selectedLocation.split(",")[1]
+              }!3d${
+                selectedLocation.split(",")[0]
+              }!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sau!4v1649531195318!5m2!1sen!2sau&q=${selectedLocation}`}
               width="100%"
               height="100%"
               allowFullScreen
@@ -218,7 +254,16 @@ const PropertyPage: React.FC = () => {
               className="rounded"
             ></iframe>
             {selectedLocation && (
-              <div className="marker" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 100 }}>
+              <div
+                className="marker"
+                style={{
+                  position: "absolute",
+                  top: "50%",
+                  left: "50%",
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 100,
+                }}
+              >
                 <i className="fas fa-map-marker-alt text-red-500 text-4xl"></i>
               </div>
             )}

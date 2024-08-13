@@ -1,7 +1,7 @@
 import { ChevronSVG } from "@/assets/svgs";
 import WHNavbar from "@/components/common/WHNavbar";
 import LPAchievementContainer from "@/components/landing-page/LPAchievementContainer";
-import LPSearchBar from "@/components/landing-page/LPSearchBar";
+import LPSearchBarHero from "@/components/landing-page/LPSearchBarHero";
 import "./style.css";
 import { motion } from "framer-motion";
 
@@ -28,7 +28,7 @@ export default function Hero() {
             Everything you need about finding your place to live will be here,
             where it will be easier for you
           </p>
-          <LPSearchBar
+          <LPSearchBarHero
             buttonChild={<ChevronSVG direction="right" strokeWidth={2} />}
             iconUrl="location-pin.png"
             buttonTitle="Search"

@@ -30,7 +30,7 @@ export default function LPSelector(): React.JSX.Element {
     <div className=" flex lg:gap-8 gap-2">
       {TABS.map((tab, i) => (
         <motion.div
-        whileTap={{scale:0.95}}
+          whileTap={{ scale: 0.95 }}
           key={`OR_TAB_${i}`}
           onClick={() => RC?.changeTab(tab.name)}
           className={cn(

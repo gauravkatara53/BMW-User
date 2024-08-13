@@ -11,13 +11,13 @@ export default function OurRecommendation() {
           title="Our Recommendation"
           superHeading="Featured House"
         />
-        <LPSelector/>
+        <LPSelector />
         <div className="lg:flex gap-4 hidden">
-          <div className=" bg-WH-light-gray px-6 py-4 rounded-full flex justify-center items-center">
+          <div className="bg-gray-200 px-6 py-4 rounded-full flex justify-center items-center hover:bg-WH-light-green-01 transition-colors duration-300">
             <ChevronSVG direction="left" strokeWidth={2} />
           </div>
-          <div className=" bg-WH-light-green-01 px-6 py-4 rounded-full flex justify-center items-center">
-            <ChevronSVG direction="right" color="white" strokeWidth={2} />
+          <div className="bg-gray-200 px-6 py-4 rounded-full flex justify-center items-center hover:bg-WH-light-green-01 transition-colors duration-300">
+            <ChevronSVG direction="right" strokeWidth={2} />
           </div>
         </div>
       </div>
