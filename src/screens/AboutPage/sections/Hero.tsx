@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import APTitleText from "@/components/about-page/APTitleText";
 
 export default function Hero() {
-  const videoRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const video = videoRef.current;
