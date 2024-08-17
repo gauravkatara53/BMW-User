@@ -32,7 +32,7 @@ export default function ReadyToSell() {
           title="Ready to Sell!"
         />
         <div className="md:ml-10 flex flex-col gap-8 xl:max-w-[30rem] max-w-[40rem]">
-          <p className="text-WH-light-purple sm:text-start text-center ">
+          <p className="text-WH-light-purple sm:text-start text-center">
             Warehouses recommended by our partners that have been curated to
             become the office of your dreams!
           </p>
@@ -69,13 +69,22 @@ export default function ReadyToSell() {
         </div>
       </div>
 
-      <div>
+      <div className="relative w-full md:w-auto md:flex-1">
         <img
           src="red-yellow-blur-blob.png"
           className="absolute md:-top-64 md:-right-0 top-96 left-[-10rem] -z-10"
           alt=""
         />
-        <img src="ready-to-sell-dummy.png" alt="" />
+        <video
+          src="2888386-uhd_3840_2160_24fps.mp4"
+          className="w-full h-auto rounded-lg shadow-lg"
+          autoPlay
+          loop
+          muted
+          playsInline
+        >
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   );
