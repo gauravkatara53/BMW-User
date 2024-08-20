@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import WHNavLink from "./WHNavLink";
 import { Link, useNavigate } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
 
 interface User {
   _id: string;
@@ -15,6 +15,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [userDetails, setUserDetails] = useState<User | null>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const accessToken = localStorage.getItem("accessToken");
@@ -46,6 +47,10 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className="py-8 lg:px-32 md:px-16 sm:px-8 px-4 flex justify-between w-full absolute top-0 left-0 z-20">
       <Link to="/">
@@ -53,18 +58,29 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
           <img src="logo1.png" className="h-12" alt="Logo" />
         </div>
       </Link>
-      <div className="flex xl:gap-16 gap-4 items-center">
-        <div className="lg:flex hidden gap-4 items-center">
+
+      {/* Hamburger Icon */}
+      <div className="lg:hidden flex items-center">
+        <button onClick={toggleMenu} className="text-2xl">
+          {isMenuOpen ? <FaTimes /> : <FaBars />}
+        </button>
+      </div>
+
+      {/* Desktop Menu */}
+      <div className="hidden lg:flex items-center justify-end w-full">
+        <div className="flex gap-4">
           <WHNavLink isDark={dark} title="About Us" to="/about" />
           <WHNavLink isDark={dark} title="Article" to="/article" />
           <WHNavLink isDark={dark} title="Property" to="/PropertyPage" />
         </div>
         {isLoggedIn ? (
-          <div className="relative">
+          <div className="relative ml-12">
+            {" "}
+            {/* Increased margin here */}
             <FaUserCircle
               id="avatarButton"
               className="w-10 h-10 rounded-full cursor-pointer"
-              color={dark ? "white" : "white"}
+              color={dark ? "white" : "black"}
               onClick={toggleDropdown}
             />
             {isDropdownOpen && userDetails && (
@@ -121,12 +137,95 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
         ) : (
           <motion.div
             whileTap={{ scale: 0.9 }}
-            className="py-3 px-6 text-WH-dark-green cursor-pointer hover:border-WH-light-green-01 border border-WH-light-green bg-WH-light-green text-sm xl:text-base rounded-full font-semibold"
+            className="ml-12 py-3 px-6 text-WH-dark-green cursor-pointer hover:border-WH-light-green-01 border border-WH-light-green bg-WH-light-green text-sm xl:text-base rounded-full font-semibold"
             onClick={() => navigate("/Signin")}
           >
             Sign Up!
           </motion.div>
         )}
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`lg:hidden transform transition-all duration-300 ${
+          isMenuOpen
+            ? "scale-100 opacity-100"
+            : "scale-95 opacity-0 pointer-events-none"
+        } absolute top-full left-0 right-0 bg-white shadow-lg z-10 origin-top`}
+      >
+        <div className="flex flex-col items-center py-4">
+          <WHNavLink isDark={dark} title="About Us" to="/about" />
+          <WHNavLink isDark={dark} title="Article" to="/article" />
+          <WHNavLink isDark={dark} title="Property" to="/PropertyPage" />
+          {isLoggedIn ? (
+            <div className="relative mt-4">
+              <FaUserCircle
+                id="avatarButton"
+                className="w-10 h-10 rounded-full cursor-pointer transition-transform duration-200 hover:scale-105"
+                color={dark ? "white" : "black"}
+                onClick={toggleDropdown}
+              />
+              {isDropdownOpen && userDetails && (
+                <div
+                  id="userDropdown"
+                  className="z-10 absolute right-0 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 transition-opacity duration-300 ease-in-out"
+                >
+                  <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                    <div>{userDetails.username}</div>
+                    <div className="font-medium truncate">
+                      {userDetails.email}
+                    </div>
+                  </div>
+                  <ul
+                    className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                    aria-labelledby="avatarButton"
+                  >
+                    <li>
+                      <a
+                        href="#"
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white transition-colors duration-200"
+                      >
+                        Dashboard
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white transition-colors duration-200"
+                      >
+                        Settings
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white transition-colors duration-200"
+                      >
+                        Earnings
+                      </a>
+                    </li>
+                  </ul>
+                  <div className="py-1">
+                    <button
+                      onClick={handleLogout}
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white transition-colors duration-200"
+                    >
+                      Sign out
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          ) : (
+            <motion.div
+              whileTap={{ scale: 0.9 }}
+              className="py-3 px-6 text-WH-dark-green cursor-pointer hover:border-WH-light-green-01 border border-WH-light-green bg-WH-light-green text-sm xl:text-base rounded-full font-semibold mt-4 transition-transform duration-300 ease-in-out"
+              onClick={() => navigate("/Signin")}
+            >
+              Sign Up!
+            </motion.div>
+          )}
+        </div>
       </div>
     </div>
   );
