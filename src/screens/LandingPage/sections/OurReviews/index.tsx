@@ -19,11 +19,13 @@ export default function OurReviews() {
         <Swiper
           modules={[Autoplay, Pagination]} // Include Pagination module
           speed={1000}
-          autoplay={true}
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          loop={true} // Enable loop mode
           parallax={true}
           spaceBetween={16}
           slidesPerView={3}
-          pagination={{ clickable: true }}
+          centeredSlides={true} // Center the slides
+          pagination={{ clickable: true, dynamicBullets: true }} // Dynamic bullets for pagination
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
