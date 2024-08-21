@@ -5,15 +5,15 @@ export default function WhoWeAre() {
   return (
     <div className="flex flex-col items-center lg:px-32 md:px-16 sm:px-8 px-4 gap-8 mt-0">
       <APSectionHeading bgTitle="COMPANY" smallTitle="Who we are?" />
-      <div className="w-full bg-WH-light-pink/30 rounded-[5rem] flex flex-col lg:flex-row lg:p-16">
+      <div className="w-full bg-WH-light-pink/30 rounded-[5rem] flex flex-col lg:flex-row lg:p-16 p-4 overflow-hidden lg:overflow-visible">
         <div className="flex-1 flex flex-col gap-8 lg:pr-16">
-          <p className="text-lg font-normal text-black/80">
+          <p className="text-lg font-normal text-black/80 px-4 pt-1">
             At Book My Warehouse, we provide flexible and secure warehouse
             solutions tailored to your business needs. Our tech-driven platform
             simplifies storage management, allowing you to book and monitor
             space in real-time.
           </p>
-          <p className="text-lg font-normal text-black/70">
+          <p className="text-lg font-normal text-black/70 px-4">
             We're more than just a storage provider—we're your strategic partner
             in ensuring efficient inventory management, helping your business
             grow and thrive.
