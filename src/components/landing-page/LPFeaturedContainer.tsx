@@ -1,14 +1,19 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, MutableRefObject } from "react";
 import LPFeaturedWrapper from "./LPFeaturedWrapper";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
-
+import { Autoplay, Pagination } from "swiper/modules"; // Import only the necessary modules
 import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/autoplay";
+import "swiper/css/pagination"; // Import only the necessary styles
 import { RecommendationContext } from "@/providers/RecommendationProvider";
+import { Swiper as SwiperCore } from "swiper"; // Import SwiperCore type
 
-export default function LPFeaturedContainer() {
+interface LPFeaturedContainerProps {
+  swiperRef: MutableRefObject<SwiperCore | null>; // Explicitly type the swiperRef prop
+}
+
+export default function LPFeaturedContainer({
+  swiperRef,
+}: LPFeaturedContainerProps) {
   const RC = useContext(RecommendationContext);
   const [slidesPerView, setSlidesPerView] = useState(4);
 
@@ -34,14 +39,17 @@ export default function LPFeaturedContainer() {
   return (
     <div className="flex w-full justify-center">
       <Swiper
-        modules={[Autoplay, Pagination]}
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper; // Assign Swiper instance to ref
+        }}
+        modules={[Autoplay, Pagination]} // Use only necessary modules
         speed={1000}
         autoplay={{ delay: 3000, disableOnInteraction: false }}
-        // pagination={{ clickable: true }}
         spaceBetween={16}
         slidesPerView={slidesPerView}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
+        // Remove default pagination and navigation
+        pagination={false}
+        navigation={false}
       >
         {RC?.recommendations.map((property) => (
           <SwiperSlide key={property._id}>
