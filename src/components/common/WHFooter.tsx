@@ -73,7 +73,7 @@ export default function WHFooter() {
               <FaTwitter className="text-xl md:text-2xl text-gray-800 hover:text-blue-400 transition-colors duration-200" />
             </a>
             <a
-              href="https://www.instagram.com"
+              href="https://www.instagram.com/bookmywarehouse_/"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -121,7 +121,7 @@ export default function WHFooter() {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="hover:underline text-base md:text-lg"
+                    className="hover:underline text-base md:text-lg md:break-words"
                   >
                     {link.label}
                   </a>
@@ -136,7 +136,7 @@ export default function WHFooter() {
           <div className="space-y-4 w-full">
             <div className="flex flex-col items-center w-full">
               <button
-                className="flex justify-between items-center text-lg font-semibold text-gray-600 w-full text-left px-4 py-2  rounded-lg"
+                className="flex justify-between items-center text-lg font-semibold text-gray-600 w-full text-left px-4 py-2 rounded-lg"
                 onClick={() => setPropertyOpen(!isPropertyOpen)}
               >
                 Property
@@ -159,7 +159,7 @@ export default function WHFooter() {
 
             <div className="flex flex-col items-center w-full">
               <button
-                className="flex justify-between items-center text-lg font-semibold text-gray-600 w-full text-left px-4 py-2  rounded-lg"
+                className="flex justify-between items-center text-lg font-semibold text-gray-600 w-full text-left px-4 py-2 rounded-lg"
                 onClick={() => setArticleOpen(!isArticleOpen)}
               >
                 Article
@@ -182,7 +182,7 @@ export default function WHFooter() {
 
             <div className="flex flex-col items-center w-full">
               <button
-                className="flex justify-between items-center text-lg font-semibold text-gray-600 w-full text-left px-4 py-2  rounded-lg"
+                className="flex justify-between items-center text-lg font-semibold text-gray-600 w-full text-left px-4 py-2 rounded-lg"
                 onClick={() => setContactOpen(!isContactOpen)}
               >
                 Contact
