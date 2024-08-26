@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import WHFillButton from "../common/WHFillButton";
 import { cn } from "@/utilities";
 import { LOCATION } from "../../data/landing-page/LOCATION";
@@ -16,43 +16,47 @@ export default function LPSearchBar({
   placeholder = "Enter location",
   buttonChild,
 }: TProps) {
-  const [inputFocus, setInputFocus] = useState<boolean>(false);
-  const [location, setLocation] = useState<string>("");
+  const [inputFocus, setInputFocus] = useState(false);
+  const [location, setLocation] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setLocation(value);
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setLocation(value);
 
-    if (value.length > 0) {
-      const filteredCities = LOCATION.filter((city) =>
-        city.toLowerCase().startsWith(value.toLowerCase())
-      );
-      setSuggestions(filteredCities);
-    } else {
-      setSuggestions([]);
-    }
-  };
+      if (value.length > 0) {
+        const filteredCities = LOCATION.filter((city) =>
+          city.toLowerCase().startsWith(value.toLowerCase())
+        );
+        setSuggestions(filteredCities);
+      } else {
+        setSuggestions([]);
+      }
+    },
+    []
+  );
 
-  const handleSuggestionClick = (city: string) => {
+  const handleSuggestionClick = useCallback((city: string) => {
     setLocation(city);
     setSuggestions([]);
-  };
+  }, []);
+
+  const handleInputFocus = () => setInputFocus(true);
+  const handleInputBlur = () => setInputFocus(false);
 
   return (
     <div className="flex sm:block w-full flex-col items-center gap-4 relative">
       <div
         className={cn(
           "border border-WH-light-gray flex rounded-full w-[18rem] xs:w-[20rem] sm:w-auto items-center overflow-hidden pl-2 sm:pl-6 pr-2 py-2 bg-white",
-          {
-            "border-WH-light-green-01": inputFocus,
-          }
+          { "border-WH-light-green-01": inputFocus }
         )}
       >
-        <img src={iconUrl} alt="" />
+        {iconUrl && <img src={iconUrl} alt="Icon" />}
         <input
-          onFocus={() => setInputFocus(true)}
-          onBlur={() => setInputFocus(false)}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
           className="flex-1 px-3 text-sm lg:text-base outline-none focus:outline-none"
           type="text"
           placeholder={placeholder}
