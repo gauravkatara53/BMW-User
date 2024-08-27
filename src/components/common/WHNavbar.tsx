@@ -52,7 +52,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
   };
 
   return (
-    <div className="py-8 lg:px-32 md:px-16 sm:px-8 px-4 flex justify-between w-full absolute top-0 left-0 z-20">
+    <div className="py-8 lg:px-32 md:px-16 sm:px-8 px-4 flex justify-between items-start w-full absolute top-0 left-0 z-20">
       <Link to="/">
         <div className="flex items-center gap-3">
           <img src="logo1.png" className="h-12" alt="Logo" />
@@ -75,8 +75,6 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
         </div>
         {isLoggedIn ? (
           <div className="relative ml-12">
-            {" "}
-            {/* Increased margin here */}
             <FaUserCircle
               id="avatarButton"
               className="w-10 h-10 rounded-full cursor-pointer"
@@ -146,12 +144,13 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
       </div>
 
       {/* Mobile Menu */}
-      <div
-        className={`lg:hidden transform transition-all duration-300 ${
-          isMenuOpen
-            ? "scale-100 opacity-100"
-            : "scale-95 opacity-0 pointer-events-none"
-        } absolute top-full left-0 right-0 bg-white shadow-lg z-10 origin-top`}
+      <motion.div
+        initial={{ height: 0 }}
+        animate={{ height: isMenuOpen ? "auto" : 0 }}
+        transition={{ duration: 0.3 }}
+        className={`lg:hidden overflow-hidden bg-white shadow-lg z-10 absolute top-0 left-0 right-0 mt-20 transform transition-transform duration-300 ${
+          isMenuOpen ? "translate-y-0" : "-translate-y-full"
+        }`}
       >
         <div className="flex flex-col items-center py-4">
           <WHNavLink isDark={dark} title="About Us" to="/about" />
@@ -219,14 +218,14 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
           ) : (
             <motion.div
               whileTap={{ scale: 0.9 }}
-              className="py-3 px-6 text-WH-dark-green cursor-pointer hover:border-WH-light-green-01 border border-WH-light-green bg-WH-light-green text-sm xl:text-base rounded-full font-semibold mt-4 transition-transform duration-300 ease-in-out"
+              className="py-3 px-6 text-WH-dark-green cursor-pointer hover:border-WH-light-green-01 border border-WH-light-green bg-WH-light-green text-sm xl:text-base rounded-full font-semibold mt-4"
               onClick={() => navigate("/Signin")}
             >
               Sign Up!
             </motion.div>
           )}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
