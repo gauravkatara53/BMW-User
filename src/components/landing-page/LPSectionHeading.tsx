@@ -14,21 +14,21 @@ export default function LPSectionHeading({
 }: TProps): React.JSX.Element {
   return (
     <div
-      className={cn("flex flex-col gap-4", {
-        "items-center": alignment == "center",
-        "sm:items-start items-center": alignment == "start",
-      })}
+      className={cn(
+        "flex flex-col gap-4",
+        alignment === "center" ? "items-center" : "sm:items-start items-center"
+      )}
     >
-      <div
-        className={cn("flex  items-center", {
-          "sm:flex-row flex-col sm:gap-2 gap-4": alignment === "start",
-          "flex-col gap-4": alignment === "center",
-        })}
-      >
+      <div className="flex items-center flex-col sm:flex-row sm:gap-2 gap-4">
         <div className="bg-WH-gold h-[1px] w-8"></div>
         <p className="text-sm text-WH-gold font-medium">{title}</p>
       </div>
-      <p className="md:ml-10 font-semibold sm:text-start text-center text-deep-blue-1B text-lg sm:text-2xl md:text-3xl">
+      <p
+        className={cn(
+          "font-semibold text-center sm:text-start text-deep-blue-1B",
+          "text-lg sm:text-2xl md:text-3xl md:ml-10"
+        )}
+      >
         {superHeading}
       </p>
     </div>

@@ -6,11 +6,11 @@ type TProps = {
 export default function APSectionHeading({ bgTitle, smallTitle }: TProps) {
   return (
     <div className="relative box-border">
-      <p className="font-bold text-[#B2EBF2] text-[3rem] xs:text-[5rem] sm:text-[6rem] md:text-[7rem] lg:text-[9rem] xl:text-[12rem]">
+      <p className="font-bold text-[#B2EBF2] text-6xl xs:text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] xl:text-[12rem]">
         {bgTitle}
       </p>
-      <div className="absolute xl:bottom-[-0.2rem] lg:bottom-[-0.3rem] md:bottom-[-0.7rem] sm:bottom-[-1rem] xs:bottom-[-1.3rem] bottom-[-1.8rem] left-14 xs:left-24 sm:left-28 md:left-32 lg:left-44 xl:left-60 flex flex-col gap-6 items-center">
-        <p className="text-[1.3rem] xs:text-[2rem] sm:text-[2.2rem] md:text-[2.5rem] lg:text-[3rem] xl:text-[6rem] text-black font-bold ">
+      <div className="absolute bottom-[-1.8rem] xs:bottom-[-1.3rem] sm:bottom-[-1rem] md:bottom-[-0.7rem] lg:bottom-[-0.3rem] xl:bottom-[-0.2rem] left-14 xs:left-24 sm:left-28 md:left-32 lg:left-44 xl:left-60 flex flex-col gap-6 items-center">
+        <p className="text-[1.3rem] xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-black font-bold">
           {smallTitle}
         </p>
         <div className="flex gap-3">

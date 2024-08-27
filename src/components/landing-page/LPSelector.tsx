@@ -7,40 +7,31 @@ import {
   RecommendationType,
 } from "@/providers/RecommendationProvider";
 import { cn } from "@/utilities";
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 
-// Update to use the correct type for icons
 const TABS: Array<{
   name: RecommendationType;
   icon: React.FC<{ color?: string }>;
 }> = [
-  {
-    name: "house",
-    icon: HouseSVG,
-  },
-  {
-    name: "villa",
-    icon: VillaSVG,
-  },
-  {
-    name: "warehouse",
-    icon: ApartmentSVG,
-  },
+  { name: "house", icon: HouseSVG },
+  { name: "villa", icon: VillaSVG },
+  { name: "warehouse", icon: ApartmentSVG },
 ];
 
 export default function LPSelector(): React.JSX.Element {
   const RC = useContext(RecommendationContext);
 
-  return (
-    <div className="flex lg:gap-8 gap-2">
-      {TABS.map((tab, i) => {
-        const isSelected = RC?.selected === tab.name;
+  const tabs = useMemo(
+    () =>
+      TABS.map((tab, i) => {
+        const isSelected = RC?.selected === tab.name; // Use optional chaining here
         const IconComponent = tab.icon;
+
         return (
           <motion.div
             whileTap={{ scale: 0.95 }}
             key={`OR_TAB_${i}`}
-            onClick={() => RC?.changeTab(tab.name)} // Use the correct method
+            onClick={() => RC?.changeTab && RC.changeTab(tab.name)} // Ensure the method exists before calling
             className={cn(
               "border md:py-3 py-1 capitalize cursor-pointer border-WH-light-gray md:text-base sm:text-sm text-xs hover:border-WH-light-green-01/40 px-2 md:px-6 rounded-full text-WH-light-purple flex gap-2 items-center font-medium",
               {
@@ -53,7 +44,9 @@ export default function LPSelector(): React.JSX.Element {
             {tab.name}
           </motion.div>
         );
-      })}
-    </div>
+      }),
+    [RC?.selected, RC?.changeTab] // Update dependencies to use optional chaining
   );
+
+  return <div className="flex lg:gap-8 gap-2">{tabs}</div>;
 }
