@@ -1,5 +1,3 @@
-import { cn } from "@/utilities";
-
 type TProps = {
   value?: string;
   title?: string;

@@ -10,12 +10,12 @@ import OurPartnersAndInvestors from "./sections/OurPartnersAndInvestors";
 export default function AboutPage() {
   return (
     <div className="">
-      <WHNavbar dark/>
-      <Hero/>
+      <WHNavbar dark />
+      <Hero />
       <WhoWeAre />
       <GeteverythingDone />
-      <OurPartnersAndInvestors/>
-      <PeopleAndEnvironment/>
+      <OurPartnersAndInvestors />
+      <PeopleAndEnvironment />
       <NewsAndUpdates />
       <WHFooter />
     </div>

@@ -11,6 +11,12 @@ const Signin = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // Define the onMenuToggle function
+  const onMenuToggle = () => {
+    // Logic to toggle the menu
+    console.log("Menu toggled");
+  };
+
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setLoading(true);
@@ -51,7 +57,8 @@ const Signin = () => {
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-white">
-      <Navbar />
+      {/* Pass the onMenuToggle prop to Navbar */}
+      <Navbar onMenuToggle={onMenuToggle} />
       <div className="flex w-full md:w-1/2 items-center justify-center p-4 md:p-0">
         <div className="w-full max-w-md p-8 space-y-8">
           <h2 className="text-2xl font-bold text-center md:text-3xl pt-12">

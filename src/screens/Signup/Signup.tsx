@@ -1,4 +1,5 @@
 import { useState, FormEvent } from "react";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./SignupNavbar";
 import OTPModal from "./OtpModal";
@@ -76,145 +77,145 @@ const SignUp = () => {
     navigate("/home");
   };
 
+  const onMenuToggle = () => {
+    console.log("Menu toggled");
+  };
+
   return (
-    <>
-      <div className="min-h-screen bg-white">
-        {/* Navbar is fixed only on mobile */}
-        <div className="md:relative fixed w-full z-10">
-          <Navbar />
-        </div>
-
-        {/* Add top padding on mobile to prevent overlap with the Navbar */}
-        <div className="flex flex-col md:flex-row pt-20 md:pt-0">
-          <div className="flex flex-col items-center justify-center w-full md:w-1/2 p-4 md:p-8 space-y-8">
-            <h2 className="text-2xl font-bold pt-4 text-center">Sign Up</h2>
-            <p className="text-center text-gray-600">Create your account</p>
-            <form className="space-y-6 w-full max-w-md" onSubmit={handleSubmit}>
-              <div>
-                <label
-                  htmlFor="username"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Username
-                </label>
-                <input
-                  type="text"
-                  id="username"
-                  className="mt-1 block w-full px-3 py-2 border border-indigo-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={username}
-                  onChange={(e) => {
-                    setUsername(e.target.value);
-                    setError("");
-                  }}
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="phoneNo"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Phone Number
-                </label>
-                <input
-                  type="text"
-                  id="phoneNo"
-                  className="mt-1 block w-full px-3 py-2 border border-indigo-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={phoneNo}
-                  onChange={(e) => {
-                    setPhoneNo(e.target.value);
-                    setError("");
-                  }}
-                  required
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  id="password"
-                  className="mt-1 block w-full px-3 py-2 border border-indigo-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    setError("");
-                  }}
-                  required
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Role
-                </label>
-                <div className="mt-1">
-                  <label className="inline-flex items-center">
-                    <input
-                      type="radio"
-                      className="form-radio text-indigo-600"
-                      name="role"
-                      value="user"
-                      checked={role === "user"}
-                      onChange={(e) => setRole(e.target.value)}
-                    />
-                    <span className="ml-2">User</span>
-                  </label>
-                  <label className="inline-flex items-center ml-6">
-                    <input
-                      type="radio"
-                      className="form-radio text-indigo-600"
-                      name="role"
-                      value="admin"
-                      checked={role === "admin"}
-                      onChange={(e) => setRole(e.target.value)}
-                    />
-                    <span className="ml-2">Admin</span>
-                  </label>
-                </div>
-              </div>
-              {error && <p className="text-red-500 text-sm">{error}</p>}
-              <div>
-                <button
-                  type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-indigo-500 rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  disabled={loading}
-                >
-                  {loading ? "Signing Up..." : "Sign Up"}
-                </button>
-              </div>
-            </form>
-            <p className="text-center text-gray-600">
-              Already have an account?{" "}
-              <a
-                href="/signin"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
+    <div className="flex flex-col md:flex-row min-h-screen bg-white">
+      <Navbar onMenuToggle={onMenuToggle} />
+      <div className="flex w-full md:w-1/2 items-center justify-center p-4 md:p-0">
+        <div className="w-full max-w-md p-8 space-y-8">
+          <h2 className="text-2xl font-bold text-center md:text-3xl pt-12">
+            Create Account
+          </h2>
+          <p className="text-center text-gray-600 text-sm md:text-base">
+            Enter your details to sign up
+          </p>
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <div>
+              <label
+                htmlFor="username"
+                className="block text-sm font-medium text-gray-700"
               >
-                Sign In
-              </a>
-            </p>
-          </div>
-          <div className="hidden md:flex w-1/2">
-            <img
-              src={Image}
-              alt="Sign Up"
-              className="object-cover w-full h-[85%] rounded-lg"
-            />
-          </div>
+                Username
+              </label>
+              <input
+                type="text"
+                id="username"
+                className="mt-1 block w-full px-3 py-2 border border-indigo-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                value={username}
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  setError("");
+                }}
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="phoneNo"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Phone Number
+              </label>
+              <input
+                type="text"
+                id="phoneNo"
+                className="mt-1 block w-full px-3 py-2 border border-indigo-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                value={phoneNo}
+                onChange={(e) => {
+                  setPhoneNo(e.target.value);
+                  setError("");
+                }}
+                required
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Password
+              </label>
+              <input
+                type="password"
+                id="password"
+                className="mt-1 block w-full px-3 py-2 border border-indigo-500 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError("");
+                }}
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Role
+              </label>
+              <div className="mt-1">
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    className="form-radio text-indigo-600"
+                    name="role"
+                    value="user"
+                    checked={role === "user"}
+                    onChange={(e) => setRole(e.target.value)}
+                  />
+                  <span className="ml-2">User</span>
+                </label>
+                <label className="inline-flex items-center ml-6">
+                  <input
+                    type="radio"
+                    className="form-radio text-indigo-600"
+                    name="role"
+                    value="admin"
+                    checked={role === "admin"}
+                    onChange={(e) => setRole(e.target.value)}
+                  />
+                  <span className="ml-2">Admin</span>
+                </label>
+              </div>
+            </div>
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+            <div>
+              <button
+                type="submit"
+                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                disabled={loading}
+              >
+                {loading ? "Signing Up..." : "Sign Up"}
+              </button>
+            </div>
+          </form>
+          <p className="text-center text-gray-600 text-sm md:text-base">
+            Already have an account?{" "}
+            <Link
+              to="/signin"
+              className="font-medium text-indigo-600 hover:text-indigo-500"
+            >
+              Sign In
+            </Link>
+          </p>
         </div>
-
-        <OTPModal
-          isOpen={isOtpModalOpen}
-          onClose={() => setIsOtpModalOpen(false)}
-          onVerify={handleVerify}
-          phoneNo={phoneNo}
-        />
-        <ToastContainer />
       </div>
-    </>
+      <div className="hidden md:flex w-1/2">
+        <img
+          src={Image}
+          alt="Sign Up"
+          className="object-cover w-full h-[85%] rounded-lg"
+        />
+      </div>
+      <OTPModal
+        isOpen={isOtpModalOpen}
+        onClose={() => setIsOtpModalOpen(false)}
+        onVerify={handleVerify}
+        phoneNo={phoneNo}
+      />
+      <ToastContainer />
+    </div>
   );
 };
 

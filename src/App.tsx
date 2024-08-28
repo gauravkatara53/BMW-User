@@ -6,6 +6,7 @@ import { AboutPage, LandingPage, PropertyPage } from "@/screens";
 import TestDeleteAccount from "./screens/TestDeleteAccount";
 import Signin from "./screens/Signup/Signin";
 import Signup from "./screens/Signup/Signup";
+import ContactUs from "./screens/contact-us/ContactPage";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactUs />} />
 
           <Route path="/PropertyPage" element={<PropertyPage />} />
 

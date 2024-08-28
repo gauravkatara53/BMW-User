@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import PhoneSVG from "@/assets/svgs/PhoneSVG";
 import WHFillButton from "@/components/common/WHFillButton";
 import LPHouseDetailChip from "@/components/landing-page/LPHouseDetailChip";
@@ -55,16 +56,14 @@ export default function ReadyToSell() {
               name="James Smith"
               subtitle="Owner"
             />
-            <div className="flex flex-col sm:items-end items-center w-full">
-              <WHFillButton
-                title="Contact Now"
-                onClick={() =>
-                  (window.location.href = "mailto:care@bookmywarehouse.ac.in")
-                }
-              >
+            <Link
+              to="/contact"
+              className="flex flex-col sm:items-end items-center w-full"
+            >
+              <WHFillButton title="Contact Now">
                 <PhoneSVG />
               </WHFillButton>
-            </div>
+            </Link>
           </div>
         </div>
       </div>
