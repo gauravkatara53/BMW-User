@@ -1,40 +1,51 @@
+import React, { useRef, useEffect } from "react";
 import WHNavbar from "@/components/common/WHNavbar";
 import WHFillButton from "@/components/common/WHFillButton";
 import WHFooter from "@/components/common/WHFooter";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function ContactUs() {
+  // Specify the correct type for the ref
+  const topRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (topRef.current) {
+      topRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // Simulate a form submission with a success or error response
+    toast.success("Your message has been sent successfully!");
+  };
+
   return (
     <div>
-      <div className="relative min-h-screen overflow-hidden">
+      <div ref={topRef} className="relative min-h-screen overflow-hidden">
         {/* Background Images */}
-        {/* Top Left Background Image */}
         <img
           className="absolute lg:top-[-12rem] lg:left-[-24rem] sm:top-[-5rem] sm:left-[-10rem] top-[-5rem] left-[-10rem] -z-20"
           src="green-blur-blob.png"
           alt="Top Left Decoration"
         />
-        {/* Bottom Right Background Image */}
         <img
           className="absolute lg:bottom-[-12rem] lg:right-[-24rem] sm:bottom-[-5rem] sm:right-[-10rem] bottom-[-5rem] right-[-10rem] -z-20"
           src="green-blur-blob.png"
           alt="Bottom Right Decoration"
         />
 
-        {/* Navbar */}
         <WHNavbar dark />
 
         <div className="flex flex-col items-center justify-center min-h-screen relative z-10">
-          {/* Heading */}
           <h2 className="text-3xl sm:text-4xl lg:text-5xl text-[#1B1C57] font-bold text-center mb-8 mt-24 sm:mt-32 lg:mt-12">
             Contact Us!
           </h2>
 
-          {/* Container for Form and Map */}
           <div className="flex flex-col md:flex-col lg:flex-row rounded-lg overflow-hidden w-11/12 md:w-3/4 lg:w-2/3 space-y-6 lg:space-y-0 lg:space-x-8 relative z-10">
-            {/* Contact Form */}
             <div className="w-full lg:w-1/2 p-4 sm:p-6 lg:p-8 lg:pl-12">
-              <form className="space-y-4">
-                {/* Name Input */}
+              <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
                   <label
                     htmlFor="name"
@@ -50,7 +61,6 @@ export default function ContactUs() {
                     required
                   />
                 </div>
-                {/* Email Input */}
                 <div>
                   <label
                     htmlFor="email"
@@ -66,7 +76,6 @@ export default function ContactUs() {
                     required
                   />
                 </div>
-                {/* Mobile Input */}
                 <div>
                   <label
                     htmlFor="mobile"
@@ -79,10 +88,11 @@ export default function ContactUs() {
                     id="mobile"
                     className="w-full border border-gray-300 px-3 py-2 rounded-md shadow-md"
                     placeholder="Enter your mobile number"
+                    pattern="\d{10}"
+                    title="Please enter a 10-digit mobile number"
                     required
                   />
                 </div>
-                {/* Message Input */}
                 <div>
                   <label
                     htmlFor="message"
@@ -97,14 +107,12 @@ export default function ContactUs() {
                     required
                   ></textarea>
                 </div>
-                {/* Submit Button */}
                 <div>
-                  <WHFillButton title="send"></WHFillButton>
+                  <WHFillButton title="Send" />
                 </div>
               </form>
             </div>
 
-            {/* Map Section */}
             <div className="w-full lg:w-1/2 p-4 sm:p-6 lg:pr-12 flex justify-center items-center">
               <div className="relative w-full aspect-square lg:aspect-auto lg:h-[500px] md:h-[500px] h-[400px] mb-24 lg:mb-0">
                 <iframe
@@ -122,6 +130,7 @@ export default function ContactUs() {
         </div>
       </div>
       <WHFooter />
+      <ToastContainer />
     </div>
   );
 }
