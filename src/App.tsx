@@ -1,7 +1,13 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NotFoundPage from "./components/common/WHNotFoundPage";
 import { ToastContainer } from "react-toastify";
-import { AboutPage, LandingPage, PropertyPage } from "@/screens";
+import {
+  AboutPage,
+  LandingPage,
+  PropertyPage,
+  Dashboard,
+  Accounts,
+} from "@/screens";
 
 import TestDeleteAccount from "./screens/TestDeleteAccount";
 import Signin from "./screens/Signup/Signin";
@@ -23,6 +29,11 @@ export default function App() {
           <Route path="/delete-account" element={<TestDeleteAccount />} />
           <Route path="/Signin" element={<Signin />} />
           <Route path="/Signup" element={<Signup />} />
+          <Route path="/Dashboard" element={<Dashboard />} />
+          <Route path="/accounts" element={<Accounts />} />
+          {/* <Route path="/financial" element={<Financial />} />
+          <Route path="/property-management" element={<PropertyManagement />} />
+          <Route path="/lease-management" element={<LeaseManagement />} /> */}
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
