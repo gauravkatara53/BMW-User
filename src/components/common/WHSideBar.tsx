@@ -24,7 +24,6 @@ export default function Sidebar() {
   }, [location.pathname]);
 
   useEffect(() => {
-    // Navigate when activeTab changes
     if (activeTab !== location.pathname) {
       navigate(activeTab);
     }
@@ -34,7 +33,7 @@ export default function Sidebar() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleTabClick = (path: string) => {
+  const handleTabClick = (path) => {
     if (path !== activeTab) {
       setActiveTab(path);
     }
@@ -45,14 +44,18 @@ export default function Sidebar() {
       {!isSidebarOpen && (
         <button
           onClick={toggleSidebar}
-          className="pt-8 p-4 text-gray-500 hover:text-gray-700"
+          className="pt-8 p-4 text-gray-500 hover:text-gray-700 z-50 fixed top-0 left-0"
         >
           <FontAwesomeIcon icon={faBars} className="h-6 w-6" />
         </button>
       )}
 
       {isSidebarOpen && (
-        <div className="flex flex-col w-64 h-screen bg-gray-100 border-r">
+        <div
+          className={`flex flex-col w-64 h-screen bg-gray-100 border-r fixed z-40 transition-transform transform ${
+            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+          } md:relative md:translate-x-0`}
+        >
           <div className="flex items-center p-4 pt-8 border-b">
             <button
               onClick={toggleSidebar}
@@ -179,7 +182,7 @@ export default function Sidebar() {
                 >
                   Property Management
                 </span>
-              </li>{" "}
+              </li>
               <li
                 className={`flex items-center p-2 mb-4 rounded cursor-pointer group ${
                   activeTab === "/lease-management"
@@ -210,7 +213,6 @@ export default function Sidebar() {
               </li>
             </ul>
 
-            {/* System Section */}
             <div className="pt-4 pl-2 border-t">
               <h3 className="text-md font-bold text-gray-500 uppercase">
                 System
