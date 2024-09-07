@@ -33,7 +33,7 @@ export default function Sidebar() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleTabClick = (path) => {
+  const handleTabClick = (path: string) => {
     if (path !== activeTab) {
       setActiveTab(path);
     }
