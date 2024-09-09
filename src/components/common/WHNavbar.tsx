@@ -69,9 +69,9 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
       {/* Desktop Menu */}
       <div className="hidden lg:flex items-center justify-end w-full">
         <div className="flex gap-4">
+          <WHNavLink isDark={dark} title="Home" to="/" />
           <WHNavLink isDark={dark} title="About Us" to="/about" />
           <WHNavLink isDark={dark} title="Article" to="/article" />
-          <WHNavLink isDark={dark} title="Property" to="/PropertyPage" />
         </div>
         {isLoggedIn ? (
           <div className="relative ml-12">
@@ -135,10 +135,10 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
         ) : (
           <motion.div
             whileTap={{ scale: 0.9 }}
-            className="ml-12 py-3 px-6 text-WH-dark-green cursor-pointer hover:border-WH-light-green-01 border border-WH-light-green bg-WH-light-green text-sm xl:text-base rounded-full font-semibold"
+            className="ml-12 py-3 px-6  bg-gradient-to-b from-[#674CEC] to-[#8D77FC] text-gray-100 cursor-pointer hover:border-blue-900 border   text-sm xl:text-base rounded-full font-semibold"
             onClick={() => navigate("/Signin")}
           >
-            Sign Up!
+            Download Now
           </motion.div>
         )}
       </div>
@@ -152,22 +152,28 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
           isMenuOpen ? "translate-y-0" : "-translate-y-full"
         }`}
       >
-        <div className="flex flex-col items-center py-4">
-          <WHNavLink isDark={dark} title="About Us" to="/about" />
-          <WHNavLink isDark={dark} title="Article" to="/article" />
-          <WHNavLink isDark={dark} title="Property" to="/PropertyPage" />
+        <div className="flex flex-col items-center py-6 px-4">
+          <div className="py-1">
+            <WHNavLink isDark={dark} title="Home" to="/" />
+          </div>
+          <div className="py-1">
+            <WHNavLink isDark={dark} title="About Us" to="/about" />
+          </div>
+          <div className="py-1">
+            <WHNavLink isDark={dark} title="Article" to="/article" />
+          </div>
           {isLoggedIn ? (
-            <div className="relative mt-4">
+            <div className="relative mt-6">
               <FaUserCircle
                 id="avatarButton"
-                className="w-10 h-10 rounded-full cursor-pointer transition-transform duration-200 hover:scale-105"
+                className="w-12 h-12 rounded-full cursor-pointer transition-transform duration-200 hover:scale-105"
                 color={dark ? "white" : "black"}
                 onClick={toggleDropdown}
               />
               {isDropdownOpen && userDetails && (
                 <div
                   id="userDropdown"
-                  className="z-10 absolute right-0 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600 transition-opacity duration-300 ease-in-out"
+                  className="z-20 absolute right-0 mt-2 bg-white divide-y divide-gray-200 rounded-lg shadow-lg w-56 dark:bg-gray-800 dark:divide-gray-600 transition-opacity duration-300 ease-in-out"
                 >
                   <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
                     <div>{userDetails.username}</div>
@@ -176,13 +182,13 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
                     </div>
                   </div>
                   <ul
-                    className="py-2 text-sm text-gray-700 dark:text-gray-200"
+                    className="py-2 text-sm text-gray-700 dark:text-gray-300"
                     aria-labelledby="avatarButton"
                   >
                     <li>
                       <a
                         href="#"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white transition-colors duration-200"
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-200"
                       >
                         Dashboard
                       </a>
@@ -190,7 +196,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
                     <li>
                       <a
                         href="#"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white transition-colors duration-200"
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-200"
                       >
                         Settings
                       </a>
@@ -198,7 +204,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
                     <li>
                       <a
                         href="#"
-                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white transition-colors duration-200"
+                        className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-200"
                       >
                         Earnings
                       </a>
@@ -207,7 +213,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
                   <div className="py-1">
                     <button
                       onClick={handleLogout}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white transition-colors duration-200"
+                      className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
                     >
                       Sign out
                     </button>
@@ -217,11 +223,11 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
             </div>
           ) : (
             <motion.div
-              whileTap={{ scale: 0.9 }}
-              className="py-3 px-6 text-WH-dark-green cursor-pointer hover:border-WH-light-green-01 border border-WH-light-green bg-WH-light-green text-sm xl:text-base rounded-full font-semibold mt-4"
+              whileTap={{ scale: 0.95 }}
+              className="mt-2 py-3 px-6  bg-gradient-to-b from-[#674CEC] to-[#8D77FC] text-gray-100 cursor-pointer hover:border-blue-900 border   text-sm xl:text-base rounded-full font-semibold"
               onClick={() => navigate("/Signin")}
             >
-              Sign Up!
+              Download Now
             </motion.div>
           )}
         </div>

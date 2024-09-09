@@ -18,6 +18,7 @@ module.exports = {
         "WH-dark-red": "#EF4444",
         "WH-light-pink": "#D1C4E9",
       },
+
       screens: {
         xs: "440px",
       },
