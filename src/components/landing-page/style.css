@@ -1,0 +1,20 @@
+.transparent-outline {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #674cec;
+}
+
+.gradient-text {
+  background: linear-gradient(to bottom, #674cec, #8d77fc);
+  background-clip: text; /* Standard property */
+  -webkit-background-clip: text; /* WebKit-based browsers */
+  -webkit-text-fill-color: transparent; /* WebKit-based browsers */
+}
+
+/* Tailwind CSS gradient integration */
+.tailwind-gradient-text {
+  background: linear-gradient(to bottom, #674cec, #8d77fc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

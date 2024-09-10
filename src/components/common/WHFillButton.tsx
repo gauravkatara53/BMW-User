@@ -27,15 +27,16 @@ export default function WHFillButton({
       className={cn(
         `rounded-full text-nowrap justify-center border-2 tracking-[1px] font-normal px-4 lg:px-8 py-2 lg:py-4 text-sm xl:text-base flex items-center gap-2`,
         {
-          "bg-WH-light-green-01 text-white border-WH-light-green-01 sm:hover:text-WH-light-green-01 hover:border-WH-light-green-01 sm:hover:bg-transparent":
+          // Gradient background for primary-fill with hover border change
+          "bg-gradient-to-b from-[#674CEC] to-[#8D77FC] text-white hover:border-[#674CEC] sm:hover:border-[#8D77FC]  ":
             variant === "primary-fill",
-          "sm:hover:bg-WH-light-green-01 sm:hover:text-black text-WH-bg-WH-light-green-01 border-WH-bg-WH-light-green-01":
+          "sm:hover:border-[#8D77FC] sm:hover:text-white text-WH-bg-WH-light-green-01 border-WH-bg-WH-light-green-01":
             variant === "primary-bordered",
           "bg-white text-black sm:hover:text-white hover:border-white sm:hover:bg-transparent":
             variant === "white-fill",
           "sm:hover:bg-white sm:hover:text-black text-white border-white":
             variant === "white-bordered",
-          "bg-[#3db56d] text-white sm:hover:text-[#3db56d] border-[#3db56d] sm:hover:bg-transparent":
+          " text-white sm:hover:text-[#3db56d] border-[#3db56d] sm:hover:bg-transparent":
             variant === "light-green-fill",
         },
         {

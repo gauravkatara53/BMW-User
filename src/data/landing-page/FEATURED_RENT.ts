@@ -1,7 +1,7 @@
 export const FEATURED_Rent: Array<LPFeatured> = [
   {
     _id: "LPF98675634",
-    img: "dummy-featured2.png",
+    img: "dummy-featured3.png",
     propertyName: "Highlands Warehouse",
     price: "35000000",
     ownerImage: "dummy-user-img-1.png",

@@ -30,13 +30,13 @@ export default function OurRecommendation() {
         <LPSelector />
         <div className="lg:flex gap-4 hidden">
           <div
-            className="bg-gray-200 px-6 py-4 rounded-full flex justify-center items-center hover:bg-WH-light-green-01 transition-colors duration-300 cursor-pointer"
+            className="bg-gray-200 px-6 py-4 rounded-full flex justify-center items-center hover:border-white hover:text-white hover:bg-gradient-to-b hover:from-[#674CEC] hover:to-[#8D77FC] border transition-colors duration-300 cursor-pointer"
             onClick={handlePrev}
           >
             <ChevronSVG direction="left" strokeWidth={2} />
           </div>
           <div
-            className="bg-gray-200 px-6 py-4 rounded-full flex justify-center items-center hover:bg-WH-light-green-01 transition-colors duration-300 cursor-pointer"
+            className="bg-gray-200 px-6 py-4 rounded-full flex justify-center items-center hover:border-white hover:text-white hover:bg-gradient-to-b hover:from-[#674CEC] hover:to-[#8D77FC] border transition-colors duration-300 cursor-pointer"
             onClick={handleNext}
           >
             <ChevronSVG direction="right" strokeWidth={2} />

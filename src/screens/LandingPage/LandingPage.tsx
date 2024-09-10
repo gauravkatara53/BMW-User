@@ -6,6 +6,7 @@ import Newsletter from "./sections/Newsletter";
 import ArticleSection from "./sections/ArticlesSection";
 import OurReviews from "./sections/OurReviews";
 import RecommendationProvider from "@/providers/RecommendationProvider";
+import StatsSection from "./sections/ StatsSection";
 
 export default function LandingPage() {
   return (
@@ -14,6 +15,7 @@ export default function LandingPage() {
       <RecommendationProvider>
         <OurRecommendation />
       </RecommendationProvider>
+      <StatsSection />
       <ReadyToSell />
       <OurReviews />
       <ArticleSection />

@@ -1,6 +1,5 @@
-import ApartmentSVG from "@/assets/svgs/ApartmentSVG";
-import HouseSVG from "@/assets/svgs/HouseSVG";
-import VillaSVG from "@/assets/svgs/VillaSVG";
+import BuySVG from "@/assets/svgs/HouseSVG"; // Replace with the actual path to your Buy icon
+import RentSVG from "@/assets/svgs/ApartmentSVG"; // Replace with the actual path to your Rent icon
 import { motion } from "framer-motion";
 import {
   RecommendationContext,
@@ -13,9 +12,8 @@ const TABS: Array<{
   name: RecommendationType;
   icon: React.FC<{ color?: string }>;
 }> = [
-  { name: "house", icon: HouseSVG },
-  { name: "villa", icon: VillaSVG },
-  { name: "warehouse", icon: ApartmentSVG },
+  { name: "buy", icon: BuySVG },
+  { name: "rent", icon: RentSVG },
 ];
 
 export default function LPSelector(): React.JSX.Element {
@@ -24,28 +22,29 @@ export default function LPSelector(): React.JSX.Element {
   const tabs = useMemo(
     () =>
       TABS.map((tab, i) => {
-        const isSelected = RC?.selected === tab.name; // Use optional chaining here
+        const isSelected = RC?.selected === tab.name;
         const IconComponent = tab.icon;
 
         return (
           <motion.div
             whileTap={{ scale: 0.95 }}
             key={`OR_TAB_${i}`}
-            onClick={() => RC?.changeTab && RC.changeTab(tab.name)} // Ensure the method exists before calling
+            onClick={() => RC?.changeTab && RC.changeTab(tab.name)}
             className={cn(
-              "border md:py-3 py-1 capitalize cursor-pointer border-WH-light-gray md:text-base sm:text-sm text-xs hover:border-WH-light-green-01/40 px-2 md:px-6 rounded-full text-WH-light-purple flex gap-2 items-center font-medium",
+              "border md:py-3 py-1 capitalize cursor-pointer border-WH-light-gray md:text-base sm:text-sm text-xs hover:border-blue-500 px-2 md:px-6 rounded-full text-WH-light-purple flex gap-2 items-center font-medium",
               {
-                "bg-WH-light-green text-WH-light-green-01 border-WH-light-green":
+                "bg-gradient-to-b from-[#674CEC] to-[#8D77FC] text-white border-WH-light-green":
                   isSelected,
               }
             )}
           >
-            <IconComponent color={isSelected ? "#10B981" : "#888B97"} />
-            {tab.name}
+            <IconComponent color={isSelected ? "#FFFFFF" : "#888B97"} />
+            {tab.name.charAt(0).toUpperCase() + tab.name.slice(1)}{" "}
+            {/* Capitalize the tab name */}
           </motion.div>
         );
       }),
-    [RC?.selected, RC?.changeTab] // Update dependencies to use optional chaining
+    [RC?.selected, RC?.changeTab]
   );
 
   return <div className="flex lg:gap-8 gap-2">{tabs}</div>;

@@ -1,3 +1,3 @@
-import { FEATURED_HOUSE } from "./FEATURED_HOUSE";
+import { FEATURED_Buy } from "./FEATURED_BUY";
 
-export { FEATURED_HOUSE };
+export { FEATURED_Buy };

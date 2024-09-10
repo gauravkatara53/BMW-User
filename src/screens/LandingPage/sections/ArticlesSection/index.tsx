@@ -6,8 +6,8 @@ export default function ArticleSection() {
   return (
     <div className="lg:px-32 md:px-16 sm:px-8 px-4 flex flex-col items-center gap-6 relative">
       <img
-        className="absolute -left-80 -z-10 -top-16"
-        src="blur-blob-3.png"
+        className="absolute top-0 left-0 z-[-10]" // Update the positioning here
+        src="Vector-more.png"
         alt=""
       />
       <LPSectionHeading
