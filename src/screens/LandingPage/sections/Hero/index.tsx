@@ -1,4 +1,3 @@
-import { ChevronSVG } from "@/assets/svgs";
 import WHNavbar from "@/components/common/WHNavbar";
 import { motion } from "framer-motion";
 import "./style.css";
@@ -99,7 +98,7 @@ export default function Hero() {
           </div>
         </div>
         <div className="mt-8 sm:mt-0">
-          <img className="pt-[20%] mx-auto" src="iPhone 15 Pro.png" alt="" />
+          <img className="pt-[20%] mx-auto" src="iPhone 15 Pro.svg" alt="" />
         </div>
       </div>
     </div>

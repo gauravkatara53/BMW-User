@@ -3,8 +3,16 @@ import APSectionHeading from "@/components/about-page/APSectionHeading";
 
 export default function WhoWeAre() {
   return (
-    <div className="flex flex-col items-center lg:px-32 md:px-16 sm:px-8 px-4 gap-8 mt-0">
-      <APSectionHeading bgTitle="COMPANY" smallTitle="Who we are?" />
+    <div className="pt-[80px] pb-[10%] flex flex-col items-center lg:px-32 md:px-16 sm:px-8 px-4 gap-8 mt-0">
+      <APSectionHeading bgTitle="About Us" smallTitle="Who we are?" />
+
+      {/* Mobile-only image */}
+      <img
+        src="Group 15.svg"
+        alt="Mobile Image"
+        className="block lg:hidden w-full mt-4 mb-8"
+      />
+
       <div className="w-full bg-WH-light-pink/30 rounded-[5rem] flex flex-col lg:flex-row lg:p-16 p-4 overflow-hidden lg:overflow-visible">
         <div className="flex-1 flex flex-col gap-8 lg:pr-16">
           <p className="text-lg font-normal text-black/80 px-4 pt-1">

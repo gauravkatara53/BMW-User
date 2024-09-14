@@ -1,6 +1,6 @@
 import { cn } from "@/utilities";
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 type TProps = {
   title?: string;
@@ -14,7 +14,6 @@ export default function WHNavLink({
   isDark,
 }: TProps): React.JSX.Element {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const pathName = useLocation().pathname;
 
   useEffect(() => {
     // Update windowWidth state on resize

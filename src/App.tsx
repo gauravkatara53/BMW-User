@@ -13,6 +13,7 @@ import TestDeleteAccount from "./screens/TestDeleteAccount";
 import Signin from "./screens/Signup/Signin";
 import Signup from "./screens/Signup/Signup";
 import ContactUs from "./screens/contact-us/ContactPage";
+import Partner from "./screens/PartnerPage/PartnerPage";
 
 export default function App() {
   return (
@@ -22,8 +23,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/Partner" element={<Partner />} />
           <Route path="/contact" element={<ContactUs />} />
-
           <Route path="/PropertyPage" element={<PropertyPage />} />
 
           <Route path="/delete-account" element={<TestDeleteAccount />} />

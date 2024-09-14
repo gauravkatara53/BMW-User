@@ -5,6 +5,7 @@ type TProps = {
   height?: number;
   imgUrl?: string;
   gradient?: "TYPE-1" | "TYPE-2" | "TYPE-3";
+  className?: string; // New prop for custom class names
 };
 
 export default function APAchievementCard({
@@ -14,6 +15,7 @@ export default function APAchievementCard({
   height = 0,
   imgUrl = "",
   gradient = "TYPE-1",
+  className = "", // Allow custom class names
 }: TProps) {
   // Define a mapping for gradients to improve readability
   const gradientClasses = {
@@ -29,7 +31,7 @@ export default function APAchievementCard({
         height: height ? `${height}px` : "auto",
         backgroundImage: `url(${imgUrl})`,
       }}
-      className="bg-cover bg-center rounded-[1.2rem] overflow-hidden"
+      className={`bg-cover bg-center rounded-[1.2rem] overflow-hidden ${className}`} // Apply custom class names
     >
       <div
         className={`w-full h-full text-white bg-gradient-to-b p-8 flex flex-col items-center justify-center ${gradientClasses[gradient]}`}

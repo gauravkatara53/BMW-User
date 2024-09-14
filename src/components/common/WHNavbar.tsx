@@ -136,7 +136,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
           <motion.div
             whileTap={{ scale: 0.9 }}
             className="ml-12 py-3 px-6  bg-gradient-to-b from-[#674CEC] to-[#8D77FC] text-gray-100 cursor-pointer hover:border-blue-900 border   text-sm xl:text-base rounded-full font-semibold"
-            onClick={() => navigate("/Signin")}
+            onClick={() => navigate("/partner")}
           >
             Download Now
           </motion.div>
@@ -225,7 +225,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
             <motion.div
               whileTap={{ scale: 0.95 }}
               className="mt-2 py-3 px-6  bg-gradient-to-b from-[#674CEC] to-[#8D77FC] text-gray-100 cursor-pointer hover:border-blue-900 border   text-sm xl:text-base rounded-full font-semibold"
-              onClick={() => navigate("/Signin")}
+              onClick={() => navigate("/partner")}
             >
               Download Now
             </motion.div>
