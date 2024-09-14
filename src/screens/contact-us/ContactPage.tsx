@@ -26,14 +26,9 @@ export default function ContactUs() {
       <div ref={topRef} className="relative min-h-screen overflow-hidden">
         {/* Background Images */}
         <img
-          className="absolute lg:top-[-12rem] lg:left-[-24rem] sm:top-[-5rem] sm:left-[-10rem] top-[-5rem] left-[-10rem] -z-20"
-          src="green-blur-blob.png"
-          alt="Top Left Decoration"
-        />
-        <img
-          className="absolute lg:bottom-[-12rem] lg:right-[-24rem] sm:bottom-[-5rem] sm:right-[-10rem] bottom-[-5rem] right-[-10rem] -z-20"
-          src="green-blur-blob.png"
-          alt="Bottom Right Decoration"
+          className="absolute top-0 left-0 -z-20"
+          src="Vector-blue.png"
+          alt=""
         />
 
         <WHNavbar dark />
