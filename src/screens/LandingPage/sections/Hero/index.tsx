@@ -12,25 +12,30 @@ export default function Hero() {
         alt=""
       />
       <div className="flex flex-col-reverse md:flex-row justify-center sm:justify-between relative z-10">
-        <div className="max-w-[38rem] mt-20 sm:mt-44 flex flex-col sm:items-start items-center gap-4 sm:gap-8">
-          <div className="capitalize text-2xl sm:text-4xl xl:text-5xl font-bold sm:flex hidden flex-col sm:items-start items-start sm:gap-2">
+        <div className="max-w-[38rem] mt-20 sm:mt-44 flex flex-col sm:items-start items-start gap-4 sm:gap-8">
+          {/* Heading for larger screens */}
+          <div className="capitalize text-2xl sm:text-4xl xl:text-5xl font-bold hidden sm:flex flex-col items-start gap-2 mt-16">
             <p className="text-left gradient-text">find the warehouse of</p>
             <p className="text-left transparent-outline">your dreams</p>
             <p className="text-left gradient-text">easily here</p>
           </div>
-          <div className="text-2xl text-left -ml-10 capitalize font-bold text-deep-blue-1B sm:hidden block">
+
+          {/* Heading for small screens */}
+          <div className="text-2xl capitalize font-bold text-deep-blue-1B sm:hidden block text-left">
             <p className="gradient-text">find the warehouse of</p>
             <p className="transparent-outline">your dreams</p>
             <p className="gradient-text">easily here</p>
           </div>
-          <p className="text-WH-light-purple text-sm text-left sm:text-lg">
+
+          {/* Paragraph text */}
+          <p className="text-WH-light-purple text-sm sm:text-lg text-left sm:ml-0">
             Everything you need about finding your place to live will be here,
             where it will be easier for you
           </p>
 
-          {/* button */}
-          <div className="flex flex-col sm:flex-row sm:items-start items-center">
-            {/* <!-- Existing Buttons for larger screens --> */}
+          {/* Button section */}
+          <div className="flex flex-col sm:flex-row sm:items-start items-start">
+            {/* Buttons for larger screens */}
             <div className="hidden sm:flex flex-row">
               <button
                 type="button"
@@ -84,7 +89,7 @@ export default function Hero() {
               </button>
             </div>
 
-            {/* <!-- "Download Now" Button for small screens --> */}
+            {/* "Download Now" Button for small screens */}
             <div className="block sm:hidden w-full h-14">
               <div className="flex items-center">
                 <motion.div

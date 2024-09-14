@@ -41,7 +41,7 @@ export default function WHFooter() {
   ];
 
   return (
-    <footer className="relative text-gray-800 px-6 pb-6 pt-6 lg:px-32 md:pb-16 md:pt-8 overflow-hidden">
+    <footer className="relative text-gray-800 px-4 pb-4 pt-4 md:px-32 md:pb-16 md:pt-8 overflow-hidden">
       <div
         className="hidden md:block absolute top-0 right-0 w-32 h-32 md:w-[30rem] md:h-[30rem] bg-no-repeat bg-contain"
         style={{ backgroundImage: "url(Vector-footer.png)" }}
@@ -51,8 +51,12 @@ export default function WHFooter() {
         {/* Left Section: Book MT Warehouse */}
         <div className="flex flex-col items-center md:items-start mt-4 md:mt-[-40px] md:w-1/2">
           <div className="flex flex-col items-center sm:items-start mb-6">
-            <img src="logo1.png" alt="Company Logo" className="h-16 mb-2" />
-            <p className="text-center md:text-left text-[#8a8ca5] text-base md:text-md leading-relaxed mt-4">
+            <img
+              src="logo1.png"
+              alt="Company Logo"
+              className="h-12 md:h-16 mb-2"
+            />
+            <p className="text-center md:text-left text-[#8a8ca5] text-sm md:text-base leading-relaxed mt-4">
               We provide information about properties such <br /> as houses,
               villas and apartments to help people <br /> find their dream home.
             </p>
@@ -63,21 +67,21 @@ export default function WHFooter() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaFacebook className="text-xl md:text-2xl text-gray-800 hover:text-blue-600 transition-colors duration-200" />
+              <FaFacebook className="text-lg md:text-2xl text-gray-800 hover:text-blue-600 transition-colors duration-200" />
             </a>
             <a
               href="https://www.twitter.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaTwitter className="text-xl md:text-2xl text-gray-800 hover:text-blue-400 transition-colors duration-200" />
+              <FaTwitter className="text-lg md:text-2xl text-gray-800 hover:text-blue-400 transition-colors duration-200" />
             </a>
             <a
               href="https://www.instagram.com/bookmywarehouse_/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaInstagram className="text-xl md:text-2xl text-gray-800 hover:text-pink-500 transition-colors duration-200" />
+              <FaInstagram className="text-lg md:text-2xl text-gray-800 hover:text-pink-500 transition-colors duration-200" />
             </a>
           </div>
         </div>
@@ -85,14 +89,11 @@ export default function WHFooter() {
         {/* Right Section: Property, Article, Contact */}
         <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8 md:w-1/2">
           <div className="text-center md:text-left">
-            <h3 className="text-lg md:text-xl font-semibold mb-4">Property</h3>
-            <ul className="space-y-2 text-[#8a8ca5]">
+            <h3 className="text-md md:text-lg font-semibold mb-4">Property</h3>
+            <ul className="space-y-2 text-[#8a8ca5] text-sm md:text-base">
               {propertyLinks.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="hover:underline text-base md:text-lg"
-                  >
+                  <a href={link.href} className="hover:underline">
                     {link.label}
                   </a>
                 </li>
@@ -100,14 +101,11 @@ export default function WHFooter() {
             </ul>
           </div>
           <div className="text-center md:text-left">
-            <h3 className="text-lg md:text-xl font-semibold mb-4">Article</h3>
-            <ul className="space-y-2 text-[#8a8ca5]">
+            <h3 className="text-md md:text-lg font-semibold mb-4">Article</h3>
+            <ul className="space-y-2 text-[#8a8ca5] text-sm md:text-base">
               {articleLinks.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="hover:underline text-base md:text-lg"
-                  >
+                  <a href={link.href} className="hover:underline">
                     {link.label}
                   </a>
                 </li>
@@ -115,14 +113,11 @@ export default function WHFooter() {
             </ul>
           </div>
           <div className="text-center md:text-left">
-            <h3 className="text-lg md:text-xl font-semibold mb-4">Contact</h3>
-            <ul className="space-y-2 text-[#8a8ca5]">
+            <h3 className="text-md md:text-lg font-semibold mb-4">Contact</h3>
+            <ul className="space-y-2 text-[#8a8ca5] text-sm md:text-base">
               {contactLinks.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
-                    className="hover:underline text-base md:text-lg md:break-words"
-                  >
+                  <a href={link.href} className="hover:underline break-words">
                     {link.label}
                   </a>
                 </li>
@@ -136,7 +131,7 @@ export default function WHFooter() {
           <div className="space-y-4 w-full">
             <div className="flex flex-col items-center w-full">
               <button
-                className="flex justify-between items-center text-lg font-semibold text-gray-600 w-full text-left px-4 py-2 rounded-lg"
+                className="flex justify-between items-center text-base font-semibold text-gray-600 w-full text-left px-4 py-2 rounded-lg"
                 onClick={() => setPropertyOpen(!isPropertyOpen)}
               >
                 Property
@@ -145,10 +140,10 @@ export default function WHFooter() {
                 </span>
               </button>
               {isPropertyOpen && (
-                <ul className="space-y-2 text-[#8a8ca5] mt-2">
+                <ul className="space-y-2 text-[#8a8ca5] mt-2 text-sm">
                   {propertyLinks.map((link, index) => (
                     <li key={index}>
-                      <a href={link.href} className="hover:underline text-base">
+                      <a href={link.href} className="hover:underline">
                         {link.label}
                       </a>
                     </li>
@@ -159,7 +154,7 @@ export default function WHFooter() {
 
             <div className="flex flex-col items-center w-full">
               <button
-                className="flex justify-between items-center text-lg font-semibold text-gray-600 w-full text-left px-4 py-2 rounded-lg"
+                className="flex justify-between items-center text-base font-semibold text-gray-600 w-full text-left px-4 py-2 rounded-lg"
                 onClick={() => setArticleOpen(!isArticleOpen)}
               >
                 Article
@@ -168,10 +163,10 @@ export default function WHFooter() {
                 </span>
               </button>
               {isArticleOpen && (
-                <ul className="space-y-2 text-[#8a8ca5] mt-2">
+                <ul className="space-y-2 text-[#8a8ca5] mt-2 text-sm">
                   {articleLinks.map((link, index) => (
                     <li key={index}>
-                      <a href={link.href} className="hover:underline text-base">
+                      <a href={link.href} className="hover:underline">
                         {link.label}
                       </a>
                     </li>
@@ -182,7 +177,7 @@ export default function WHFooter() {
 
             <div className="flex flex-col items-center w-full">
               <button
-                className="flex justify-between items-center text-lg font-semibold text-gray-600 w-full text-left px-4 py-2 rounded-lg"
+                className="flex justify-between items-center text-base font-semibold text-gray-600 w-full text-left px-4 py-2 rounded-lg"
                 onClick={() => setContactOpen(!isContactOpen)}
               >
                 Contact
@@ -191,10 +186,10 @@ export default function WHFooter() {
                 </span>
               </button>
               {isContactOpen && (
-                <ul className="space-y-2 text-[#8a8ca5] mt-2">
+                <ul className="space-y-2 text-[#8a8ca5] mt-2 text-sm">
                   {contactLinks.map((link, index) => (
                     <li key={index}>
-                      <a href={link.href} className="hover:underline text-base">
+                      <a href={link.href} className="hover:underline">
                         {link.label}
                       </a>
                     </li>
