@@ -7,7 +7,7 @@ export default function StatsSection() {
           className="rounded-md p-4 bg-light bg-opacity-50 flex-shrink-0 w-full md:w-auto"
           id="users-section"
         >
-          <h2 className="text-6xl md:text-9xl font-bold gradient-text">1K+</h2>
+          <h2 className="text-6xl md:text-8xl font-bold gradient-text">1K+</h2>
           <p className="text-lg md:text-2xl text-gray-400">Users</p>
           <div className="mt-4 p-2 rounded-md h-2 w-[40%] opacity-30 bg-gradient-to-b from-[#674CEC] to-[#8D77FC] mx-auto"></div>
         </div>
@@ -17,7 +17,7 @@ export default function StatsSection() {
           className="rounded-md p-4 bg-light bg-opacity-50 flex-shrink-0 w-full md:w-auto"
           id="partners-section"
         >
-          <h2 className="text-6xl md:text-9xl font-bold gradient-text">500+</h2>
+          <h2 className="text-6xl md:text-8xl font-bold gradient-text">500+</h2>
           <p className="text-lg md:text-2xl text-gray-400">Partners</p>
           <div className="mt-4 p-2 rounded-md h-2 w-[40%] opacity-30 bg-gradient-to-b from-[#674CEC] to-[#8D77FC] mx-auto"></div>
         </div>
@@ -27,7 +27,7 @@ export default function StatsSection() {
           className="rounded-md p-4 bg-light bg-opacity-50 flex-shrink-0 w-full md:w-auto"
           id="warehouse-section"
         >
-          <h2 className="text-6xl md:text-9xl font-bold gradient-text">2K+</h2>
+          <h2 className="text-6xl md:text-8xl font-bold gradient-text">2K+</h2>
           <p className="text-lg md:text-2xl text-gray-400">Warehouse</p>
           <div className="mt-4 p-2 rounded-md h-2 w-[40%] opacity-30 bg-gradient-to-b from-[#674CEC] to-[#8D77FC] mx-auto"></div>
         </div>

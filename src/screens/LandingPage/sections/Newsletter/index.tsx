@@ -1,4 +1,6 @@
 import WHFillButton from "@/components/common/WHFillButton";
+import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function Newsletter() {
   return (
@@ -16,9 +18,14 @@ export default function Newsletter() {
           <h3 className="text-center text-base sm:text-lg md:text-2xl lg:text-3xl xl:text-4xl font-semibold text-deep-blue-1B max-w-full sm:max-w-[40rem] md:max-w-[50rem] lg:max-w-[55rem] xl:max-w-[60rem] leading-tight sm:leading-normal md:leading-relaxed xl:leading-none py-2 sm:py-4 md:py-6 xl:py-8">
             <p className="py-1">Having A Warehouse?</p>
             <p>Partner Up With Us?</p>
-            <div className="flex justify-center pt-6">
-              <WHFillButton title="Become a Host" />
-            </div>
+            <Link
+              to="partner"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
+              <div className="flex justify-center pt-6">
+                <WHFillButton title="Become a Host" />
+              </div>
+            </Link>
           </h3>
           <div className="w-full sm:w-4/5 md:w-3/5 lg:w-2/5 xl:w-2/5"></div>
         </div>

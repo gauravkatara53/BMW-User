@@ -16,7 +16,7 @@ export default function LandingPage() {
         <OurRecommendation />
       </RecommendationProvider>
       <StatsSection />
-      <ReadyToSell />
+
       <OurReviews />
       <ArticleSection />
       <Newsletter />

@@ -13,7 +13,7 @@ export default function Hero() {
             your place to live will be here, where it will be easier for you.
           </p>
           <div className="flex flex-col sm:flex-row sm:items-start items-center">
-            <div className="sm:flex flex-row ml-10 mt-8">
+            <div className="sm:flex flex-row lg:ml-10 mt-8">
               <button
                 type="button"
                 className="flex items-center justify-center w-48 text-white bg-black rounded-lg h-14 mr-3 my-2"

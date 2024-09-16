@@ -1,0 +1,21 @@
+/* OurOartnersAndInvestor.css */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.logo-scroll {
+  display: flex;
+  gap: 2rem;
+  white-space: nowrap;
+  animation: scroll 20s linear infinite;
+}
+
+.logo-scroll .logo-container {
+  display: flex;
+  flex-shrink: 0;
+}
