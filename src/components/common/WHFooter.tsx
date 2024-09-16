@@ -127,9 +127,9 @@ export default function WHFooter() {
         </div>
 
         {/* Dropdown Menu for Smaller Screens */}
-        <div className="md:hidden flex flex-col items-center w-full">
+        <div className="md:hidden flex flex-col w-full">
           <div className="space-y-4 w-full">
-            <div className="flex flex-col items-center w-full">
+            <div className="flex flex-col w-full">
               <button
                 className="flex justify-between items-center text-base font-semibold text-gray-600 w-full text-left px-4 py-2 rounded-lg"
                 onClick={() => setPropertyOpen(!isPropertyOpen)}
@@ -140,7 +140,7 @@ export default function WHFooter() {
                 </span>
               </button>
               {isPropertyOpen && (
-                <ul className="space-y-2 text-[#8a8ca5] mt-2 text-sm">
+                <ul className="space-y-2 text-[#8a8ca5] mt-2 text-sm ml-4 text-left">
                   {propertyLinks.map((link, index) => (
                     <li key={index}>
                       <a href={link.href} className="hover:underline">
@@ -152,7 +152,7 @@ export default function WHFooter() {
               )}
             </div>
 
-            <div className="flex flex-col items-center w-full">
+            <div className="flex flex-col w-full">
               <button
                 className="flex justify-between items-center text-base font-semibold text-gray-600 w-full text-left px-4 py-2 rounded-lg"
                 onClick={() => setArticleOpen(!isArticleOpen)}
@@ -163,7 +163,7 @@ export default function WHFooter() {
                 </span>
               </button>
               {isArticleOpen && (
-                <ul className="space-y-2 text-[#8a8ca5] mt-2 text-sm">
+                <ul className="space-y-2 text-[#8a8ca5] mt-2 ml-4 text-sm text-left">
                   {articleLinks.map((link, index) => (
                     <li key={index}>
                       <a href={link.href} className="hover:underline">
@@ -175,7 +175,7 @@ export default function WHFooter() {
               )}
             </div>
 
-            <div className="flex flex-col items-center w-full">
+            <div className="flex flex-col w-full">
               <button
                 className="flex justify-between items-center text-base font-semibold text-gray-600 w-full text-left px-4 py-2 rounded-lg"
                 onClick={() => setContactOpen(!isContactOpen)}
@@ -186,7 +186,7 @@ export default function WHFooter() {
                 </span>
               </button>
               {isContactOpen && (
-                <ul className="space-y-2 text-[#8a8ca5] mt-2 text-sm">
+                <ul className="space-y-2 text-[#8a8ca5] mt-2 text-sm text-left ml-4">
                   {contactLinks.map((link, index) => (
                     <li key={index}>
                       <a href={link.href} className="hover:underline">

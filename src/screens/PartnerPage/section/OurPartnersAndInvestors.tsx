@@ -6,12 +6,12 @@ const logos = [
   "/logo2.png",
   "/logo3.png",
   "/logo4.png",
-  "/public/logo5.png",
-  "/public/logo6.png",
-  "/public/logo7.png",
-  "/public/logo8.png",
-  "/public/logo9.png",
-  "/public/logo10.png",
+  "/logo5.png",
+  "/logo6.png",
+  "/logo7.png",
+  "/logo8.png",
+  "/logo9.png",
+  "/logo10.png",
 ];
 
 export default function OurPartnersAndInvestors() {
@@ -22,7 +22,7 @@ export default function OurPartnersAndInvestors() {
         backgroundPosition: "center",
         backgroundSize: "cover",
       }}
-      className="flex flex-col gap-4 items-center lg:mx-32 md:mx-16 sm:mx-8 mx-4 p-8 sm:p-16 rounded-[7rem] sm:rounded-[2rem] md:rounded-[7rem] justify-center"
+      className="flex flex-col gap-4 items-center lg:mx-32 md:mx-16 sm:mx-8 mx-4 p-8 sm:p-16 rounded-[3rem] sm:rounded-[2rem] md:rounded-[7rem] justify-center"
     >
       <p className="text-white text-3xl sm:text-6xl font-extrabold text-center">
         Our Partners and Investors

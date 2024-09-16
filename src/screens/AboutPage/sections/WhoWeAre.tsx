@@ -13,7 +13,7 @@ export default function WhoWeAre() {
         className="block lg:hidden w-full mt-4 mb-8"
       />
 
-      <div className="w-full bg-WH-light-pink/30 rounded-[5rem] flex flex-col lg:flex-row lg:p-16 p-4 overflow-hidden lg:overflow-visible">
+      <div className="w-full bg-WH-light-pink/30 rounded-[3rem] flex flex-col lg:flex-row lg:p-16 p-4 overflow-hidden lg:overflow-visible ">
         <div className="flex-1 flex flex-col gap-8 lg:pr-16">
           <p className="text-lg font-normal text-black/80 px-4 pt-1">
             At Book My Warehouse, we provide flexible and secure warehouse

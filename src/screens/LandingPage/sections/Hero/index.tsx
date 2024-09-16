@@ -21,7 +21,7 @@ export default function Hero() {
           </div>
 
           {/* Heading for small screens */}
-          <div className="text-2xl capitalize font-bold text-deep-blue-1B sm:hidden block text-left">
+          <div className="text-2xl capitalize font-bold text-deep-blue-1B sm:hidden block text-left -mt-16 sm:mt-0">
             <p className="gradient-text">find the warehouse of</p>
             <p className="transparent-outline">your dreams</p>
             <p className="gradient-text">easily here</p>
