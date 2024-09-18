@@ -1,4 +1,4 @@
-import LPIdentityCard from "./LPIdentityCard";
+import LPIdentityCard from "../common/IdentityCard";
 
 type LPReviewProps = {
   rating?: number;

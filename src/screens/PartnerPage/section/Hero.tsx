@@ -2,7 +2,7 @@ import APSectionHeading from "@/components/about-page/APSectionHeading";
 
 export default function Hero() {
   return (
-    <div className="lg:ml-10 sm:-mt-16 ">
+    <div className="lg:ml-10">
       <div className="pb-[10%] flex flex-col-reverse lg:flex-row lg:justify-between lg:items-center lg:px-32 md:px-16 sm:px-8 px-4 gap-8 mt-0">
         {/* Section heading and text */}
         <div className="lg:w-1/2 lg:flex lg:flex-col lg:justify-start lg:items-start lg:relative lg:-ml-32 sm:-mt-20">

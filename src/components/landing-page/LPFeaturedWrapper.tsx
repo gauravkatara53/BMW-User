@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import WHChip from "../common/WHChip";
-import LPIdentityCard from "./LPIdentityCard";
+import LPIdentityCard from "../common/IdentityCard";
 
 interface LPFeatured {
   propertyName: string;

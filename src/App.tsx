@@ -14,6 +14,8 @@ import Signin from "./screens/Signup/Signin";
 import Signup from "./screens/Signup/Signup";
 import ContactUs from "./screens/contact-us/ContactPage";
 import Partner from "./screens/PartnerPage/PartnerPage";
+import ArticlePage from "./screens/ArticlePage/Index";
+import APage1 from "./screens/ArticlePage/DifferentArticles/APage1";
 
 export default function App() {
   return (
@@ -23,9 +25,13 @@ export default function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/article" element={<ArticlePage />} />
           <Route path="/Partner" element={<Partner />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/PropertyPage" element={<PropertyPage />} />
+
+          {/* article differnet pages */}
+          <Route path="/article-page1" element={<APage1 />} />
 
           <Route path="/delete-account" element={<TestDeleteAccount />} />
           <Route path="/Signin" element={<Signin />} />
