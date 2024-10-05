@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import PhoneSVG from "@/assets/svgs/PhoneSVG";
 import WHFillButton from "@/components/common/WHFillButton";
 import LPHouseDetailChip from "@/components/landing-page/LPHouseDetailChip";
-import LPIdentityCard from "@/components/landing-page/IdentityCard";
+import LPIdentityCard from "@/components/common/IdentityCard";
 import LPSectionHeading from "@/components/landing-page/LPSectionHeading";
 
 const PROPERTY_DETAILS = [
