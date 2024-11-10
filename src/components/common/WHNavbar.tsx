@@ -161,7 +161,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
         </button>
 
         {/* Mobile Menu Links */}
-        <div className="flex justify-center items-center h-full w-full">
+        <div className="flex justify-center items-center h-full w-full -mt-12">
           <div className="flex flex-col items-center justify-center h-full w-full py-6 px-4 gap-1">
             <div className="py-2 w-full flex justify-center">
               <WHNavLink
