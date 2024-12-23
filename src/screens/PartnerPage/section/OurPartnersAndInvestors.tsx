@@ -25,11 +25,10 @@ export default function OurPartnersAndInvestors() {
       className="flex flex-col gap-4 items-center lg:mx-32 md:mx-16 sm:mx-8 mx-4 p-8 sm:p-16 rounded-[3rem] sm:rounded-[2rem] md:rounded-[7rem] justify-center"
     >
       <p className="text-white text-3xl sm:text-6xl font-extrabold text-center">
-        Our Partners and Investors
+        Our Partners
       </p>
       <p className="text-sm sm:text-lg text-white font-normal text-center">
-        Cras convallis lacus orci, tristique tincidunt magna consequat in. In
-        vel pulvinar est, at euismod libero.
+        "Empowering Success Through Strong Partnerships"
       </p>
 
       {/* Logo section */}
@@ -48,9 +47,9 @@ export default function OurPartnersAndInvestors() {
 
       {/* Other content below the logos */}
       <div className="flex flex-col sm:flex-row text-2xl sm:text-6xl justify-between w-full text-white gap-4 overflow-auto ">
-        <APDetailContainer title="Investors" value="123" />
-        <APDetailContainer title="Funded" value="$123M" color="violet" />
-        <APDetailContainer title="Partners" value="456" />
+        <APDetailContainer title="Clients" value="900+" />
+        <APDetailContainer title="Revenue" value="$123M" color="violet" />
+        <APDetailContainer title="Partners" value="500+" />
       </div>
     </div>
   );

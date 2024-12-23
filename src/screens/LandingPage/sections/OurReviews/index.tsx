@@ -13,7 +13,7 @@ export default function OurReviews() {
       <LPSectionHeading
         title="See Our Review"
         alignment="center"
-        superHeading="What Our Users Say About Us"
+        superHeading="Here’s What Our Users Are Raving About!"
       />
       <div className="mt-12 flex justify-center gap-12 lg:w-[125rem] md:w-[110rem] sm:w-[80rem] w-[70rem]">
         <Swiper
@@ -38,8 +38,8 @@ export default function OurReviews() {
                 rating={review.rating}
                 review={review.review}
                 reviewTitle={review.reviewTitle}
-                reviewerImage={review.reviewerImage}
                 reviewerName={review.reviewerName}
+                reviewerImage={review.reviewerImage}
                 reviewerdes={review.reviewerdes}
               />
             </SwiperSlide>

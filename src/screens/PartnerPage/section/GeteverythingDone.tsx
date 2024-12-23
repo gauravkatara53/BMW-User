@@ -16,7 +16,7 @@ const GeteverythingDone = () => {
             className="w-16 h-16 md:w-24 md:h-24 mb-4"
           />
           <h2 className="text-lg md:text-lg font-semibold mb-2 text-center md:text-left w-full">
-            Skyrocket conversion rate
+            List Your Property
           </h2>
           <p className="text-gray-500 text-center md:text-left w-full">
             Increase online store conversion up to 25% with our online visual
@@ -30,7 +30,7 @@ const GeteverythingDone = () => {
             className="w-16 h-16 md:w-24 md:h-24 mb-4"
           />
           <h2 className="text-lg md:text-lg font-semibold mb-2 text-center md:text-left w-full">
-            Increase average order value
+            Manage Your Rentals
           </h2>
           <p className="text-gray-500 text-center md:text-left w-full">
             Increase the average order value of your online store up to 15%
@@ -44,7 +44,7 @@ const GeteverythingDone = () => {
             className="w-16 h-16 md:w-24 md:h-24 mb-4"
           />
           <h2 className="text-lg md:text-lg font-semibold mb-2 text-center md:text-left w-full">
-            Spend less time for management
+            Sell/Rent Your Property
           </h2>
           <p className="text-gray-500 text-center md:text-left w-full">
             Let your employees spend much less time managing the online store

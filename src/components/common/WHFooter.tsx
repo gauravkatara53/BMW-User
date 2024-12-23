@@ -1,28 +1,32 @@
 import { useState } from "react";
 import {
-  FaFacebook,
-  FaTwitter,
   FaInstagram,
   FaChevronUp,
   FaChevronDown,
+  FaLinkedinIn,
 } from "react-icons/fa";
 
+import { faThreads } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 export default function WHFooter() {
   const [isPropertyOpen, setPropertyOpen] = useState(false);
   const [isArticleOpen, setArticleOpen] = useState(false);
   const [isContactOpen, setContactOpen] = useState(false);
+  const [isConditionOpen, setConditionOpen] = useState(false);
 
   const propertyLinks = [
-    { href: "#house", label: "House" },
-    { href: "#apartment", label: "Apartment" },
-    { href: "#villa", label: "Villa" },
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About Us" },
+    { href: "/article", label: "Articles" },
+    { href: "/partner", label: "Partner with us" },
   ];
 
   const articleLinks = [
-    { href: "#new-article", label: "New Article" },
-    { href: "#popular-article", label: "Popular Article" },
-    { href: "#most-read", label: "Most Read" },
-    { href: "#tips-tricks", label: "Tips & Tricks" },
+    { href: "/article", label: "New Article" },
+    { href: "/article-page1", label: "Popular Article" },
+    { href: "/article-page1", label: "Most Read" },
+    { href: "/article", label: "Tips & Tricks" },
   ];
 
   const contactLinks = [
@@ -63,18 +67,21 @@ export default function WHFooter() {
           </div>
           <div className="flex space-x-4 md:space-x-8 mt-4 md:mt-0 justify-center md:justify-start">
             <a
-              href="https://www.facebook.com"
+              href="https:www.linkedin.com/company/bookmywarehouse"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaFacebook className="text-lg md:text-2xl text-gray-800 hover:text-blue-600 transition-colors duration-200" />
+              <FaLinkedinIn className="text-lg md:text-2xl text-gray-800 hover:text-blue-600 transition-colors duration-200" />
             </a>
             <a
-              href="https://www.twitter.com"
+              href="https://www.threads.net/@bookmywarehouse_?xmt=AQGzoSbtSGpvRo5Rhi3ZLPWWIY_7ievKmer0y4hzj8a22FU"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FaTwitter className="text-lg md:text-2xl text-gray-800 hover:text-blue-400 transition-colors duration-200" />
+              <FontAwesomeIcon
+                icon={faThreads as IconProp}
+                className="text-lg md:text-2xl text-gray-800 hover:text-blue-400 transition-colors duration-200"
+              />
             </a>
             <a
               href="https://www.instagram.com/bookmywarehouse_/"
@@ -99,6 +106,13 @@ export default function WHFooter() {
                 </li>
               ))}
             </ul>
+            <ul>
+              <a href={"/termsandconditions"}>
+                <li className="text-md mt-4 text-gray-600 md:text-md font-semibold hover:underline">
+                  Terms and Conditions
+                </li>
+              </a>
+            </ul>
           </div>
           <div className="text-center md:text-left">
             <h3 className="text-md md:text-lg font-semibold mb-4">Article</h3>
@@ -111,13 +125,23 @@ export default function WHFooter() {
                 </li>
               ))}
             </ul>
+            <ul>
+              <a href="/privacy-policy">
+                <li className="text-md mt-4 text-gray-600 md:text-md font-semibold mb-2 hover:underline">
+                  Privacy policy
+                </li>
+              </a>
+            </ul>
           </div>
           <div className="text-center md:text-left">
             <h3 className="text-md md:text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-2 text-[#8a8ca5] text-sm md:text-base">
               {contactLinks.map((link, index) => (
                 <li key={index}>
-                  <a href={link.href} className="hover:underline break-words">
+                  <a
+                    href={link.href}
+                    className="hover:underline break-words whitespace-nowrap"
+                  >
                     {link.label}
                   </a>
                 </li>
@@ -194,6 +218,31 @@ export default function WHFooter() {
                       </a>
                     </li>
                   ))}
+                </ul>
+              )}
+            </div>
+            <div className="flex flex-col w-full">
+              <button
+                className="flex justify-between items-center text-base font-semibold text-gray-600 w-full text-left px-4 py-2 rounded-lg"
+                onClick={() => setConditionOpen(!isConditionOpen)}
+              >
+                Condition
+                <span className="ml-2">
+                  {isPropertyOpen ? <FaChevronUp /> : <FaChevronDown />}
+                </span>
+              </button>
+              {isConditionOpen && (
+                <ul className="space-y-2 text-[#8a8ca5] mt-2 text-sm ml-4 text-left">
+                  <a href={"/termsandconditions"}>
+                    <li className="text-md mt-4 text-gray-600 md:text-md font-semibold hover:underline">
+                      Terms and Conditions
+                    </li>
+                  </a>
+                  <a href="/privacy-policy">
+                    <li className="text-md mt-4 text-gray-600 md:text-md font-semibold mb-2 hover:underline">
+                      Privacy policy
+                    </li>
+                  </a>
                 </ul>
               )}
             </div>

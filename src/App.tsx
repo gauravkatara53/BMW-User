@@ -9,6 +9,7 @@ import ArticlePage from "./screens/ArticlePage/Index";
 import APage1 from "./screens/ArticlePage/DifferentArticles/APage1";
 import TermsAndConditions from "./screens/TermsAndConditions";
 import PrivacyPolicy from "./screens/PrivacyPolicy";
+import CommingSoon from "./components/common/commingsoon";
 export default function App() {
   return (
     <>
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/article-page1" element={<APage1 />} />
           <Route path="termsandconditions" element={<TermsAndConditions />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="comming-soon" element={<CommingSoon />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

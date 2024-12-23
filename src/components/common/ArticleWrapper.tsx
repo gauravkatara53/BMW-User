@@ -41,7 +41,7 @@ export default function LPArticleWrapper({
       <div className="flex flex-col sm:gap-4 gap-2 justify-between">
         {/* Pass UserImg and name props to LPIdentityCard */}
         <LPIdentityCard size="small" img={img} name={name} />
-        <p className="md:text-lg font-medium">{title}</p>
+        <p className="md:text-md text-gray-800 font-medium">{title}</p>
         {large && description && (
           <p className="text-WH-light-purple">{description}</p>
         )}
@@ -51,7 +51,7 @@ export default function LPArticleWrapper({
             className="sm:w-auto sm:h-auto w-4 h-4"
             alt="Clock icon"
           />
-          <p className="text-WH-mild-gray text-xs sm:text-sm">
+          <p className="text-WH-mild-gray text-xs sm:text-xs">
             {readTime ? `${readTime} min read` : "N/A"} | {date}
           </p>
         </div>

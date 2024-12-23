@@ -13,8 +13,8 @@ export default function ArticleSection() {
       />
       <LPSectionHeading
         alignment="center"
-        title="See tips and trick from our partnership"
-        superHeading="Find Out More About Selling And Buying Homes"
+        title="Explore expert tips and tricks from our trusted partners!"
+        superHeading="Learn more about buying and selling properties!"
       />
       <Link
         to="/article"
@@ -28,7 +28,7 @@ export default function ArticleSection() {
             img2="article1.png"
             name="Courtney Henry"
             img="user5.png"
-            title="How to Select the Best Warehouse for Your Business"
+            title="The things we need to check when we want to buy a house"
             date={"12 Sept"}
             readTime="4"
           />
@@ -36,7 +36,7 @@ export default function ArticleSection() {
             img2="article2.png"
             name="Darlene Robertson"
             img="userw.png"
-            title="Key Factors to Consider When Booking a Warehouse"
+            title="7 Ways to distinguish the quality of the house we want to buy"
             date={"13 Sept"}
             readTime="6"
           />
@@ -44,7 +44,7 @@ export default function ArticleSection() {
             img2="article3.png"
             name="Dianne Russell"
             img="danial.png"
-            title="Understanding Warehouse Lease Agreements"
+            title="The best way to know the quality of the house we want to buy"
             date={"14 Sept"}
             readTime="2"
           />
@@ -57,7 +57,7 @@ export default function ArticleSection() {
             <LPArticleWrapper
               large
               img2="article4.png"
-              title="10 Tips for First-Time Homebuyers"
+              title="12 Things to know before buying a house"
               description="Want to buy a house but are unsure about what to consider? Here, I will explain the essential tips that every first-time homebuyer should know."
               date={"15 sept"}
               readTime="2"
