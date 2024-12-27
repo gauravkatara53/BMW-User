@@ -108,7 +108,7 @@ export default function WHFooter() {
             </ul>
             <ul>
               <a href={"/termsandconditions"}>
-                <li className="text-md mt-4 text-gray-600 md:text-md font-semibold hover:underline">
+                <li className="text-md mt-4 sm:mt-2 text-[#8a8ca5] md:text-md  hover:underline">
                   Terms and Conditions
                 </li>
               </a>
@@ -127,7 +127,7 @@ export default function WHFooter() {
             </ul>
             <ul>
               <a href="/privacy-policy">
-                <li className="text-md mt-4 text-gray-600 md:text-md font-semibold mb-2 hover:underline">
+                <li className="text-md mt-4 sm:mt-2 text-[#8a8ca5] md:text-md  mb-2 hover:underline">
                   Privacy policy
                 </li>
               </a>
@@ -234,12 +234,12 @@ export default function WHFooter() {
               {isConditionOpen && (
                 <ul className="space-y-2 text-[#8a8ca5] mt-2 text-sm ml-4 text-left">
                   <a href={"/termsandconditions"}>
-                    <li className="text-md mt-4 text-gray-600 md:text-md font-semibold hover:underline">
+                    <li className="text-md mt-2 text-[#8a8ca5] md:text-md  hover:underline">
                       Terms and Conditions
                     </li>
                   </a>
                   <a href="/privacy-policy">
-                    <li className="text-md mt-4 text-gray-600 md:text-md font-semibold mb-2 hover:underline">
+                    <li className="text-md mt-2 text-[#8a8ca5] md:text-md mb-2 hover:underline">
                       Privacy policy
                     </li>
                   </a>

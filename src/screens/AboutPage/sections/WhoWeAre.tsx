@@ -34,7 +34,7 @@ export default function WhoWeAre() {
               alt="Quote Icon"
               className="w-12 h-12 lg:mr-4"
             />
-            <p className="italic whitespace-nowrap font-semibold text-xl lg:text-2xl text-center lg:text-left lg:-mt-[1.5rem]">
+            <p className="italic sm:whitespace-nowrap  font-semibold text-xl lg:text-2xl text-center lg:text-left lg:-mt-[1.5rem]">
               From the Owner of BookMyWarehouse
             </p>
           </div>
