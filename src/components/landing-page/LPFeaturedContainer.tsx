@@ -81,6 +81,7 @@ export default function LPFeaturedContainer({
           <SwiperSlide key={property._id}>
             <LPFeaturedWrapper
               ownerImage={property.ownerImage || ""} // Provide a default empty string if undefined
+              tag={property.tag || "hello"}
               ownerName={property.ownerName || "Unknown Owner"} // Provide a default value to avoid undefined
               img={property.img || ""} // Provide a default empty string if undefined
               place={property.place || "Unknown Place"} // Provide a default value to avoid undefined

@@ -9,10 +9,19 @@ interface LPFeatured {
   ownerImage: string;
   ownerName: string;
   place: string;
+  tag: string;
 }
 
 const LPFeaturedWrapper: React.FC<LPFeatured> = memo(
-  ({ propertyName, price, img, ownerImage, ownerName, place }: LPFeatured) => {
+  ({
+    propertyName,
+    price,
+    img,
+    ownerImage,
+    ownerName,
+    place,
+    tag,
+  }: LPFeatured) => {
     return (
       <div className="flex flex-col sm:items-start items-center gap-4 md:ml-10">
         <div className="relative">
@@ -23,7 +32,7 @@ const LPFeaturedWrapper: React.FC<LPFeatured> = memo(
             alt={`Property image of ${propertyName}`}
           />
           <div className="absolute bottom-4 left-4">
-            <WHChip />
+            <WHChip tag={tag} />
           </div>
         </div>
         {/* Combined similar class names */}
