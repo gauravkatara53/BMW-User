@@ -31,16 +31,17 @@ export default function WHFooter() {
 
   const contactLinks = [
     {
-      href: "https://www.google.com/maps/search/?api=1&query=Chandni+Chowk,+Delhi",
-      label: "New Delhi",
+      href: "https://maps.app.goo.gl/9g652m5HPCQC3zew5",
+      label:
+        "Flat No 9e Block-1 Sucasa,\nSouth 24 Parganas, South 24 Parganas,\nWest Bengal, India, 700103.",
     },
+    // {
+    //   href: "tel:+911234567890",
+    //   label: "+91 1234567890",
+    // },
     {
-      href: "tel:+911234567890",
-      label: "+91 1234567890",
-    },
-    {
-      href: "mailto:info@warehouseonhire.com",
-      label: "info@warehouseonhire.com",
+      href: "mailto:care@bookmywarehouse.co",
+      label: "care@bookmywarehouse.co",
     },
   ];
 
@@ -140,7 +141,9 @@ export default function WHFooter() {
                 <li key={index}>
                   <a
                     href={link.href}
-                    className="hover:underline break-words whitespace-nowrap"
+                    className={`hover:underline break-words ${
+                      link.label.includes("@") ? "whitespace-nowrap" : ""
+                    }`}
                   >
                     {link.label}
                   </a>
