@@ -12,6 +12,7 @@ import PrivacyPolicy from "./screens/PrivacyPolicy";
 import CommingSoon from "./components/common/commingsoon";
 import { SignUpScreen } from "./screens/AuthPage/SignUp/SignUp";
 import { SignInScreen } from "./screens/AuthPage/SingIn/SignIn";
+import { ProfilePage } from "./screens/ProfilePage";
 
 export default function App() {
   return (
@@ -31,6 +32,7 @@ export default function App() {
           {/* auth screen */}
           <Route path="/signUp" element={<SignUpScreen />} />
           <Route path="/signIn" element={<SignInScreen />} />
+          <Route path="/profile" element={<ProfilePage />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

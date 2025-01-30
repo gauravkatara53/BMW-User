@@ -51,11 +51,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
         </div>
 
         {isLoggedIn ? (
-          <Link
-            to={
-              "https://play.google.com/store/apps/details?id=com.bookmywarehouse.app&hl=en"
-            }
-          >
+          <Link to={"/profile"}>
             <motion.div
               whileTap={{ scale: 0.9 }}
               className="ml-12 py-3 px-6 bg-gradient-to-b from-[#674CEC] to-[#8D77FC] text-gray-100 cursor-pointer hover:border-blue-900 border text-sm xl:text-base rounded-full font-semibold"
