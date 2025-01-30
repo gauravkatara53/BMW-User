@@ -1,51 +1,22 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import WHNavLink from "./WHNavLink";
-import { Link, useNavigate } from "react-router-dom";
-import { FaUserCircle, FaBars, FaTimes } from "react-icons/fa";
-
-interface User {
-  _id: string;
-  username: string;
-  email: string;
-}
+import { Link } from "react-router-dom";
+import { FaBars, FaTimes } from "react-icons/fa";
+import Cookies from "js-cookie";
 
 export default function WHNavbar({ dark = false }: { dark?: boolean }) {
-  const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [userDetails, setUserDetails] = useState<User | null>(null);
-  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    const refreshToken = localStorage.getItem("refreshToken");
-    const user = localStorage.getItem("user");
-
-    if (accessToken && refreshToken && user) {
-      setIsLoggedIn(true);
-      setUserDetails(JSON.parse(user));
-    } else {
-      setIsLoggedIn(false);
-      setUserDetails(null);
-    }
+    const checkLogin = () => {
+      const token = Cookies.get("accessToken");
+      console.log("Token found:", token); // Check token here
+      setIsLoggedIn(!!token);
+    };
+    checkLogin();
   }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("accessToken");
-    localStorage.removeItem("refreshToken");
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("user");
-
-    setIsLoggedIn(false);
-    setUserDetails(null);
-
-    navigate("/");
-  };
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -70,69 +41,16 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
       <div className="hidden lg:flex items-center justify-end w-full">
         <div className="flex gap-4">
           <WHNavLink isDark={dark} title="Home" to="/" />
-          <WHNavLink isDark={dark} title="About Us" to="/about" />
-          <WHNavLink isDark={dark} title="Article" to="/article" />
+          <WHNavLink isDark={dark} title="Search" to="/Search" />
+          <WHNavLink isDark={dark} title="Chat" to="/Chat" />
+          {isLoggedIn && (
+            <>
+              <WHNavLink isDark={dark} title="Saved" to="/Saved" />
+            </>
+          )}
         </div>
+
         {isLoggedIn ? (
-          <div className="relative ml-12">
-            <FaUserCircle
-              id="avatarButton"
-              className="w-10 h-10 rounded-full cursor-pointer"
-              color={dark ? "white" : "black"}
-              onClick={toggleDropdown}
-            />
-            {isDropdownOpen && userDetails && (
-              <div
-                id="userDropdown"
-                className="z-10 absolute right-0 mt-2 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600"
-              >
-                <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                  <div>{userDetails.username}</div>
-                  <div className="font-medium truncate">
-                    {userDetails.email}
-                  </div>
-                </div>
-                <ul
-                  className="py-2 text-sm text-gray-700 dark:text-gray-200"
-                  aria-labelledby="avatarButton"
-                >
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Dashboard
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Settings
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                    >
-                      Earnings
-                    </a>
-                  </li>
-                </ul>
-                <div className="py-1">
-                  <button
-                    onClick={handleLogout}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Sign out
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-        ) : (
           <Link
             to={
               "https://play.google.com/store/apps/details?id=com.bookmywarehouse.app&hl=en"
@@ -142,7 +60,16 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
               whileTap={{ scale: 0.9 }}
               className="ml-12 py-3 px-6 bg-gradient-to-b from-[#674CEC] to-[#8D77FC] text-gray-100 cursor-pointer hover:border-blue-900 border text-sm xl:text-base rounded-full font-semibold"
             >
-              Download Now
+              Profile
+            </motion.div>
+          </Link>
+        ) : (
+          <Link to={"/signin"}>
+            <motion.div
+              whileTap={{ scale: 0.9 }}
+              className="ml-12 py-3 px-6 bg-gradient-to-b from-[#674CEC] to-[#8D77FC] text-gray-100 cursor-pointer hover:border-blue-900 border text-sm xl:text-base rounded-full font-semibold"
+            >
+              Sign In
             </motion.div>
           </Link>
         )}
@@ -176,7 +103,6 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
                 className="text-center text-2xl bg-gray-100 hover:bg-gray-200"
               />
             </div>
-
             <div className=" w-full flex justify-center">
               <WHNavLink
                 isDark={dark}
@@ -185,7 +111,6 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
                 className="text-center text-2xl bg-gray-100 hover:bg-gray-200"
               />
             </div>
-
             <div className="py-2 w-full flex justify-center">
               <WHNavLink
                 isDark={dark}
@@ -194,66 +119,15 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
                 className="text-center text-2xl bg-gray-100 hover:bg-gray-200"
               />
             </div>
-
             {isLoggedIn ? (
-              <div className="relative mt-6">
-                <FaUserCircle
-                  id="avatarButton"
-                  className="w-12 h-12 rounded-full cursor-pointer transition-transform duration-200 hover:scale-105"
-                  color={dark ? "white" : "black"}
-                  onClick={toggleDropdown}
-                />
-                {isDropdownOpen && userDetails && (
-                  <div
-                    id="userDropdown"
-                    className="z-20 absolute right-0 mt-2 bg-white divide-y divide-gray-200 rounded-lg shadow-lg w-56 dark:bg-gray-800 dark:divide-gray-600 transition-opacity duration-300 ease-in-out"
-                  >
-                    <div className="px-4 py-3 text-sm text-gray-900 dark:text-white">
-                      <div>{userDetails.username}</div>
-                      <div className="font-medium truncate">
-                        {userDetails.email}
-                      </div>
-                    </div>
-                    <ul
-                      className="py-2 text-sm text-gray-700 dark:text-gray-300"
-                      aria-labelledby="avatarButton"
-                    >
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-200"
-                        >
-                          Dashboard
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-200"
-                        >
-                          Settings
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition-colors duration-200"
-                        >
-                          Earnings
-                        </a>
-                      </li>
-                    </ul>
-                    <div className="py-1">
-                      <button
-                        onClick={handleLogout}
-                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300 dark:hover:text-white transition-colors duration-200"
-                      >
-                        Sign out
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </div>
+              <Link to="/profile">
+                <motion.div
+                  whileTap={{ scale: 0.9 }}
+                  className="mt-2 py-4 px-8 bg-gradient-to-b from-[#674CEC] to-[#8D77FC] text-gray-100 cursor-pointer hover:border-blue-900 border text-xl rounded-full font-semibold"
+                >
+                  Profile
+                </motion.div>
+              </Link>
             ) : (
               <Link
                 to={
@@ -264,7 +138,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
                   whileTap={{ scale: 0.9 }}
                   className="mt-2 py-4 px-8 bg-gradient-to-b from-[#674CEC] to-[#8D77FC] text-gray-100 cursor-pointer hover:border-blue-900 border text-xl rounded-full font-semibold"
                 >
-                  Download Now
+                  Sign Up
                 </motion.div>
               </Link>
             )}

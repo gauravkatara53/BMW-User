@@ -1,26 +1,33 @@
 import { cn } from "@/utilities";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 type TProps = {
   title?: string;
   to: string;
   isDark?: boolean;
-  className?: string; // Allow passing custom class names
+  className?: string;
 };
 
-export default function WHNavLink({
+const WHNavLink: React.FC<TProps> = ({
   title = "No Link Title",
   to,
-  isDark,
+  isDark = false,
   className = "",
-}: TProps): React.JSX.Element {
+}) => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+
+    // Debounce resize to optimize performance
+    const debounceResize = () => {
+      clearTimeout(handleResize as unknown as NodeJS.Timeout);
+      setTimeout(handleResize, 100);
+    };
+
+    window.addEventListener("resize", debounceResize);
+    return () => window.removeEventListener("resize", debounceResize);
   }, []);
 
   const isSmallScreen = windowWidth < 640;
@@ -46,4 +53,6 @@ export default function WHNavLink({
       {title}
     </Link>
   );
-}
+};
+
+export default WHNavLink;

@@ -10,6 +10,9 @@ import APage1 from "./screens/ArticlePage/DifferentArticles/APage1";
 import TermsAndConditions from "./screens/TermsAndConditions";
 import PrivacyPolicy from "./screens/PrivacyPolicy";
 import CommingSoon from "./components/common/commingsoon";
+import { SignUpScreen } from "./screens/AuthPage/SignUp/SignUp";
+import { SignInScreen } from "./screens/AuthPage/SingIn/SignIn";
+
 export default function App() {
   return (
     <>
@@ -25,6 +28,9 @@ export default function App() {
           <Route path="termsandconditions" element={<TermsAndConditions />} />
           <Route path="privacy-policy" element={<PrivacyPolicy />} />
           <Route path="comming-soon" element={<CommingSoon />} />
+          {/* auth screen */}
+          <Route path="/signUp" element={<SignUpScreen />} />
+          <Route path="/signIn" element={<SignInScreen />} />
 
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

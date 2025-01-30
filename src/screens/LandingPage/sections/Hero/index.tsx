@@ -1,122 +1,142 @@
 import WHNavbar from "@/components/common/WHNavbar";
-import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
-import "./style.css";
+import { useState } from "react";
 
 export default function Hero() {
+  const [activeTab, setActiveTab] = useState("rent");
+
   return (
-    <div className="relative lg:pl-32 md:pr-32 lg:pr-0 md:px-16 sm:px-8 px-4">
+    <div className="relative -mb-36 lg:pl-32 md:pr-32 lg:pr-0 md:px-16 sm:px-8 px-4">
       <WHNavbar dark />
-      <img
-        className="absolute top-0 left-0 -z-20"
-        src="Vector-blue.png"
-        alt=""
-      />
-      <div className="flex flex-col-reverse md:flex-row justify-center sm:justify-between relative z-10">
-        <div className="max-w-[38rem] mt-20 sm:mt-44 flex flex-col sm:items-start items-start gap-4 sm:gap-8">
-          {/* Heading for larger screens */}
-          <div className="capitalize text-2xl sm:text-4xl xl:text-5xl font-bold hidden sm:flex flex-col items-start gap-2 mt-16">
-            <p className="text-left gradient-text">Find your ideal </p>
-            <p className="text-left gradient-text">warehouse effortlessly.</p>
+      <div
+        className="absolute top-0 -mt-72 left-0 -z-20 w-full h-screen"
+        style={{
+          backgroundImage: "url('/Rectangle%203465097.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
+      ></div>
+
+      {/* Centered Content Section */}
+      <div className="h-screen flex flex-col items-center justify-center text-center px-4">
+        {/* Buy/Rent Slider */}
+
+        <div className="bg-white p-4 sm:p-8 rounded-2xl border w-full max-w-[450px]">
+          <div className="bg-white border backdrop-blur-sm rounded-full p-1.5 mb-8 shadow-lg w-full">
+            <div className="relative w-full">
+              <div className="flex gap-0.5 bg-white/10 rounded-full p-1.5 relative w-full">
+                {/* Animated sliding background */}
+                <div
+                  className={`absolute h-[44px] sm:h-[54px] w-[calc(50%-8px)] bg-gradient-to-br from-[#907afc] to-[#6246ea] rounded-full transition-all duration-300 ${
+                    activeTab === "rent" ? "left-[4px]" : "left-[calc(50%+4px)]"
+                  }`}
+                ></div>
+
+                <button
+                  onClick={() => setActiveTab("rent")}
+                  className="relative h-[44px] sm:h-[54px] w-1/2 rounded-full z-10"
+                >
+                  <span
+                    className={`text-sm sm:text-[16px] font-medium transition-colors duration-300 ${
+                      activeTab === "rent" ? "text-white" : "text-[#7d7f88]"
+                    }`}
+                  >
+                    I need to rent
+                  </span>
+                </button>
+
+                <button
+                  onClick={() => setActiveTab("buy")}
+                  className="relative h-[44px] sm:h-[54px] w-1/2 rounded-full z-10"
+                >
+                  <span
+                    className={`text-sm sm:text-[16px] transition-colors duration-300 ${
+                      activeTab === "buy"
+                        ? "text-white font-medium"
+                        : "text-[#7d7f88] font-normal"
+                    }`}
+                  >
+                    I need to buy
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
 
-          {/* Heading for small screens */}
-          <div className="text-2xl capitalize font-bold text-deep-blue-1B sm:hidden block text-left -mt-16 sm:mt-0">
-            <p className="gradient-text">Find your ideal</p>
-            <p className="gradient-text">warehouse effortlessly.</p>
-          </div>
-
-          {/* Paragraph text */}
-          <p className="text-WH-light-purple text-sm sm:text-lg text-left sm:ml-0">
-            Discover everything you need to find your perfect space—made simple
-            and effortless just for you!
-          </p>
-
-          {/* Button section */}
-          <div className="flex flex-col sm:flex-row sm:items-start items-start">
-            {/* Buttons for larger screens */}
-            <div className="hidden sm:flex flex-row">
-              <Link
-                to={
-                  "https://play.google.com/store/apps/details?id=com.bookmywarehouse.app&hl=en"
-                }
-              >
-                <button
-                  type="button"
-                  className="flex items-center justify-center w-48 text-white bg-black rounded-lg h-14 mr-3"
+          {/* Main Form Section */}
+          <div className="bg-white backdrop-blur-sm rounded-2xl p-0 w-full">
+            {/* Location Section */}
+            <div className="text-left mb-6">
+              <label className="text-[#1a1e25] text-sm sm:text-base font-medium mb-2 block">
+                Enter location
+              </label>
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search location..."
+                  className="w-full h-[44px] sm:h-[54px] pl-10 sm:pl-12 pr-6 bg-white rounded-[81px] border border-[#e3e2e6] focus:outline-none focus:ring-2 focus:ring-[#907afc] text-sm sm:text-base"
+                />
+                <svg
+                  className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-[#7d7f88]"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <div className="mr-3">
-                    <svg viewBox="30 336.7 120.9 129.2" width="30">
-                      <path
-                        fill="#FFD400"
-                        d="M119.2,421.2c15.3-8.4,27-14.8,28-15.3c3.2-1.7,6.5-6.2,0-9.7  c-2.1-1.1-13.4-7.3-28-15.3l-20.1,20.2L119.2,421.2z"
-                      ></path>
-                      <path
-                        fill="#FF3333"
-                        d="M99.1,401.1l-64.2,64.7c1.5,0.2,3.2-0.2,5.2-1.3  c4.2-2.3,48.8-26.7,79.1-43.3L99.1,401.1L99.1,401.1z"
-                      ></path>
-                      <path
-                        fill="#48FF48"
-                        d="M99.1,401.1l20.1-20.2c0,0-74.6-40.7-79.1-43.1  c-1.7-1-3.6-1.3-5.3-1L99.1,401.1z"
-                      ></path>
-                      <path
-                        fill="#3BCCFF"
-                        d="M99.1,401.1l-64.3-64.3c-2.6,0.6-4.8,2.9-4.8,7.6  c0,7.5,0,107.5,0,113.8c0,4.3,1.7,7.4,4.9,7.7L99.1,401.1z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-xs">GET IT ON</div>
-                    <div className="-mt-1 font-sans text-xl font-semibold">
-                      Google Play
-                    </div>
-                  </div>
-                </button>
-              </Link>
-              <Link to={"/comming-soon"}>
-                <button
-                  type="button"
-                  className="flex items-center justify-center w-48 text-white bg-black h-14 rounded-xl"
-                >
-                  <div className="mr-3">
-                    <svg viewBox="0 0 384 512" width="30">
-                      <path
-                        fill="currentColor"
-                        d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-xs">Download on the</div>
-                    <div className="-mt-1 font-sans text-xl font-semibold">
-                      App Store
-                    </div>
-                  </div>
-                </button>
-              </Link>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
             </div>
 
-            {/* "Download Now" Button for small screens */}
-            <Link
-              to={
-                "https://play.google.com/store/apps/details?id=com.bookmywarehouse.app&hl=en"
-              }
-            >
-              <div className="block sm:hidden w-full h-14">
-                <div className="flex items-center">
-                  <motion.div
-                    whileTap={{ scale: 0.9 }}
-                    className="py-3 px-6 bg-gradient-to-b from-[#674CEC] to-[#8D77FC] text-gray-100 cursor-pointer hover:border-blue-900 border text-sm xl:text-base rounded-full font-semibold"
-                  >
-                    Download Now
-                  </motion.div>
+            {/* Duration Section */}
+            {activeTab === "rent" && (
+              <div className="text-left mb-8">
+                <label className="text-[#1a1e25] text-sm sm:text-base font-medium mb-2 block">
+                  How long you want to stay
+                </label>
+                <div className="flex items-center gap-4">
+                  <div className="flex-1 relative">
+                    <input
+                      type="number"
+                      min="1"
+                      max="12"
+                      className="w-full h-[44px] sm:h-[54px] pl-6 pr-12 sm:pr-14 bg-white rounded-[81px] border border-[#e3e3e7] focus:outline-none focus:ring-2 focus:ring-[#907afc] appearance-none text-sm sm:text-base"
+                      placeholder="Enter number "
+                      inputMode="numeric"
+                      onInput={(e) => {
+                        const input = e.target as HTMLInputElement;
+                        // If the value is more than 12, set it back to 12
+                        if (parseInt(input.value) > 12) {
+                          input.value = "12";
+                        }
+                        // Prevent typing more than 2 digits (for number 12)
+                        if (input.value.length > 2) {
+                          input.value = input.value.slice(0, 2);
+                        }
+                      }}
+                      style={{
+                        MozAppearance: "textfield", // Firefox
+                        WebkitAppearance: "none", // Safari and Chrome
+                        appearance: "none", // General case
+                      }}
+                    />
+                    <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-[#1a1e25] text-sm font-normal">
+                      Month(s)
+                    </span>
+                  </div>
                 </div>
               </div>
-            </Link>
+            )}
+
+            {/* Show Results Button */}
+            <button className="w-full h-[44px] sm:h-[54px] bg-gradient-to-br from-[#907afc] to-[#6246ea] rounded-[61px] text-white text-sm sm:text-base font-medium hover:opacity-90 transition-opacity shadow-md hover:shadow-lg">
+              Show Results
+            </button>
           </div>
-        </div>
-        <div className="mt-8 sm:mt-0">
-          <img className="pt-[20%] mx-auto" src="iPhone 15 Pro.svg" alt="" />
         </div>
       </div>
     </div>

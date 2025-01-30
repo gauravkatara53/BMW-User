@@ -21,7 +21,9 @@ export default function LPSectionHeading({
     >
       <div className="flex items-center flex-col sm:flex-row sm:gap-2 gap-4">
         <div className="bg-gradient-to-b from-[#674CEC] to-[#8D77FC] h-[1px] w-8"></div>
-        <p className="text-sm gradient-text font-medium">{title}</p>
+        <p className="text-sm gradient-text font-medium text-[#674CEC]">
+          {title}
+        </p>
       </div>
       <p
         className={cn(
