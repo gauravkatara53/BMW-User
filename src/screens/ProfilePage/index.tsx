@@ -4,14 +4,7 @@ import { apiService } from "@/components/APIService/ApiService";
 import ClipLoader from "react-spinners/ClipLoader"; // Import the clipboard loader
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
-interface LogoutResponse {
-  statusCode: number; // Correct field name
-  data: Record<string, any>; // Adjust based on the actual structure
-  message: string;
-  success: boolean;
-  errors: null | any; // Adjust based on the actual structure
-  timestamp: string;
-}
+
 export const ProfilePage = () => {
   const [user, setUser] = useState<{
     name: string;

@@ -1,8 +1,52 @@
 import WHNavbar from "@/components/common/WHNavbar";
 import { useState } from "react";
+import { apiService } from "@/components/APIService/ApiService";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar, faMap } from "@fortawesome/free-solid-svg-icons";
+
+interface Warehouse {
+  _id: string;
+  name: string;
+  about: string;
+  price: { amount: number }[];
+  subTotalPrice: number;
+  location: { address: string };
+  city: string;
+  images: string[];
+  areaSqFt: number;
+  address: string;
+  state: string;
+}
 
 export default function Hero() {
-  const [activeTab, setActiveTab] = useState("rent");
+  const [activeTab, setActiveTab] = useState("Rent");
+  const [location, setLocation] = useState("");
+  const [warehouses, setWarehouses] = useState<Warehouse[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [showResults, setShowResults] = useState(false);
+
+  // Function to fetch warehouse data
+  const fetchWarehouses = () => {
+    if (location) {
+      setLoading(true);
+      const rentOrSell = activeTab === "Rent" ? "Rent" : "Sell";
+      apiService
+        .get("/user/home/warehouse", { search: location, rentOrSell })
+        .then((response) => {
+          setWarehouses(
+            (response as { data: { warehouses: Warehouse[] } }).data.warehouses
+          );
+          setShowResults(true); // Show results after fetching data
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        })
+        .finally(() => setLoading(false));
+    } else {
+      setWarehouses([]);
+      setShowResults(false); // Hide results if no location is entered
+    }
+  };
 
   return (
     <div className="relative -mb-36 lg:pl-32 md:pr-32 lg:pr-0 md:px-16 sm:px-8 px-4">
@@ -20,7 +64,6 @@ export default function Hero() {
       {/* Centered Content Section */}
       <div className="h-screen flex flex-col items-center justify-center text-center px-4">
         {/* Buy/Rent Slider */}
-
         <div className="bg-white p-4 sm:p-8 rounded-2xl border w-full max-w-[450px]">
           <div className="bg-white border backdrop-blur-sm rounded-full p-1.5 mb-8 shadow-lg w-full">
             <div className="relative w-full">
@@ -28,17 +71,17 @@ export default function Hero() {
                 {/* Animated sliding background */}
                 <div
                   className={`absolute h-[44px] sm:h-[54px] w-[calc(50%-8px)] bg-gradient-to-br from-[#907afc] to-[#6246ea] rounded-full transition-all duration-300 ${
-                    activeTab === "rent" ? "left-[4px]" : "left-[calc(50%+4px)]"
+                    activeTab === "Rent" ? "left-[4px]" : "left-[calc(50%+4px)]"
                   }`}
                 ></div>
 
                 <button
-                  onClick={() => setActiveTab("rent")}
+                  onClick={() => setActiveTab("Rent")}
                   className="relative h-[44px] sm:h-[54px] w-1/2 rounded-full z-10"
                 >
                   <span
                     className={`text-sm sm:text-[16px] font-medium transition-colors duration-300 ${
-                      activeTab === "rent" ? "text-white" : "text-[#7d7f88]"
+                      activeTab === "Rent" ? "text-white" : "text-[#7d7f88]"
                     }`}
                   >
                     I need to rent
@@ -46,12 +89,12 @@ export default function Hero() {
                 </button>
 
                 <button
-                  onClick={() => setActiveTab("buy")}
+                  onClick={() => setActiveTab("Sell")}
                   className="relative h-[44px] sm:h-[54px] w-1/2 rounded-full z-10"
                 >
                   <span
                     className={`text-sm sm:text-[16px] transition-colors duration-300 ${
-                      activeTab === "buy"
+                      activeTab === "Sell"
                         ? "text-white font-medium"
                         : "text-[#7d7f88] font-normal"
                     }`}
@@ -75,6 +118,8 @@ export default function Hero() {
                   type="text"
                   placeholder="Search location..."
                   className="w-full h-[44px] sm:h-[54px] pl-10 sm:pl-12 pr-6 bg-white rounded-[81px] border border-[#e3e2e6] focus:outline-none focus:ring-2 focus:ring-[#907afc] text-sm sm:text-base"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
                 />
                 <svg
                   className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 text-[#7d7f88]"
@@ -93,7 +138,7 @@ export default function Hero() {
             </div>
 
             {/* Duration Section */}
-            {activeTab === "rent" && (
+            {activeTab === "Rent" && (
               <div className="text-left mb-8">
                 <label className="text-[#1a1e25] text-sm sm:text-base font-medium mb-2 block">
                   How long you want to stay
@@ -109,11 +154,9 @@ export default function Hero() {
                       inputMode="numeric"
                       onInput={(e) => {
                         const input = e.target as HTMLInputElement;
-                        // If the value is more than 12, set it back to 12
                         if (parseInt(input.value) > 12) {
                           input.value = "12";
                         }
-                        // Prevent typing more than 2 digits (for number 12)
                         if (input.value.length > 2) {
                           input.value = input.value.slice(0, 2);
                         }
@@ -133,12 +176,117 @@ export default function Hero() {
             )}
 
             {/* Show Results Button */}
-            <button className="w-full h-[44px] sm:h-[54px] bg-gradient-to-br from-[#907afc] to-[#6246ea] rounded-[61px] text-white text-sm sm:text-base font-medium hover:opacity-90 transition-opacity shadow-md hover:shadow-lg">
+            <button
+              className="w-full h-[44px] sm:h-[54px] bg-gradient-to-br from-[#907afc] to-[#6246ea] rounded-[61px] text-white text-sm sm:text-base font-medium hover:opacity-90 transition-opacity shadow-md hover:shadow-lg"
+              onClick={fetchWarehouses} // Fetch data on button click
+            >
               Show Results
             </button>
           </div>
         </div>
       </div>
+
+      {/* Displaying the fetched results */}
+      {loading ? (
+        <div className="-mt-36 mb-10 text-lg font-medium">Loading...</div>
+      ) : (
+        <>
+          {showResults && warehouses.length > 0 ? (
+            <div className="-mt-36 mb-10 w-full max-w-5xl">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {warehouses.map((warehouse) => (
+                  <div
+                    key={warehouse._id}
+                    className="w-[343px] h-[179px] relative bg-white rounded-[10px] shadow-[0px_24px_96px_0px_rgba(67,67,67,0.15)]"
+                  >
+                    <img
+                      className="w-[138px] h-[179px] left-0 top-0 absolute rounded-tl-[10px] rounded-bl-[10px]"
+                      src={
+                        warehouse.images[0] ||
+                        "https://via.placeholder.com/108x166"
+                      }
+                      alt={warehouse.name}
+                    />
+                    <div className="h-[134px] left-[150px]  top-[8px] absolute flex-col justify-start items-start gap-[18px] inline-flex">
+                      <div className="flex-col justify-start items-start gap-3 flex">
+                        <div className="flex-col justify-start items-start gap-2 flex">
+                          <div className="h-4 pt-px pb-0.5 justify-end items-start gap-1.5 inline-flex">
+                            <div className="w-3 h-3 relative">
+                              <FontAwesomeIcon
+                                icon={faStar}
+                                className="text-yellow-500"
+                              />
+                            </div>
+                            <div>
+                              <span className="text-[#1a1e25] text-xs font-normal leading-3">
+                                4.8
+                              </span>
+                              <span className="text-black text-xs font-normal leading-3">
+                                {" "}
+                              </span>
+                              <span className="text-[#7d7f88] text-xs font-normal leading-3">
+                                (73)
+                              </span>
+                            </div>
+                          </div>
+                          <div className="flex-col justify-start items-start gap-1 flex">
+                            <div className="w-[206px] text-[#1a1e25] text-base font-normal leading-tight">
+                              {warehouse.name}
+                            </div>
+                            <div className="text-[#7d7f88] text-[13px] font-normal leading-[16.90px] tracking-tight">
+                              {warehouse.address}, <br />
+                              {warehouse.city},{warehouse.state}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="justify-start items-start gap-3 inline-flex">
+                          <div className="justify-start items-center gap-1.5 flex">
+                            <div className="w-3.5 h-3.5 relative">
+                              <FontAwesomeIcon
+                                icon={faMap}
+                                className="text-gray-500"
+                              />
+                            </div>
+                            <div>
+                              <span className="text-[#7d7f88] text-[13px] font-normal leading-[16.90px] tracking-tight">
+                                {warehouse.areaSqFt} m
+                              </span>
+                              <sup className="text-[#7d7f88] text-[13px] font-normal leading-[16.90px] tracking-tight">
+                                2
+                              </sup>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div>
+                        <span className="text-black text-base font-semibold leading-tight tracking-tight">
+                          ₹{warehouse.price[0].amount}
+                        </span>
+                        <span className="text-black text-xs font-normal leading-none tracking-tight">
+                          {" "}
+                        </span>
+                        <span className="text-[#7d7f88] text-xs font-normal leading-none tracking-tight">
+                          {activeTab === "Rent" && "/ month"}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="w-[18px] h-[18px] left-[311px] top-[131px] absolute">
+                      <div className="w-[18px] h-[18px] left-0 top-0 absolute"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : (
+            showResults &&
+            location && (
+              <div className="-mt-36 mb-32 text-lg font-medium text-center text-gray-500">
+                No results found for "{location}"
+              </div>
+            )
+          )}
+        </>
+      )}
     </div>
   );
 }
