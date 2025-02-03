@@ -3,6 +3,7 @@ import { useState } from "react";
 import { apiService } from "@/components/APIService/ApiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faMap } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 interface Warehouse {
   _id: string;
@@ -19,6 +20,7 @@ interface Warehouse {
 }
 
 export default function Hero() {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("Rent");
   const [location, setLocation] = useState("");
   const [warehouses, setWarehouses] = useState<Warehouse[]>([]);
@@ -26,25 +28,49 @@ export default function Hero() {
   const [showResults, setShowResults] = useState(false);
 
   // Function to fetch warehouse data
+  interface WarehouseResponse {
+    data: {
+      warehouses: Warehouse[];
+    };
+  }
+
   const fetchWarehouses = () => {
-    if (location) {
-      setLoading(true);
-      const rentOrSell = activeTab === "Rent" ? "Rent" : "Sell";
-      apiService
-        .get("/user/home/warehouse", { search: location, rentOrSell })
-        .then((response) => {
-          setWarehouses(
-            (response as { data: { warehouses: Warehouse[] } }).data.warehouses
-          );
-          setShowResults(true); // Show results after fetching data
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-        })
-        .finally(() => setLoading(false));
-    } else {
+    if (!location?.trim()) {
       setWarehouses([]);
-      setShowResults(false); // Hide results if no location is entered
+      setShowResults(false);
+      return;
+    }
+
+    setLoading(true);
+    const rentOrSell = activeTab === "Rent" ? "Rent" : "Sell";
+
+    // Construct the API URL with query parameters directly
+    const apiUrl = `/user/home/warehouse?rentOrSell=${rentOrSell}&WarehouseStatus=Available&search=${encodeURIComponent(
+      location.trim()
+    )}`;
+
+    apiService
+      .get<WarehouseResponse>(apiUrl) // Explicitly define the expected response type
+      .then((response) => {
+        const warehouses =
+          response?.data?.warehouses && Array.isArray(response.data.warehouses)
+            ? response.data.warehouses
+            : [];
+
+        setWarehouses(warehouses);
+        setShowResults(warehouses.length > 0);
+      })
+      .catch((error) => {
+        console.error("Error fetching warehouses:", error);
+      })
+      .finally(() => setLoading(false));
+  };
+
+  const handleWarehouseClick = (warehouseId: string) => {
+    if (warehouseId) {
+      navigate(`/warehouse-profile/${warehouseId}`);
+    } else {
+      alert("Partner document ID is missing.");
     }
   };
 
@@ -192,22 +218,23 @@ export default function Hero() {
       ) : (
         <>
           {showResults && warehouses.length > 0 ? (
-            <div className="-mt-36 mb-10 w-full max-w-5xl">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="-mt-36 mb-10 sm:ml-12  w-full max-w-6xl ">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mr-20">
                 {warehouses.map((warehouse) => (
                   <div
                     key={warehouse._id}
-                    className="w-[343px] h-[179px] relative bg-white rounded-[10px] shadow-[0px_24px_96px_0px_rgba(67,67,67,0.15)]"
+                    onClick={() => handleWarehouseClick(warehouse._id)}
+                    className=" w-[353px] h-[200px] relative bg-white rounded-[10px] shadow-[0px_24px_96px_0px_rgba(67,67,67,0.15)]"
                   >
                     <img
-                      className="w-[138px] h-[179px] left-0 top-0 absolute rounded-tl-[10px] rounded-bl-[10px]"
+                      className="w-[168px] h-[200px] left-0 top-0 absolute rounded-tl-[10px] rounded-bl-[10px]"
                       src={
                         warehouse.images[0] ||
-                        "https://via.placeholder.com/108x166"
+                        "https://static.vecteezy.com/system/resources/previews/005/647/972/non_2x/isometric-illustration-concept-goods-delivery-warehouse-application-map-free-vector.jpg"
                       }
                       alt={warehouse.name}
                     />
-                    <div className="h-[134px] left-[150px]  top-[8px] absolute flex-col justify-start items-start gap-[18px] inline-flex">
+                    <div className="h-[134px] left-[180px]  top-[8px] absolute flex-col justify-start items-start gap-[18px] inline-flex">
                       <div className="flex-col justify-start items-start gap-3 flex">
                         <div className="flex-col justify-start items-start gap-2 flex">
                           <div className="h-4 pt-px pb-0.5 justify-end items-start gap-1.5 inline-flex">

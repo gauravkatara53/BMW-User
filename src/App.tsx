@@ -13,7 +13,7 @@ import CommingSoon from "./components/common/commingsoon";
 import { SignUpScreen } from "./screens/AuthPage/SignUp/SignUp";
 import { SignInScreen } from "./screens/AuthPage/SingIn/SignIn";
 import { ProfilePage } from "./screens/ProfilePage";
-
+import { Warehouse } from "./screens/Booking/Warehouse-details/Warehouse";
 export default function App() {
   return (
     <>
@@ -34,6 +34,11 @@ export default function App() {
           <Route path="/signIn" element={<SignInScreen />} />
           <Route path="/profile" element={<ProfilePage />} />
 
+          {/* Booking routes  */}
+          <Route
+            path="/warehouse-profile/:warehouseId"
+            element={<Warehouse />}
+          />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
