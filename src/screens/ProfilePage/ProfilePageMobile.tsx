@@ -4,6 +4,7 @@ import { apiService } from "@/components/APIService/ApiService";
 import ClipLoader from "react-spinners/ClipLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 export const ProfilePageMobile = () => {
   const [user, setUser] = useState<{
@@ -171,18 +172,22 @@ export const ProfilePageMobile = () => {
             >
               Edit
             </button>
-            <button
-              className="text-gray-500 hover:text-[#6d52ef]/80 text-sm font-medium"
-              onClick={() => console.log("My Rental Orders")}
-            >
-              My Rental Orders
-            </button>
-            <button
-              className="text-gray-500 hover:text-[#6d52ef]/80 text-sm font-medium"
-              onClick={() => console.log("My Buy Orders")}
-            >
-              My Buy Orders
-            </button>
+            <Link to={"/rental-Orders"}>
+              <button
+                className="text-gray-500 hover:text-[#6d52ef]/80 text-sm font-medium"
+                onClick={() => console.log("My Rental Orders")}
+              >
+                My Rental Orders
+              </button>
+            </Link>
+            <Link to={"/buy-Orders"}>
+              <button
+                className="text-gray-500 hover:text-[#6d52ef]/80 text-sm font-medium"
+                onClick={() => console.log("My Buy Orders")}
+              >
+                My Buy Orders
+              </button>
+            </Link>
           </div>
           <div className="w-full max-w-md bg-[#f2f2f2] rounded-lg p-4">
             <div className="text-[#343434] text-sm font-semibold mb-2">

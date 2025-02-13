@@ -2,7 +2,8 @@ import WHNavbar from "@/components/common/WHNavbar";
 import { useState } from "react";
 import { apiService } from "@/components/APIService/ApiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faMap } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faMap } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 interface Warehouse {

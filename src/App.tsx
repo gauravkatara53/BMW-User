@@ -14,6 +14,12 @@ import { SignUpScreen } from "./screens/AuthPage/SignUp/SignUp";
 import { SignInScreen } from "./screens/AuthPage/SingIn/SignIn";
 import { ProfilePage } from "./screens/ProfilePage";
 import { Warehouse } from "./screens/Booking/Warehouse-details/Warehouse";
+import { ProductBuyPage } from "./screens/Booking/Warehouse-details/ProductBuyPage";
+import RentalOrder from "./screens/Order/RentalOrder/RentalOrder";
+import { OrderDetail } from "./screens/Order/OrderProfile/OrderDetail";
+import BuyOrder from "./screens/Order/BuyOrder/BuyOrder";
+import ProtectedRoute from "./components/common/ProtectedRoute";
+
 export default function App() {
   return (
     <>
@@ -32,13 +38,24 @@ export default function App() {
           {/* auth screen */}
           <Route path="/signUp" element={<SignUpScreen />} />
           <Route path="/signIn" element={<SignInScreen />} />
-          <Route path="/profile" element={<ProfilePage />} />
 
-          {/* Booking routes  */}
-          <Route
-            path="/warehouse-profile/:warehouseId"
-            element={<Warehouse />}
-          />
+          {/* proteted route */}
+
+          <Route element={<ProtectedRoute />}>
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/rental-Orders" element={<RentalOrder />} />
+            <Route path="/order-info/:orderId" element={<OrderDetail />} />
+            <Route path="/buy-Orders" element={<BuyOrder />} />
+            <Route
+              path="/warehouse-profile/:warehouseId/ProductBuyPage/:orderId"
+              element={<ProductBuyPage />}
+            />
+            {/* Booking routes  */}
+            <Route
+              path="/warehouse-profile/:warehouseId"
+              element={<Warehouse />}
+            />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>

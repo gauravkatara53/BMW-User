@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import WHNavbar from "@/components/common/WHNavbar";
 import { apiService } from "@/components/APIService/ApiService";
 import ClipLoader from "react-spinners/ClipLoader"; // Import the clipboard loader
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
-
+import { Link } from "react-router-dom";
 export const ProfilePageDesktop = () => {
   const [user, setUser] = useState<{
     name: string;
@@ -173,20 +173,23 @@ export const ProfilePageDesktop = () => {
           >
             Edit{" "}
           </div>
-          <div className="w-[155.93px] h-[16.57px] text-gray-500 text-sm font-medium hover:text-[#6d52ef]/80 hover:cursor-pointer">
-            My Rental Orders
-          </div>
-          <div className="mb-4 w-[155.93px] h-[16.57px] text-gray-500 text-sm font-medium hover:text-[#6d52ef]/80 hover:cursor-pointer">
-            My Buy Orders
-          </div>
+          <Link to={"/rental-Orders"}>
+            <div className="w-[155.93px] h-[16.57px] text-gray-500 text-sm font-medium hover:text-[#6d52ef]/80 hover:cursor-pointer">
+              My Rental Orders
+            </div>
+          </Link>
+          <Link to={"/buy-Orders"}>
+            <div className="mb-4 w-[155.93px] h-[16.57px] text-gray-500 text-sm font-medium hover:text-[#6d52ef]/80 hover:cursor-pointer">
+              My Buy Orders
+            </div>
+          </Link>
         </div>
 
         <div className="w-[509px] h-[519px] absolute left-[595px] top-[183px]">
-          <div className="w-[461px] h-[261px] absolute left-[17px] top-[225px]">
-            <div className="w-[74.44px] left-0 top-0 absolute text-[#343434] text-sm font-semibold ">
-              Address
-            </div>
-            <div className="w-[461px] h-[47px] px-4 py-[15px] absolute left-0 top-[27px] bg-[#f2f2f2] rounded-[10px] flex justify-start items-center gap-4">
+          <div className="w-[461px] h-[300px] absolute left-[17px] top-[225px]">
+            <h2 className="text-lg font-bold text-[#343434] mb-2">Address</h2>
+
+            <div className="min-w-[220px] w-full max-w-[461px] h-[47px] px-4 py-[15px] absolute left-0 top-[27px] bg-[#f2f2f2] rounded-[10px] flex justify-start items-center gap-4">
               <div className="w-4 h-4 relative overflow-hidden" />
               {isEditing ? (
                 <input
@@ -194,15 +197,20 @@ export const ProfilePageDesktop = () => {
                   name="address"
                   value={formData.address}
                   onChange={handleInputChange}
-                  className="text-[#939393] text-sm font-medium bg-transparent outline-none"
+                  className="w-full text-[#939393] text-sm font-medium bg-transparent outline-none truncate"
                 />
               ) : (
-                <div className="text-[#939393] text-sm font-medium ">
+                <div className="w-full text-[#939393] text-sm font-medium truncate">
                   {user ? user.address : ""}
                 </div>
               )}
             </div>
-            <div className="w-[461px] h-[47px] px-4 py-[15px] absolute left-0 top-[90px] bg-[#f2f2f2] rounded-[10px] flex justify-start items-center gap-4">
+
+            {/* City */}
+            <div className=" w-[74.44px] left-0 top-[80px] absolute text-[#343434] text-sm font-semibold">
+              City
+            </div>
+            <div className="min-w-[220px] w-full max-w-[461px] h-[47px] px-4 py-[15px] absolute left-0 top-[102px] bg-[#f2f2f2] rounded-[10px] flex justify-start items-center gap-4">
               <div className="w-4 h-4 relative overflow-hidden" />
               {isEditing ? (
                 <input
@@ -210,31 +218,20 @@ export const ProfilePageDesktop = () => {
                   name="city"
                   value={formData.city}
                   onChange={handleInputChange}
-                  className="text-[#939393] text-sm font-medium bg-transparent outline-none"
+                  className="w-full text-[#939393] text-sm font-medium bg-transparent outline-none truncate"
                 />
               ) : (
-                <div className="text-[#939393] text-sm font-medium ">
+                <div className="w-full text-[#939393] text-sm font-medium truncate">
                   {user ? user.city : ""}
                 </div>
               )}
             </div>
-            <div className="w-[461px] h-[47px] px-4 py-[15px] absolute left-0 top-[214px] bg-[#f2f2f2] rounded-[10px] flex justify-start items-center gap-4">
-              <div className="w-4 h-4 relative overflow-hidden" />
-              {isEditing ? (
-                <input
-                  type="text"
-                  name="pincode"
-                  value={formData.pincode}
-                  onChange={handleInputChange}
-                  className="text-[#939393] text-sm font-medium bg-transparent outline-none"
-                />
-              ) : (
-                <div className="text-[#939393] text-sm font-medium ">
-                  {user ? user.pincode : ""}
-                </div>
-              )}
+
+            {/* State */}
+            <div className="w-[74.44px] left-0 top-[150px] absolute text-[#343434] text-sm font-semibold">
+              State
             </div>
-            <div className="w-[219.40px] h-[47px] px-4 py-[15px] absolute left-0 top-[151px] bg-[#f2f2f2] rounded-[10px] flex justify-start items-center gap-4">
+            <div className="min-w-[220px] h-[47px] px-4 py-[15px] absolute left-0 top-[171px] bg-[#f2f2f2] rounded-[10px] flex justify-start items-center gap-4">
               <div className="w-4 h-4 relative overflow-hidden" />
               {isEditing ? (
                 <input
@@ -242,15 +239,20 @@ export const ProfilePageDesktop = () => {
                   name="state"
                   value={formData.state}
                   onChange={handleInputChange}
-                  className="text-[#939393] text-sm font-medium bg-transparent outline-none"
+                  className="w-full text-[#939393] text-sm font-medium bg-transparent outline-none truncate"
                 />
               ) : (
-                <div className="text-[#939393] text-sm font-medium ">
+                <div className="w-full text-[#939393] text-sm font-medium truncate">
                   {user ? user.state : ""}
                 </div>
               )}
             </div>
-            <div className="w-[219.40px] h-[47px] px-4 py-[15px] absolute left-[241.60px] top-[151px] bg-[#f2f2f2] rounded-[10px] flex justify-start items-center gap-4">
+
+            {/* Country */}
+            <div className="w-[74.44px] left-[241.60px] top-[150px] absolute text-[#343434] text-sm font-semibold">
+              Country
+            </div>
+            <div className="min-w-[220px] h-[47px] px-4 py-[15px] absolute left-[241.60px] top-[171px] bg-[#f2f2f2] rounded-[10px] flex justify-start items-center gap-4">
               <div className="w-4 h-4 relative overflow-hidden" />
               {isEditing ? (
                 <input
@@ -258,11 +260,32 @@ export const ProfilePageDesktop = () => {
                   name="country"
                   value={formData.country}
                   onChange={handleInputChange}
-                  className="text-[#939393] text-sm font-medium bg-transparent outline-none"
+                  className="w-full text-[#939393] text-sm font-medium bg-transparent outline-none truncate"
                 />
               ) : (
-                <div className="text-[#939393] text-sm font-medium ">
+                <div className="w-full text-[#939393] text-sm font-medium truncate">
                   {user ? user.country : ""}
+                </div>
+              )}
+            </div>
+
+            {/* Pincode */}
+            <div className="w-[74.44px] left-0 top-[223px] absolute text-[#343434] text-sm font-semibold">
+              Pincode
+            </div>
+            <div className="min-w-[220px] w-full max-w-[461px] h-[47px] px-4 py-[15px] absolute left-0 top-[248px] bg-[#f2f2f2] rounded-[10px] flex justify-start items-center gap-4">
+              <div className="w-4 h-4 relative overflow-hidden" />
+              {isEditing ? (
+                <input
+                  type="number"
+                  name="pincode"
+                  value={formData.pincode}
+                  onChange={handleInputChange}
+                  className="w-full text-[#939393] text-sm font-medium bg-transparent outline-none truncate"
+                />
+              ) : (
+                <div className="w-full text-[#939393] text-sm font-medium truncate">
+                  {user ? user.pincode : ""}
                 </div>
               )}
             </div>
@@ -272,23 +295,24 @@ export const ProfilePageDesktop = () => {
             <div className="w-[462px] h-[72px] relative">
               <div className="w-[462px] h-[72px] absolute left-0 top-0 bg-[#f2f2f2] rounded-[15px]" />
               <div className="h-10 absolute left-[20px] top-[16px] flex-col justify-start items-start gap-2 inline-flex">
-                <div className="h-[17px] pr-[159px] inline-flex justify-start items-center">
+                <div className="h-[17px] inline-flex justify-start items-center w-72">
                   {isEditing ? (
                     <input
                       type="text"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-[171px] text-[#2c2c2c] text-sm font-semibold capitalize bg-transparent outline-none"
+                      className="w-full text-[#2c2c2c] text-sm font-semibold capitalize bg-transparent outline-none truncate"
                     />
                   ) : (
-                    <div className="w-[171px] text-[#2c2c2c] text-sm font-semibold capitalize">
+                    <div className="w-full text-[#2c2c2c] text-sm font-semibold capitalize truncate">
                       Hi, {user ? user.name : ""}
                     </div>
                   )}
                 </div>
-                <div className="flex-col flex justify-start items-start gap-[5px]">
-                  <div className="inline-flex justify-start items-center gap-2.5">
+
+                <div className="flex-col flex justify-start items-start gap-[5px] w-full">
+                  <div className="inline-flex justify-start items-center gap-2.5 w-full">
                     <div className="w-[15px] h-[15px] relative overflow-hidden" />
                     {isEditing ? (
                       <input
@@ -296,15 +320,17 @@ export const ProfilePageDesktop = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
-                        className="w-[131px] h-3.5 text-[#939393] text-sm font-normal bg-transparent outline-none"
+                        className="w-full h-3.5 text-[#939393] text-sm font-normal bg-transparent outline-none truncate"
                       />
                     ) : (
-                      <div className="flex -ml-6 items-center space-x-2 text-[#939393] text-sm font-normal">
+                      <div className="flex items-center space-x-2 text-[#939393] text-sm font-normal w-full break-words">
                         <FontAwesomeIcon
                           icon={faPhone}
                           className="text-[#939393]"
                         />
-                        <span>{user ? user.phone : ""}</span>
+                        <span className="w-full break-words">
+                          {user ? user.phone : ""}
+                        </span>
                       </div>
                     )}
                   </div>
@@ -313,21 +339,21 @@ export const ProfilePageDesktop = () => {
             </div>
 
             <div className="self-stretch h-[65px] px-5 py-4 bg-[#f2f2f2] rounded-[15px] flex-col justify-center items-start gap-2.5 flex">
-              <div className="flex-col flex justify-start items-start gap-0.5">
-                <div className="w-[137px] text-black font-bold text-sm   leading-[15px]">
+              <div className="flex-col flex justify-start items-start gap-0.5 w-full">
+                <div className="w-[137px] text-black font-bold text-sm leading-[15px]">
                   Mail Id
                 </div>
-                <div className="flex-col flex justify-start items-start gap-1.5">
+                <div className="flex-col flex justify-start items-start gap-1.5 w-full">
                   {isEditing ? (
                     <input
                       type="text"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="text-[#939393] text-[13px] font-normal bg-transparent outline-none"
+                      className="text-[#939393] text-[13px] font-normal bg-transparent outline-none w-full truncate"
                     />
                   ) : (
-                    <div className="text-[#939393] text-[13px] font-normal ">
+                    <div className="text-[#939393] text-[13px] font-normal w-full break-words">
                       {user ? user.email : ""}
                     </div>
                   )}
@@ -344,7 +370,6 @@ export const ProfilePageDesktop = () => {
             src="https://via.placeholder.com/11x11"
           />
         </div>
-
         <img
           className="w-[148px] h-[148px] absolute left-[345px] top-[196px] rounded-full"
           src={user ? user.avatar : ""}
@@ -361,7 +386,7 @@ export const ProfilePageDesktop = () => {
         </button>
         {isEditing && (
           <button
-            className="absolute left-[800px] top-[700px] bg-[#6d52ef] text-white px-4 py-2 rounded-lg"
+            className="absolute left-[800px] top-[720px] bg-[#6d52ef] text-white px-4 py-2 rounded-lg"
             onClick={handleSave}
           >
             Save Changes

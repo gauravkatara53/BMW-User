@@ -1,119 +1,199 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { useEffect, useState } from "react";
+// import { apiService } from "@/components/APIService/ApiService";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faIndianRupee } from "@fortawesome/free-solid-svg-icons";
+// import { useNavigate } from "react-router-dom";
 
-export const SignInScreen = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+// declare global {
+//   interface Window {
+//     Razorpay: any;
+//   }
+// }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+// interface SellProps {
+//   warehouseData: WarehouseData;
+// }
 
-    try {
-      const response = await fetch("http://localhost:5001/api/v1/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
+// interface WarehouseData {
+//   _id: string;
+//   monthlyAmount: number;
+// }
 
-      const data = await response.json();
+// // interface OrderResponse {
+// //   razorpayOrderId: string;
+// //   amount: number;
+// //   currency: string;
+// // }
 
-      if (response.ok) {
-        // Handle successful login
-        console.log("Login successful:", data);
-        // You might want to redirect the user or store the token in localStorage
-      } else {
-        // Handle errors
-        setError(data.message || "Login failed");
-      }
-    } catch (err) {
-      setError("An error occurred. Please try again.");
-      console.error("Login error:", err);
-    }
-  };
+// const loadRazorpayScript = () => {
+//   return new Promise<void>((resolve, reject) => {
+//     const script = document.createElement("script");
+//     script.src = "https://checkout.razorpay.com/v1/checkout.js";
+//     script.onload = () => resolve();
+//     script.onerror = (error) => reject(error);
+//     document.body.appendChild(script);
+//   });
+// };
 
-  return (
-    <>
-      <div className="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
-        <div className="bg-white shadow sm:rounded-lg flex justify-center flex-1">
-          <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12">
-            <div>
-              <Link to={"/"}>
-                <img
-                  src="https://bookmywarehouse.co/logo1.png"
-                  className="w-32"
-                  alt="Logo"
-                />
-              </Link>
-            </div>
-            <div className="mt-40 flex flex-col items-center">
-              <h1 className="text-2xl xl:text-3xl font-extrabold">Login In</h1>
-              {error && <p className="text-red-500">{error}</p>}
-              <div className="w-full flex-1 mt-8">
-                <form onSubmit={handleSubmit} className="mx-auto max-w-xs">
-                  <input
-                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    required
-                  />
-                  <input
-                    className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white mt-5"
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    required
-                  />
-                  <button
-                    type="submit"
-                    className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
-                  >
-                    <svg
-                      className="w-6 h-6 -ml-2"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                      <circle cx="8.5" cy="7" r="4" />
-                      <path d="M20 8v6M23 11h-6" />
-                    </svg>
-                    <span className="ml-3">Sign In</span>
-                  </button>
-                  <p className="mt-6 text-xs text-gray-600 text-center">
-                    Did not have an account
-                    <Link
-                      to="/signUp"
-                      className="border-b ml-2 border-gray-500 border-dotted"
-                    >
-                      Sign Up
-                    </Link>
-                  </p>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div className="flex-1 bg-indigo-100 text-center hidden lg:flex">
-            <div
-              className="m-12 xl:m-16 w-full bg-contain bg-center bg-no-repeat"
-              style={{
-                backgroundImage:
-                  "url('https://storage.googleapis.com/devitary-image-host.appspot.com/15848031292911696601-undraw_designer_life_w96d.svg')",
-              }}
-            ></div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
+// const createOrder = async (warehouseId: string, duration?: number) => {
+//   try {
+//     // Sending a request to create an order
+//     const response = await apiService.post<{
+//       data: { order: any; payment: any };
+//     }>(
+//       `/order/create/${warehouseId}`,
+//       {
+//         duration,
+//       },
+//       {
+//         withCredentials: true,
+//       }
+//     );
+
+//     // Check if response contains data and the razorpayOrderId
+//     const order = response.data?.order;
+//     const payment = response.data?.payment;
+
+//     console.log("Order response:", response); // Log the complete response for debugging
+
+//     // Check if Razorpay is loaded and the order data is available
+//     if (window.Razorpay && payment?.razorpayOrderId) {
+//       const options = {
+//         key: "rzp_test_u4a2EVKlaHtY6X", // Your Razorpay key
+//         amount: order.monthlyAmount, // Convert to paise (subunits of INR)
+//         currency: "INR", // Ensure currency is INR
+//         name: "BookMyWarehouse",
+//         image: "https://bookmywarehouse.co/logo1.png",
+//         description: "Payment for warehouse purchase",
+//         order_id: payment.razorpayOrderId, // Use razorpayOrderId from payment object
+//         handler: function (response: any) {
+//           verifyPayment(
+//             response.razorpay_payment_id,
+//             response.razorpay_order_id,
+//             response.razorpay_signature
+//           );
+//         },
+//         prefill: {
+//           name: order.customerDetails.name,
+//           email: order.customerDetails.email,
+//           contact: order.customerDetails.phone, // Can update with actual contact info
+//         },
+//         notes: {
+//           address: "customer address",
+//         },
+//       };
+
+//       console.log("Razorpay options:", options); // Log the Razorpay options for debugging
+
+//       // Open Razorpay checkout
+//       const razorpay = new window.Razorpay(options);
+//       razorpay.open();
+//     } else {
+//       console.error("Razorpay is not loaded or order data is missing.");
+//     }
+//   } catch (error) {
+//     console.error("Error creating order:", error);
+//   }
+// };
+
+// const verifyPayment = async (
+//   razorpayPaymentId: string,
+//   razorpayOrderId: string,
+//   razorpaySignature: string
+// ) => {
+//   try {
+//     const response = await apiService.post("/transaction/verify", {
+//       razorpayPaymentId,
+//       razorpayOrderId,
+//       razorpaySignature,
+//     });
+//     console.log("Payment verified:", response);
+//   } catch (error) {
+//     console.error("Error verifying payment:", error);
+//   }
+// };
+
+// export const Rent = ({ warehouseData }: SellProps) => {
+//   const navigate = useNavigate();
+
+//   const warehouse_Id = warehouseData._id;
+
+//   useEffect(() => {
+//     // Load Razorpay script dynamically when the component mounts
+//     loadRazorpayScript().catch((error) => {
+//       console.error("Error loading Razorpay script:", error);
+//     });
+//   }, []);
+
+//   const handleRent = () => {
+//     createOrder(warehouseData._id, count);
+//   };
+
+//   const [count, setCount] = useState(1);
+//   const handleDecrement = () => {
+//     if (count > 1) {
+//       setCount(count - 1);
+//     }
+//   };
+
+//   const handleIncrement = () => {
+//     if (count < 12) {
+//       setCount(count + 1);
+//     }
+//   };
+
+//   const handleWarehouseClick = (orderId: string) => {
+//     if (orderId) {
+//       navigate(`/warehouse-profile/${warehouse_Id}/ProductBuyPage/${orderId}`);
+//     } else {
+//       alert("Orde document ID is missing.");
+//     }
+//   };
+//   return (
+//     <>
+//       {/* Rent Section */}
+//       <div className="fixed bottom-0 left-0 w-full bg-white p-4 shadow-lg">
+//         <div className="flex justify-between items-center">
+//           <div>
+//             <div className="flex items-center gap-1">
+//               <FontAwesomeIcon icon={faIndianRupee} />
+//               <p className="text-xl font-normal">
+//                 {warehouseData.monthlyAmount}/month
+//               </p>
+//             </div>
+
+//             <p className="text-sm text-gray-600 underline">
+//               Payment estimation
+//             </p>
+//           </div>
+//           <div className="flex items-center space-x-2 p-2 rounded-lg w-fit">
+//             <button
+//               onClick={handleDecrement}
+//               className="px-3 py-1 bg-white text-black rounded-lg border"
+//             >
+//               -
+//             </button>
+//             <span className="text-lg font-semibold w-32 text-center">
+//               Month : {count}
+//             </span>
+//             <button
+//               onClick={handleIncrement}
+//               className="px-3 py-1 bg-white text-black rounded-lg border"
+//             >
+//               +
+//             </button>
+//           </div>
+//           <button
+//             className="bg-gradient-to-br from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-full font-medium"
+//             onClick={() => {
+//               handleRent();
+//               handleWarehouseClick(warehouse_Id);
+//             }}
+//           >
+//             Rent
+//           </button>
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
