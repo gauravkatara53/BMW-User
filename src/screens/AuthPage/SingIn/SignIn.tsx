@@ -11,25 +11,27 @@ export const SignInScreen = () => {
     message?: string;
     // Add other properties of the response if needed
   }
-  const Base = import.meta.env.VITE_BASE_URL;
- 
+
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
 
     try {
-      const response = await fetch(Base, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-        credentials: "include", // Include credentials if needed
-      });
+      const response = await fetch(
+        "https://bmw-backend-l85a.onrender.com/api/v1/user/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+          credentials: "include", // Include credentials if needed
+        }
+      );
 
       const data: LoginResponse = await response.json();
 

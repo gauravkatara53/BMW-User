@@ -81,16 +81,19 @@ export const ProfilePageMobile = () => {
 
     fetchProfile();
   }, []);
-  const Base = import.meta.env.VITE_BASE_URL;
+
   const handleLogout = async () => {
     try {
-      const response = await fetch(Base, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://bmw-backend-l85a.onrender.com/api/v1/user/loginOut",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
 
       const responseData = await response.json();
 
