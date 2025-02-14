@@ -1,7 +1,8 @@
 import axios from "axios";
 
+const Base = import.meta.env.VITE_BASE_URL;
 // Base URL for API
-const BASE_URL = "https://bmw-backend-l85a.onrender.com/api/v1/";
+const BASE_URL = Base;
 //https://bmw-backend-l85a.onrender.com/api/v1/
 
 const api = axios.create({
