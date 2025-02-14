@@ -4,10 +4,11 @@ import WHNavLink from "./WHNavLink";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import Cookies from "js-cookie";
-
+import { useAuth } from "./AuthContext";
 export default function WHNavbar({ dark = false }: { dark?: boolean }) {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const { isAuthenticated } = useAuth();
 
   useEffect(() => {
     const checkLogin = () => {
@@ -49,7 +50,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
           )}
         </div>
 
-        {isLoggedIn ? (
+        {isAuthenticated ? (
           <Link to={"/profile"}>
             <motion.div
               whileTap={{ scale: 0.9 }}
@@ -114,7 +115,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
                 className="text-center text-2xl bg-gray-100 hover:bg-gray-200"
               />
             </div>
-            {isLoggedIn ? (
+            {isAuthenticated ? (
               <Link to="/profile">
                 <motion.div
                   whileTap={{ scale: 0.9 }}

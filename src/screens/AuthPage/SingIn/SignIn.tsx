@@ -36,8 +36,9 @@ export const SignInScreen = () => {
         // Handle successful login
         console.log("Login successful:", data);
 
-        // Redirect to the "/" route
+        // Redirect to the "/" route and force a refresh
         navigate("/");
+        window.location.reload();
       } else {
         // Handle errors
         setError(data.message || "Login failed");

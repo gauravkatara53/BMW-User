@@ -1,16 +1,36 @@
 import { Navigate, Outlet } from "react-router-dom";
-import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import { apiService } from "../APIService/ApiService";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const ProtectedRoute = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
+  const [isChecking, setIsChecking] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const token = Cookies.get("accessToken"); // ✅ Read token from cookies
-    setIsAuthenticated(!!token); // Convert token presence to boolean
+    const checkAuth = async () => {
+      try {
+        const response = await apiService.get("/user/verify"); // ✅ Use API service
+
+        setIsAuthenticated(true);
+        console.log("✅ User is authenticated:", response);
+      } catch (error) {
+        setIsAuthenticated(false);
+        console.log("❌ User is not authenticated:", error);
+      } finally {
+        setIsChecking(false);
+      }
+    };
+
+    checkAuth();
   }, []);
 
-  if (isAuthenticated === null) return <div>Loading...</div>; // Prevent flicker
+  if (isChecking)
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <ClipLoader color="#6d52ef" size={50} />
+      </div>
+    );
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/signin" replace />;
 };
