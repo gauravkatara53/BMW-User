@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowUpAZ, faIndianRupee } from "@fortawesome/free-solid-svg-icons";
+import { faIndianRupee } from "@fortawesome/free-solid-svg-icons";
 import { apiService } from "@/components/APIService/ApiService";
 
 declare global {
@@ -54,7 +54,7 @@ export const Rent = ({ orderData }: RentProps) => {
         data: { updatedOrder: any; razorpayOrder: any; transaction: any };
       }>(`/transaction/montly/rent/${Order._id}`, {});
 
-      const { updatedOrder, razorpayOrder, transaction } = response.data;
+      const { updatedOrder, razorpayOrder } = response.data;
 
       if (!updatedOrder?.monthlyAmount) {
         console.error(

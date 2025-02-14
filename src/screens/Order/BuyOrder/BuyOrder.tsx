@@ -33,7 +33,7 @@ interface BuyOrder {
 const BuyOrder = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState<BuyOrder[]>([]);
-  const [allOrders, setAllOrders] = useState<BuyOrder[]>([]); // Store all orders
+  // const [allOrders, setAllOrders] = useState<BuyOrder[]>([]); // Store all orders
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");

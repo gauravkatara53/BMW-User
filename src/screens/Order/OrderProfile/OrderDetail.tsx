@@ -5,7 +5,7 @@ import { Nearest } from "./Nearest";
 import { Testimonials } from "./Testimonials";
 import { About } from "./About";
 import { Rent } from "./Rent";
-import { Sell } from "./Sell"; // Import Sell component
+
 import { useEffect, useState } from "react";
 import { apiService } from "@/components/APIService/ApiService";
 import ClipLoader from "react-spinners/ClipLoader"; // Import ClipLoader

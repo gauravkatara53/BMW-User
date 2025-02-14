@@ -18,11 +18,11 @@ interface WarehouseData {
   totalPrice: number;
 }
 
-interface OrderResponse {
-  razorpayOrderId: string;
-  amount: number;
-  currency: string;
-}
+// interface OrderResponse {
+//   razorpayOrderId: string;
+//   amount: number;
+//   currency: string;
+// }
 
 const loadRazorpayScript = () => {
   return new Promise<void>((resolve, reject) => {

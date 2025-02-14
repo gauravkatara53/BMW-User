@@ -1,7 +1,6 @@
 import {
   faComment,
   faHouse,
-  faMap,
   faMapMarkerAlt,
   faPhone,
   faRulerCombined,
@@ -19,18 +18,18 @@ export const Hero = ({ warehouseData }: HeroProps) => {
     units: number;
   }
 
-  interface WarehouseData {
-    name: string;
-    address: string;
-    city: string;
-    pincode: string;
-    rooms: Room[];
-    areaSqFt: number;
-  }
+  // interface WarehouseData {
+  //   name: string;
+  //   address: string;
+  //   city: string;
+  //   pincode: string;
+  //   rooms: Room[];
+  //   areaSqFt: number;
+  // }
 
-  interface HeroProps {
-    warehouseData: WarehouseData;
-  }
+  // interface HeroProps {
+  //   warehouseData: WarehouseData;
+  // }
 
   const totalUnits = warehouseData.rooms.reduce(
     (sum: number, room: Room) => sum + room.units,

@@ -18,8 +18,6 @@ import {
   faBowlFood,
   faBank,
   faMoneyBill,
-  faShopSlash,
-  faMeteor,
   faTrain,
   faRestroom,
 } from "@fortawesome/free-solid-svg-icons";
