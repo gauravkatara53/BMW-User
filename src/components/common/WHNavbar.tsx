@@ -12,7 +12,6 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
   useEffect(() => {
     const checkLogin = () => {
       const token = Cookies.get("accessToken");
-      console.log("Token found:", token); // Check token here
       setIsLoggedIn(!!token);
     };
     checkLogin();
@@ -26,7 +25,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
     <div className="py-8 lg:px-32 md:px-16 sm:px-8 px-4 flex justify-between items-start w-full absolute top-0 left-0 z-20">
       <Link to="/">
         <div className="flex items-center gap-3">
-          <img src="logo1.png" className="h-12" alt="Logo" />
+          <img src="/logo1.png" className="h-12" alt="Logo" />
         </div>
       </Link>
 
@@ -51,11 +50,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
         </div>
 
         {isLoggedIn ? (
-          <Link
-            to={
-              "https://play.google.com/store/apps/details?id=com.bookmywarehouse.app&hl=en"
-            }
-          >
+          <Link to={"/profile"}>
             <motion.div
               whileTap={{ scale: 0.9 }}
               className="ml-12 py-3 px-6 bg-gradient-to-b from-[#674CEC] to-[#8D77FC] text-gray-100 cursor-pointer hover:border-blue-900 border text-sm xl:text-base rounded-full font-semibold"

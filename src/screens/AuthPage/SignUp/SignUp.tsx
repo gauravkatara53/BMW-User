@@ -29,7 +29,7 @@ export const SignUpScreen = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5001/api/v1/user/register",
+        "https://bmw-backend-l85a.onrender.com/api/v1/user/register",
         formData
       );
       if (response.data.success) {
