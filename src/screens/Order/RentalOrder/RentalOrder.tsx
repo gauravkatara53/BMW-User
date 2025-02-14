@@ -32,7 +32,7 @@ interface RentalOrder {
 const RentalOrder = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState<RentalOrder[]>([]);
-  const [allOrders, setAllOrders] = useState<RentalOrder[]>([]); // Store all orders
+  // const [allOrders, setAllOrders] = useState<RentalOrder[]>([]); // Store all orders
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
