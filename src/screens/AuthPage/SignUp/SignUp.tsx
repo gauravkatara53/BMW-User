@@ -13,7 +13,7 @@ export const SignUpScreen = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const Base = import.meta.env.VITE_BASE_URL;
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -28,7 +28,10 @@ export const SignUpScreen = () => {
     setError("");
 
     try {
-      const response = await axios.post(Base, formData);
+      const response = await axios.post(
+        "https://bmw-backend-l85a.onrender.com/api/v1/user/register",
+        formData
+      );
       if (response.data.success) {
         navigate("/signIn");
       } else {

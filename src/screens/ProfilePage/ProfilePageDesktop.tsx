@@ -81,17 +81,20 @@ export const ProfilePageDesktop = () => {
 
     fetchProfile();
   }, []); // Empty dependency array ensures this runs only once
-  const Base = import.meta.env.VITE_BASE_URL;
+
   const handleLogout = async () => {
     console.log("handleLogout called"); // Check if the function is being called
     try {
-      const response = await fetch(Base, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include", // Ensure cookies are sent with the request
-      });
+      const response = await fetch(
+        "http://localhost:5001/api/v1/user/loginOut",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include", // Ensure cookies are sent with the request
+        }
+      );
 
       const responseData = await response.json(); // Parse the response JSON
 
