@@ -18,17 +18,20 @@ export const SignInScreen = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5001/api/v1/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-        credentials: "include", // Include credentials if needed
-      });
+      const response = await fetch(
+        "https://bmw-backend-l85a.onrender.com/api/v1/user/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+          credentials: "include", // Include credentials if needed
+        }
+      );
 
       const data: LoginResponse = await response.json();
 

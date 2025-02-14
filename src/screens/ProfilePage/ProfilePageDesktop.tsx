@@ -86,7 +86,7 @@ export const ProfilePageDesktop = () => {
     console.log("handleLogout called"); // Check if the function is being called
     try {
       const response = await fetch(
-        "http://localhost:5001/api/v1/user/loginOut",
+        "https://bmw-backend-l85a.onrender.com/api/v1/user/loginOut",
         {
           method: "POST",
           headers: {
