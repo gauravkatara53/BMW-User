@@ -21,7 +21,7 @@ api.interceptors.request.use(
       .find((row) => row.startsWith("accessToken="))
       ?.split("=")[1];
 
-    // console.log("Access Token from Cookies:", token); // 🔍 Debugging
+    console.log("Access Token from Cookies:", token); // 🔍 Debugging
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;

@@ -40,9 +40,9 @@ export default function App() {
           <Route path="/signIn" element={<SignInScreen />} />
 
           {/* proteted route */}
+          <Route path="/profile" element={<ProfilePage />} />
 
           <Route element={<ProtectedRoute />}>
-            <Route path="/profile" element={<ProfilePage />} />
             <Route path="/rental-Orders" element={<RentalOrder />} />
             <Route path="/order-info/:orderId" element={<OrderDetail />} />
             <Route path="/buy-Orders" element={<BuyOrder />} />
