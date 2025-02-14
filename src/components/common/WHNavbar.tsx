@@ -40,7 +40,7 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
       <div className="hidden lg:flex items-center justify-end w-full">
         <div className="flex gap-4">
           <WHNavLink isDark={dark} title="Home" to="/" />
-          <WHNavLink isDark={dark} title="Search" to="/Search" />
+          <WHNavLink isDark={dark} title="Search" to="/profile" />
           <WHNavLink isDark={dark} title="Chat" to="/Chat" />
           {isLoggedIn && (
             <>

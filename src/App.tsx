@@ -41,21 +41,19 @@ export default function App() {
 
           {/* proteted route */}
           <Route path="/profile" element={<ProfilePage />} />
-
-          <Route element={<ProtectedRoute />}>
-            <Route path="/rental-Orders" element={<RentalOrder />} />
-            <Route path="/order-info/:orderId" element={<OrderDetail />} />
-            <Route path="/buy-Orders" element={<BuyOrder />} />
-            <Route
-              path="/warehouse-profile/:warehouseId/ProductBuyPage/:orderId"
-              element={<ProductBuyPage />}
-            />
-            {/* Booking routes  */}
-            <Route
-              path="/warehouse-profile/:warehouseId"
-              element={<Warehouse />}
-            />
-          </Route>
+          <Route path="/rental-Orders" element={<RentalOrder />} />
+          <Route path="/order-info/:orderId" element={<OrderDetail />} />
+          <Route path="/buy-Orders" element={<BuyOrder />} />
+          <Route
+            path="/warehouse-profile/:warehouseId/ProductBuyPage/:orderId"
+            element={<ProductBuyPage />}
+          />
+          {/* Booking routes  */}
+          <Route
+            path="/warehouse-profile/:warehouseId"
+            element={<Warehouse />}
+          />
+          <Route element={<ProtectedRoute />}></Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
