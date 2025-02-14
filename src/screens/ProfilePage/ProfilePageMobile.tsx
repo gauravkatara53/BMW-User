@@ -84,16 +84,13 @@ export const ProfilePageMobile = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch(
-        "https://bmw-backend-l85a.onrender.com/api/v1/user/loginOut",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        }
-      );
+      const response = await fetch("/api/v1/user/loginOut", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
 
       const responseData = await response.json();
 
