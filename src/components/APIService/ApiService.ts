@@ -6,7 +6,7 @@ const BASE_URL = "/api/v1/";
 
 const api = axios.create({
   baseURL: BASE_URL,
-  timeout: 10000, // 10 seconds timeout
+  timeout: 30000, // 10 seconds timeout
   headers: {
     "Content-Type": "application/json",
   },
@@ -16,18 +16,7 @@ const api = axios.create({
 // Add interceptor for adding authentication token
 api.interceptors.request.use(
   (config) => {
-    const token = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("accessToken="))
-      ?.split("=")[1];
-
-    console.log("Access Token from Cookies:", token); // 🔍 Debugging
-
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    } else {
-      console.warn("⚠️ No token found in cookies!");
-    }
+    console.log("🔄 Making request to:", config.url);
     return config;
   },
   (error) => Promise.reject(error)
