@@ -24,6 +24,7 @@ export default function Hero() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("Rent");
   const [location, setLocation] = useState("");
+  const [month, setMonth] = useState(0);
   const [warehouses, setWarehouses] = useState<Warehouse[]>([]);
   const [loading, setLoading] = useState(false);
   const [showResults, setShowResults] = useState(false);
@@ -36,7 +37,7 @@ export default function Hero() {
   }
 
   const fetchWarehouses = () => {
-    if (!location?.trim()) {
+    if (!location?.trim() || (activeTab === "Rent" && month <= 0)) {
       setWarehouses([]);
       setShowResults(false);
       return;
@@ -89,7 +90,7 @@ export default function Hero() {
       ></div>
 
       {/* Centered Content Section */}
-      <div className="h-screen flex flex-col items-center justify-center text-center px-4">
+      <div className="h-screen flex flex-col items-center justify-center text-center sm:px-4 -mx-2">
         {/* Buy/Rent Slider */}
         <div className="bg-white p-4 sm:p-8 rounded-2xl border w-full max-w-[450px]">
           <div className="bg-white border backdrop-blur-sm rounded-full p-1.5 mb-8 shadow-lg w-full">
@@ -193,6 +194,8 @@ export default function Hero() {
                         WebkitAppearance: "none", // Safari and Chrome
                         appearance: "none", // General case
                       }}
+                      required
+                      onChange={(e) => setMonth(Number(e.target.value))}
                     />
                     <span className="absolute right-2 top-1/2 transform -translate-y-1/2 text-[#1a1e25] text-sm font-normal">
                       Month(s)
