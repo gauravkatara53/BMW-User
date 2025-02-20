@@ -1,8 +1,9 @@
 import axios from "axios";
 
 // Base URL for API
-const BASE_URL = "http://localhost:5001/api/v1";
+const BASE_URL = "https://bmw-backend-l85a.onrender.com/api/v1/";
 //https://bmw-backend-l85a.onrender.com/api/v1/
+//http://localhost:5001/api/v1
 
 const api = axios.create({
   baseURL: BASE_URL,
