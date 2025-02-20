@@ -5,7 +5,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { eventNames } from "process";
+
 import { FaPencilAlt } from "react-icons/fa";
 
 export const ProfilePageMobile = () => {
@@ -123,6 +123,7 @@ export const ProfilePageMobile = () => {
       uploadAvatar(event.target.files[0]);
     }
   };
+  console.log(selectedFile);
   const uploadAvatar = async (file: File) => {
     setIsLoadingAvtara(true);
     const formData = new FormData();

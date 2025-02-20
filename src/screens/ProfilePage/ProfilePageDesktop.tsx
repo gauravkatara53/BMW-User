@@ -3,7 +3,7 @@ import WHNavbar from "@/components/common/WHNavbar";
 import { apiService } from "@/components/APIService/ApiService";
 import ClipLoader from "react-spinners/ClipLoader"; // Import the clipboard loader
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencilAlt, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { FaPencilAlt } from "react-icons/fa";
 export const ProfilePageDesktop = () => {
@@ -132,6 +132,8 @@ export const ProfilePageDesktop = () => {
       setSelectedFile(event.target.files[0]);
       uploadAvatar(event.target.files[0]);
     }
+
+    console.log(selectedFile);
   };
 
   const uploadAvatar = async (file: File) => {
