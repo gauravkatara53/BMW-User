@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import WHNavbar from "@/components/common/WHNavbar";
 import { apiService } from "@/components/APIService/ApiService";
 import ClipLoader from "react-spinners/ClipLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { eventNames } from "process";
+import { FaPencilAlt } from "react-icons/fa";
 
 export const ProfilePageMobile = () => {
   const [user, setUser] = useState<{
@@ -44,7 +46,7 @@ export const ProfilePageMobile = () => {
 
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [isLoadingAvtara, setIsLoadingAvtara] = useState(false);
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -113,6 +115,36 @@ export const ProfilePageMobile = () => {
     setIsEditing(true);
   };
 
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      setSelectedFile(event.target.files[0]);
+      uploadAvatar(event.target.files[0]);
+    }
+  };
+  const uploadAvatar = async (file: File) => {
+    setIsLoadingAvtara(true);
+    const formData = new FormData();
+    formData.append("avatar", file);
+
+    try {
+      const response = await apiService.patch("/user/update-avatar", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      console.log("✅ Avatar updated successfully:", response);
+      window.location.reload();
+      // Handle UI update (e.g., refetch user data)
+    } catch (error) {
+      console.error("❌ Error uploading avatar:", error);
+    } finally {
+      setIsLoadingAvtara(false);
+    }
+  };
+
   const handleSave = async () => {
     try {
       await apiService.patch("/user/update-detail", formData);
@@ -157,11 +189,43 @@ export const ProfilePageMobile = () => {
         </div>
 
         <div className="flex flex-col items-center space-y-6">
-          <img
+          {/* <img
             className="w-32 h-32 rounded-full"
             src={user ? user.avatar : ""}
             alt="Profile"
           />
+           */}
+          <div className="relative ">
+            {/* Image Wrapper */}
+            <div className="relative w-32 h-32 rounded-full overflow-hidden">
+              {/* Image with conditional opacity during loading */}
+              <img
+                className={`w-full h-full rounded-full object-cover ${
+                  isLoading ? "opacity-50" : ""
+                }`}
+                src={user ? user.avatar : ""}
+                alt="Profile"
+              />
+
+              {/* Loader strictly over the image */}
+              {isLoadingAvtara && (
+                <div className="absolute inset-0 flex items-center justify-center rounded-full bg-white/60">
+                  <ClipLoader size={32} color="#4F46E5" />
+                </div>
+              )}
+            </div>
+
+            {/* Pencil Icon for Upload */}
+            <label className="absolute bottom-2 right-2 bg-white p-2 rounded-full shadow cursor-pointer">
+              <FaPencilAlt className="text-gray-600" />
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleFileChange}
+              />
+            </label>
+          </div>
           <div className="w-full max-w-md flex justify-between">
             <button
               className="text-gray-500 hover:text-[#6d52ef]/80 text-sm font-medium"
