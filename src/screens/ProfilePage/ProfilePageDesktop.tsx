@@ -87,16 +87,13 @@ export const ProfilePageDesktop = () => {
   const handleLogout = async () => {
     console.log("handleLogout called"); // Check if the function is being called
     try {
-      const response = await fetch(
-        "http://localhost:5001/api/v1/user/loginOut",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include", // Ensure cookies are sent with the request
-        }
-      );
+      const response = await fetch("/api/v1/user/loginOut", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include", // Ensure cookies are sent with the request
+      });
 
       const responseData = await response.json(); // Parse the response JSON
 
