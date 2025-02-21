@@ -121,12 +121,12 @@ export default function WHNavbar({ dark = false }: { dark?: boolean }) {
                 </motion.div>
               </Link>
             ) : (
-              <Link to={"/siginin"}>
+              <Link to={"/signin"}>
                 <motion.div
                   whileTap={{ scale: 0.9 }}
                   className="mt-2 py-4 px-8 bg-gradient-to-b from-[#674CEC] to-[#8D77FC] text-gray-100 cursor-pointer hover:border-blue-900 border text-xl rounded-full font-semibold"
                 >
-                  Sign Up
+                  Sign In
                 </motion.div>
               </Link>
             )}
