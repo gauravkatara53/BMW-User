@@ -53,6 +53,7 @@ export default function App() {
             path="/warehouse-profile/:warehouseId"
             element={<Warehouse />}
           />
+
           <Route element={<ProtectedRoute />}>
             <Route path="/profile" element={<ProfilePage />} />
           </Route>
