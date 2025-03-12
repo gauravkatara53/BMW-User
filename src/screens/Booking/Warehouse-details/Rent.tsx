@@ -3,7 +3,7 @@ import { apiService } from "@/components/APIService/ApiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupee } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-
+import ClipLoader from "react-spinners/ClipLoader";
 declare global {
   interface Window {
     Razorpay: any;
@@ -39,15 +39,18 @@ const createOrder = async (warehouseId: string, duration?: number) => {
 export const Rent = ({ warehouseData }: RentProps) => {
   const navigate = useNavigate();
   const [count, setCount] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   // Function to handle rent button click
   const handleRent = async () => {
+    setLoading(true);
     const orderId = await createOrder(warehouseData._id, count);
     if (orderId) {
       handleWarehouseClick(orderId);
     } else {
       alert("Failed to create order. Please try again.");
     }
+    setLoading(false);
   };
 
   // Function to decrement month count
@@ -112,8 +115,9 @@ export const Rent = ({ warehouseData }: RentProps) => {
           <button
             className="bg-gradient-to-br from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-full font-medium"
             onClick={handleRent}
+            disabled={loading}
           >
-            Rent
+            {loading ? <ClipLoader color="#ffffff" size={20} /> : "Rent"}
           </button>
         </div>
       </div>

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { apiService } from "@/components/APIService/ApiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupee } from "@fortawesome/free-solid-svg-icons";
-
+import { useNavigate } from "react-router-dom";
 declare global {
   interface Window {
     Razorpay: any;
@@ -69,7 +69,8 @@ const createOrder = async (warehouseId: string, duration?: number) => {
           verifyPayment(
             response.razorpay_payment_id,
             response.razorpay_order_id,
-            response.razorpay_signature
+            response.razorpay_signature,
+            order._id
           );
         },
         prefill: {
@@ -98,7 +99,8 @@ const createOrder = async (warehouseId: string, duration?: number) => {
 const verifyPayment = async (
   razorpayPaymentId: string,
   razorpayOrderId: string,
-  razorpaySignature: string
+  razorpaySignature: string,
+  orderId: string
 ) => {
   try {
     const response = await apiService.post("/transaction/verify", {
@@ -107,6 +109,7 @@ const verifyPayment = async (
       razorpaySignature,
     });
     console.log("Payment verified:", response);
+    window.location.href = `/order-info/${orderId}`;
   } catch (error) {
     console.error("Error verifying payment:", error);
   }

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faMap } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-
+import { ClipLoader } from "react-spinners";
 interface Warehouse {
   _id: string;
   name: string;
@@ -210,7 +210,17 @@ export default function Hero() {
               className="w-full h-[44px] sm:h-[54px] bg-gradient-to-br from-[#907afc] to-[#6246ea] rounded-[61px] text-white text-sm sm:text-base font-medium hover:opacity-90 transition-opacity shadow-md hover:shadow-lg"
               onClick={fetchWarehouses} // Fetch data on button click
             >
-              Show Results
+              {loading ? (
+                <div className=" text-lg text-white font-medium flex justify-center items-center">
+                  <ClipLoader
+                    color="#ffffff"
+                    size={40}
+                    className="text-white p-2"
+                  />
+                </div>
+              ) : (
+                <h1> Show Results</h1>
+              )}
             </button>
           </div>
         </div>
@@ -218,12 +228,12 @@ export default function Hero() {
 
       {/* Displaying the fetched results */}
       {loading ? (
-        <div className="-mt-36 mb-10 text-lg font-medium">Loading...</div>
+        <div className="-mt-56 mb-28 text-lg font-medium flex justify-center items-center"></div>
       ) : (
         <>
           {showResults && warehouses.length > 0 ? (
             <div className="-mt-36 mb-10 sm:ml-12  w-full max-w-6xl ">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mr-20">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  ml-8 sm:ml-0  ">
                 {warehouses.map((warehouse) => (
                   <div
                     key={warehouse._id}
@@ -238,7 +248,7 @@ export default function Hero() {
                       }
                       alt={warehouse.name}
                     />
-                    <div className="h-[134px] left-[180px]  top-[8px] absolute flex-col justify-start items-start gap-[18px] inline-flex">
+                    <div className="h-[134px] left-[180px]  top-[8px] absolute flex-col justify-start items-start gap-[18px] inline-flex ">
                       <div className="flex-col justify-start items-start gap-3 flex">
                         <div className="flex-col justify-start items-start gap-2 flex">
                           <div className="h-4 pt-px pb-0.5 justify-end items-start gap-1.5 inline-flex">
@@ -261,7 +271,7 @@ export default function Hero() {
                             </div>
                           </div>
                           <div className="flex-col justify-start items-start gap-1 flex">
-                            <div className="w-[206px] text-[#1a1e25] text-base font-normal leading-tight">
+                            <div className="w-[150px] text-[#1a1e25] text-base font-normal leading-tight">
                               {warehouse.name}
                             </div>
                             <div className="text-[#7d7f88] text-[13px] font-normal leading-[16.90px] tracking-tight">
