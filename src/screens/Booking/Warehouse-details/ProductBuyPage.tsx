@@ -6,7 +6,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupeeSign } from "@fortawesome/free-solid-svg-icons";
 import dayjs from "dayjs";
-
+// import { useNavigate } from "react-router-dom";
 // Define interfaces for data structures
 interface PriceDetail {
   title: string;
@@ -101,7 +101,8 @@ const payment = async (orderId: string, monthlyAmount: number) => {
         verifyPayment(
           response.razorpay_payment_id,
           response.razorpay_order_id,
-          response.razorpay_signature
+          response.razorpay_signature,
+          orderId
         );
       },
       prefill: {
@@ -127,7 +128,8 @@ const payment = async (orderId: string, monthlyAmount: number) => {
 const verifyPayment = async (
   razorpayPaymentId: string,
   razorpayOrderId: string,
-  razorpaySignature: string
+  razorpaySignature: string,
+  orderId: string
 ) => {
   try {
     const response = await apiService.post("/transaction/verify", {
@@ -136,6 +138,7 @@ const verifyPayment = async (
       razorpaySignature,
     });
     console.log("Payment verified:", response);
+    window.location.href = `/order-info/${orderId}`;
   } catch (error) {
     console.error("Error verifying payment:", error);
   }
@@ -149,6 +152,7 @@ export const ProductBuyPage = () => {
   const [fetchedOrderData, setFetchedOrderData] = useState<OrderData | null>(
     null
   );
+  // const navigate = useNavigate();
 
   // Fetch order data on component mount
   useEffect(() => {
