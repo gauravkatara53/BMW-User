@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { apiService } from "@/components/APIService/ApiService";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupee } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 declare global {
   interface Window {
     Razorpay: any;

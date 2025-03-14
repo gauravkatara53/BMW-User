@@ -6,7 +6,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faIndianRupeeSign } from "@fortawesome/free-solid-svg-icons";
 import dayjs from "dayjs";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 // Define interfaces for data structures
 interface PriceDetail {
   title: string;
@@ -152,7 +152,7 @@ export const ProductBuyPage = () => {
   const [fetchedOrderData, setFetchedOrderData] = useState<OrderData | null>(
     null
   );
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // Fetch order data on component mount
   useEffect(() => {

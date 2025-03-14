@@ -232,8 +232,8 @@ export default function Hero() {
       ) : (
         <>
           {showResults && warehouses.length > 0 ? (
-            <div className="-mt-36 mb-10 sm:ml-12  w-full max-w-6xl ">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  ml-8 sm:ml-0  ">
+            <div className="-mt-36 mb-10 sm:ml-12 m  w-full max-w-6xl ">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  ml-0 sm:ml-0  ">
                 {warehouses.map((warehouse) => (
                   <div
                     key={warehouse._id}
