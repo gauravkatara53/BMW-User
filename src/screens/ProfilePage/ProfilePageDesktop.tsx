@@ -45,47 +45,50 @@ export const ProfilePageDesktop = () => {
   const [error, setError] = useState<string | null>(null); // State to store error messages
   const [isLoading, setIsLoading] = useState(true); // State to manage loading state
   const [isLoadingAvtara, setIsLoadingAvtara] = useState(false);
+  const [isLoadingLogOut, setIsLoadingLogOut] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
+
+  const fetchProfile = async () => {
+    try {
+      const response = await apiService.get<{
+        data: {
+          name: string;
+          email: string;
+          phone: string;
+          avatar: string;
+          address: string;
+          city: string;
+          state: string;
+          country: string;
+          pincode: number;
+        };
+      }>("/user/get-user", { withCredentials: true });
+      console.log("API Response:", response); // Debugging line to check response structure
+
+      if (response && response.data) {
+        setUser(response.data);
+        setFormData(response.data);
+      } else {
+        console.error("Invalid API response format:", response);
+        setError("Failed to fetch user profile. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+      setError(
+        "An error occurred while fetching your profile. Please try again."
+      );
+    } finally {
+      setIsLoading(false); // Stop loading regardless of success or failure
+    }
+  };
 
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const response = await apiService.get<{
-          data: {
-            name: string;
-            email: string;
-            phone: string;
-            avatar: string;
-            address: string;
-            city: string;
-            state: string;
-            country: string;
-            pincode: number;
-          };
-        }>("/user/get-user", { withCredentials: true });
-        console.log("API Response:", response); // Debugging line to check response structure
-
-        if (response && response.data) {
-          setUser(response.data);
-          setFormData(response.data);
-        } else {
-          console.error("Invalid API response format:", response);
-          setError("Failed to fetch user profile. Please try again later.");
-        }
-      } catch (error) {
-        console.error("Error fetching user profile:", error);
-        setError(
-          "An error occurred while fetching your profile. Please try again."
-        );
-      } finally {
-        setIsLoading(false); // Stop loading regardless of success or failure
-      }
-    };
-
     fetchProfile();
   }, []); // Empty dependency array ensures this runs only once
 
   const handleLogout = async () => {
     console.log("handleLogout called"); // Check if the function is being called
+    setIsLoadingLogOut(true);
     try {
       const response = await fetch("/api/v1/user/loginOut", {
         method: "POST",
@@ -111,6 +114,8 @@ export const ProfilePageDesktop = () => {
     } catch (error) {
       console.error("Logout error:", error);
       setError("Logout failed. Please try again.");
+    } finally {
+      setIsLoadingLogOut(false);
     }
   };
 
@@ -146,8 +151,8 @@ export const ProfilePageDesktop = () => {
       });
 
       console.log("✅ Avatar updated successfully:", response);
-      window.location.reload();
-      // Handle UI update (e.g., refetch user data)
+      // Instead of reloading the page, fetch the updated profile
+      await fetchProfile();
     } catch (error) {
       console.error("❌ Error uploading avatar:", error);
     } finally {
@@ -156,6 +161,7 @@ export const ProfilePageDesktop = () => {
   };
 
   const handleSave = async () => {
+    setIsSaving(true);
     try {
       await apiService.patch("/user/update-detail", formData); // Change to PATCH request
       setUser(formData);
@@ -163,6 +169,8 @@ export const ProfilePageDesktop = () => {
     } catch (error) {
       console.error("Update failed:", error);
       setError("Failed to save changes. Please try again.");
+    } finally {
+      setIsSaving(false);
     }
   };
 
@@ -436,20 +444,31 @@ export const ProfilePageDesktop = () => {
         </div>
 
         <button
-          className="absolute left-[304px] top-[548px] group rounded-lg w-[240.3px] h-[36.91px] bg-[#f9f9f9] group-hover:bg-red-200 text-[#da1414]/60 group-hover:text-red-800 text-[15.07px] font-medium flex items-center justify-center"
           onClick={() => {
             console.log("Button clicked!"); // Check if this logs
             handleLogout();
           }}
+          disabled={isLoadingLogOut}
+          className="absolute left-[304px] top-[548px] group rounded-lg w-[240.3px] h-[36.91px] bg-[#f9f9f9] hover:bg-red-200 text-[#da1414]/60 hover:text-red-800 text-[15.07px] font-medium flex items-center justify-center"
         >
-          Log Out
+          {isLoadingLogOut ? (
+            <ClipLoader color="#da1414" size={24} />
+          ) : (
+            "Log Out"
+          )}
         </button>
+
         {isEditing && (
           <button
-            className="absolute left-[800px] top-[720px] bg-[#6d52ef] text-white px-4 py-2 rounded-lg"
+            className="absolute left-[800px] top-[720px] bg-[#6d52ef] text-white px-4 py-2 rounded-lg flex items-center justify-center min-w-[120px]"
             onClick={handleSave}
+            disabled={isSaving}
           >
-            Save Changes
+            {isSaving ? (
+              <ClipLoader color="#ffffff" size={24} />
+            ) : (
+              "Save Changes"
+            )}
           </button>
         )}
       </div>

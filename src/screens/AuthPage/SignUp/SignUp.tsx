@@ -28,10 +28,7 @@ export const SignUpScreen = () => {
     setError("");
 
     try {
-      const response = await axios.post(
-        "/api/v1/user/register",
-        formData
-      );
+      const response = await axios.post("/api/v1/user/register", formData);
       if (response.data.success) {
         navigate("/signIn");
       } else {
