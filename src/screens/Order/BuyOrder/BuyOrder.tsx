@@ -33,17 +33,17 @@ interface BuyOrder {
 const BuyOrder = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState<BuyOrder[]>([]);
-  // const [allOrders, setAllOrders] = useState<BuyOrder[]>([]); // Store all orders
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [startDate, setStartDate] = useState<Date | null>(null);
   const [endDate, setEndDate] = useState<Date | null>(null);
+  const [isFiltered, setIsFiltered] = useState(false);
 
   useEffect(() => {
     const fetchRentalOrders = async () => {
       setIsLoading(true);
-      setError(null); // Reset error state before fetching
+      setError(null);
 
       try {
         const params = new URLSearchParams({
@@ -53,12 +53,15 @@ const BuyOrder = () => {
 
         if (searchTerm) {
           params.append("searchTerm", searchTerm);
+          setIsFiltered(true);
         }
         if (startDate) {
           params.append("startDate", startDate.toISOString());
+          setIsFiltered(true);
         }
         if (endDate) {
           params.append("endDate", endDate.toISOString());
+          setIsFiltered(true);
         }
 
         const response = await apiService.get<{
@@ -67,19 +70,22 @@ const BuyOrder = () => {
 
         if (response?.data?.orders && Array.isArray(response.data.orders)) {
           if (response.data.orders.length === 0) {
-            setError("No rental orders found for the given search criteria.");
+            setError(
+              isFiltered
+                ? "No orders found matching your search criteria"
+                : "No orders found"
+            );
             setOrders([]);
           } else {
             setOrders(response.data.orders);
+            setError(null);
           }
         } else {
-          setError("Failed to fetch rental orders. Please try again later.");
+          setError("Failed to fetch orders. Please try again later.");
           setOrders([]);
         }
       } catch (error) {
-        setError(
-          "An error occurred while fetching rental orders. Please try again."
-        );
+        setError("An error occurred while fetching orders. Please try again.");
         setOrders([]);
       } finally {
         setIsLoading(false);
@@ -115,38 +121,40 @@ const BuyOrder = () => {
           <div className="text-2xl font-semibold">My Buy Orders</div>
         </div>
 
-        <div className="flex mb-4">
+        <div className="flex flex-col sm:flex-row mb-4">
           <input
             type="text"
             placeholder="Search by customer name or order ID"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="border rounded-lg p-2 flex-grow mr-2 "
+            className="border rounded-lg p-2 w-full sm:w-auto sm:flex-grow sm:mr-2 mb-2 sm:mb-0"
           />
-          <div className="relative">
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              selectsStart
-              startDate={startDate}
-              endDate={endDate}
-              placeholderText="Start Date"
-              className="border rounded-lg p-2 "
-            />
-            <FaCalendarAlt className="absolute top-3 right-2 text-gray-500 " />
-          </div>
-          <div className="relative mx-2">
-            <DatePicker
-              selected={endDate}
-              onChange={(date) => setEndDate(date)}
-              selectsEnd
-              startDate={startDate}
-              endDate={endDate}
-              minDate={startDate || undefined}
-              placeholderText="End Date"
-              className="border rounded-lg  p-2"
-            />
-            <FaCalendarAlt className="absolute top-3 right-2 text-gray-500" />
+          <div className="flex w-full sm:w-auto">
+            <div className="relative flex-1 mr-2">
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                selectsStart
+                startDate={startDate}
+                endDate={endDate}
+                placeholderText="Start Date"
+                className="border rounded-lg p-2 w-full"
+              />
+              <FaCalendarAlt className="absolute top-3 right-2 text-gray-500" />
+            </div>
+            <div className="relative flex-1">
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate || undefined}
+                placeholderText="End Date"
+                className="border rounded-lg p-2 w-full"
+              />
+              <FaCalendarAlt className="absolute top-3 right-2 text-gray-500" />
+            </div>
           </div>
         </div>
 
@@ -155,12 +163,14 @@ const BuyOrder = () => {
             <ClipLoader color="blue" size={50} />
           </div>
         ) : error ? (
-          <div className="text-red-500 flex min-w-full justify-center items-center">
-            {error}
+          <div className="text-gray-500 flex min-w-full justify-center items-center p-8 bg-gray-100 rounded-lg">
+            <p>No orders found</p>
           </div>
         ) : orders.length === 0 ? (
-          <div className="text-gray-500 flex min-w-full justify-center items-center">
-            No data to show
+          <div className="text-gray-500 flex min-w-full justify-center items-center p-8 bg-gray-100 rounded-lg">
+            {isFiltered
+              ? "No orders found matching your search criteria"
+              : "No orders found"}
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
