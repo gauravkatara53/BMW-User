@@ -9,8 +9,9 @@ interface IProps {
 
 export interface IRecommendationContext {
   selected: RecommendationType;
-  recommendations: Array<any>; // Adjust type based on API response structure
+  recommendations: Array<any>;
   changeTab: (value: RecommendationType) => void;
+  loading: boolean;
 }
 
 export const RecommendationContext =
@@ -19,19 +20,22 @@ export const RecommendationContext =
 export default function RecommendationProvider({ children }: IProps) {
   const [selected, setSelected] = useState<RecommendationType>("buy");
   const [recommendations, setRecommendations] = useState<Array<any>>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const fetchRecommendations = async (type: RecommendationType) => {
+    setLoading(true);
     try {
       const response = await apiService.get(
         `/warehouse/user/get/warehouse/featured`,
         { rentOrSell: type === "buy" ? "Sell" : "Rent" }
       );
-      console.log(response);
       const typedResponse = response as { data?: any[] };
-      setRecommendations(typedResponse.data || []); // Ensure we set an array even if response is undefined
+      setRecommendations(typedResponse.data || []);
     } catch (error) {
       console.error("Error fetching recommendations:", error);
-      setRecommendations([]); // Set empty array on error
+      setRecommendations([]);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -45,7 +49,7 @@ export default function RecommendationProvider({ children }: IProps) {
 
   return (
     <RecommendationContext.Provider
-      value={{ selected, changeTab, recommendations }}
+      value={{ selected, changeTab, recommendations, loading }}
     >
       {children}
     </RecommendationContext.Provider>
