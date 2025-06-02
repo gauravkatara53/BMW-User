@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import ClipLoader from "react-spinners/ClipLoader";
+import { useToast } from "@/components/common/context/ToastContext";
 
 export const SignInScreen = () => {
+  const { showToast } = useToast();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate(); // Initialize useNavigate
-
+  const [loading, setLoading] = useState(false);
   interface LoginResponse {
     message?: string;
     // Add other properties of the response if needed
@@ -16,6 +19,8 @@ export const SignInScreen = () => {
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
+    setLoading(true);
+    setError(""); // Clear previous error
 
     try {
       const response = await fetch("/api/v1/user/login", {
@@ -27,25 +32,28 @@ export const SignInScreen = () => {
           email,
           password,
         }),
-        credentials: "include", // Include credentials if needed
+        credentials: "include",
       });
 
       const data: LoginResponse = await response.json();
 
       if (response.ok) {
-        // Handle successful login
         console.log("Login successful:", data);
-
-        // Redirect to the "/" route and force a refresh
+        showToast("Logged in successfully!", "success");
         navigate("/");
         window.location.reload();
       } else {
-        // Handle errors
-        setError(data.message || "Login failed");
+        const errorMessage = data.message || "Login failed";
+        setError(errorMessage);
+        showToast(errorMessage, "error");
+        setLoading(false);
       }
     } catch (err) {
-      setError("An error occurred. Please try again.");
+      const fallbackError = "An error occurred. Please try again.";
+      setError(fallbackError);
+      showToast(fallbackError, "error");
       console.error("Login error:", err);
+      setLoading(false);
     }
   };
 
@@ -57,7 +65,7 @@ export const SignInScreen = () => {
             <div>
               <Link to={"/"}>
                 <img
-                  src="https://bookmywarehouse.co/logo1.png"
+                  src="https://bookmywarehouse.co/assets/BMW-Ce76mDeN.svg"
                   className="w-32"
                   alt="Logo"
                 />
@@ -86,21 +94,28 @@ export const SignInScreen = () => {
                   />
                   <button
                     type="submit"
+                    disabled={loading}
                     className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
                   >
-                    <svg
-                      className="w-6 h-6 -ml-2"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
-                      <circle cx="8.5" cy="7" r="4" />
-                      <path d="M20 8v6M23 11h-6" />
-                    </svg>
-                    <span className="ml-3">Sign In</span>
+                    {loading ? (
+                      <ClipLoader color="#ffffff" size={24} />
+                    ) : (
+                      <>
+                        <svg
+                          className="w-6 h-6 -ml-2"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
+                          <circle cx="8.5" cy="7" r="4" />
+                          <path d="M20 8v6M23 11h-6" />
+                        </svg>
+                        <span className="ml-3">Sign In</span>
+                      </>
+                    )}
                   </button>
                   <p className="mt-6 text-xs text-gray-600 text-center">
                     Did not have an account
@@ -124,6 +139,14 @@ export const SignInScreen = () => {
               }}
             ></div>
           </div>
+          {/* <button
+            onClick={() =>
+              showToast("Warehouse added successfully!", "success")
+            }
+            className="btn btn-success"
+          >
+            Show Success Toast
+          </button> */}
         </div>
       </div>
     </>

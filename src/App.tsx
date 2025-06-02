@@ -1,7 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NotFoundPage from "./components/common/WHNotFoundPage";
-import { ToastContainer } from "react-toastify";
-import { AboutPage, LandingPage } from "@/screens";
 
 import ContactUs from "./screens/contact-us/ContactPage";
 import Partner from "./screens/PartnerPage/PartnerPage";
@@ -19,11 +17,12 @@ import RentalOrder from "./screens/Order/RentalOrder/RentalOrder";
 import { OrderDetail } from "./screens/Order/OrderProfile/OrderDetail";
 import BuyOrder from "./screens/Order/BuyOrder/BuyOrder";
 import ProtectedRoute from "./components/common/ProtectedRoute";
+import { AboutPage, LandingPage } from "./screens";
+import { ToastProvider } from "./components/common/context/ToastContext";
 
 export default function App() {
   return (
-    <>
-      <ToastContainer />
+    <ToastProvider>
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -53,13 +52,12 @@ export default function App() {
             path="/warehouse-profile/:warehouseId"
             element={<Warehouse />}
           />
+          <Route path="/profile" element={<ProfilePage />} />
 
-          <Route element={<ProtectedRoute />}>
-            <Route path="/profile" element={<ProfilePage />} />
-          </Route>
+          <Route element={<ProtectedRoute />}></Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
-    </>
+    </ToastProvider>
   );
 }

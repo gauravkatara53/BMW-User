@@ -13,7 +13,7 @@ import "swiper/css";
 import "swiper/css/pagination"; // Import only the necessary styles
 import { RecommendationContext } from "@/providers/RecommendationProvider";
 import { Swiper as SwiperCore } from "swiper"; // Import SwiperCore type
-
+import { useNavigate } from "react-router-dom";
 interface LPFeaturedContainerProps {
   swiperRef: MutableRefObject<SwiperCore | null>; // Explicitly type the swiperRef prop
 }
@@ -23,7 +23,7 @@ export default function LPFeaturedContainer({
 }: LPFeaturedContainerProps) {
   const RC = useContext(RecommendationContext);
   const [slidesPerView, setSlidesPerView] = useState(4);
-
+  const navigate = useNavigate();
   // Module-level variable for debouncing
   let resizeTimer: NodeJS.Timeout;
 
@@ -70,7 +70,13 @@ export default function LPFeaturedContainer({
     }),
     [slidesPerView] // Recompute settings only when slidesPerView changes
   );
-
+  const handleWarehouseClick = (warehouseId: string) => {
+    if (warehouseId) {
+      navigate(`/warehouse-profile/${warehouseId}`);
+    } else {
+      alert("Partner document ID is missing.");
+    }
+  };
   return (
     <div className="flex w-full justify-center">
       <Swiper
@@ -78,15 +84,18 @@ export default function LPFeaturedContainer({
         onSwiper={(swiper) => (swiperRef.current = swiper)} // Directly assign Swiper instance
       >
         {RC?.recommendations.map((property) => (
-          <SwiperSlide key={property._id}>
+          <SwiperSlide
+            key={property._id}
+            onClick={() => handleWarehouseClick(property._id)}
+          >
             <LPFeaturedWrapper
-              ownerImage={property.ownerImage || ""} // Provide a default empty string if undefined
-              tag={property.tag || "hello"}
-              ownerName={property.ownerName || "Unknown Owner"} // Provide a default value to avoid undefined
-              img={property.img || ""} // Provide a default empty string if undefined
-              place={property.place || "Unknown Place"} // Provide a default value to avoid undefined
-              price={Number(property.price).toLocaleString() || "0"} // Ensure price is a valid string
-              propertyName={property.propertyName || "Unknown Property"} // Provide a default value
+              ownerImage={property.partnerName.avatar || ""} // Provide a default empty string if undefined
+              tag={property.tag || "unique"}
+              ownerName={property.partnerName.name || "Unknown Owner"} // Provide a default value to avoid undefined
+              img={property.thumbnail || ""} // Provide a default empty string if undefined
+              place={property.city || "Unknown Place"} // Provide a default value to avoid undefined
+              price={Number(property.totalPrice).toLocaleString() || "0"} // Ensure price is a valid string
+              propertyName={property.name || "Unknown Property"} // Provide a default value
             />
           </SwiperSlide>
         ))}

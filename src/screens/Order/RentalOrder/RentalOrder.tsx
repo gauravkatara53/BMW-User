@@ -114,38 +114,40 @@ const RentalOrder = () => {
           <div className="text-2xl font-semibold">My Rental Orders</div>
         </div>
 
-        <div className="flex mb-4">
+        <div className="flex flex-col sm:flex-row mb-4">
           <input
             type="text"
             placeholder="Search by customer name or order ID"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="border rounded-lg p-2 flex-grow mr-2 "
+            className="border rounded-lg p-2 w-full sm:w-auto sm:flex-grow sm:mr-2 mb-2 sm:mb-0"
           />
-          <div className="relative">
-            <DatePicker
-              selected={startDate}
-              onChange={(date) => setStartDate(date)}
-              selectsStart
-              startDate={startDate}
-              endDate={endDate}
-              placeholderText="Start Date"
-              className="border rounded-lg p-2 "
-            />
-            <FaCalendarAlt className="absolute top-3 right-2 text-gray-500 " />
-          </div>
-          <div className="relative mx-2">
-            <DatePicker
-              selected={endDate}
-              onChange={(date) => setEndDate(date)}
-              selectsEnd
-              startDate={startDate}
-              endDate={endDate}
-              minDate={startDate || undefined}
-              placeholderText="End Date"
-              className="border rounded-lg  p-2"
-            />
-            <FaCalendarAlt className="absolute top-3 right-2 text-gray-500" />
+          <div className="flex w-full sm:w-auto">
+            <div className="relative flex-1 mr-2">
+              <DatePicker
+                selected={startDate}
+                onChange={(date) => setStartDate(date)}
+                selectsStart
+                startDate={startDate}
+                endDate={endDate}
+                placeholderText="Start Date"
+                className="border rounded-lg p-2 w-full"
+              />
+              <FaCalendarAlt className="absolute top-3 right-2 text-gray-500" />
+            </div>
+            <div className="relative flex-1">
+              <DatePicker
+                selected={endDate}
+                onChange={(date) => setEndDate(date)}
+                selectsEnd
+                startDate={startDate}
+                endDate={endDate}
+                minDate={startDate || undefined}
+                placeholderText="End Date"
+                className="border rounded-lg p-2 w-full"
+              />
+              <FaCalendarAlt className="absolute top-3 right-2 text-gray-500" />
+            </div>
           </div>
         </div>
 
@@ -154,8 +156,8 @@ const RentalOrder = () => {
             <ClipLoader color="blue" size={50} />
           </div>
         ) : error ? (
-          <div className="text-red-500 flex min-w-full justify-center items-center">
-            {error}
+          <div className="text-gray-500 flex min-w-full justify-center items-center p-8 bg-gray-100 rounded-lg">
+            <p>No orders found</p>
           </div>
         ) : orders.length === 0 ? (
           <div className="text-gray-500 flex min-w-full justify-center items-center">

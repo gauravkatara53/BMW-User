@@ -28,10 +28,7 @@ export const SignUpScreen = () => {
     setError("");
 
     try {
-      const response = await axios.post(
-        "/api/v1/user/register",
-        formData
-      );
+      const response = await axios.post("/api/v1/user/register", formData);
       if (response.data.success) {
         navigate("/signIn");
       } else {
@@ -52,7 +49,7 @@ export const SignUpScreen = () => {
             <div>
               <Link to={"/"}>
                 <img
-                  src="https://bookmywarehouse.co/logo1.png"
+                  src="https://bookmywarehouse.co/assets/BMW-Ce76mDeN.svg"
                   className="w-32"
                   alt="Logo"
                 />
