@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import ChevronSVG from "@/assets/svgs/ChevronSVG";
 import LPFeaturedContainer from "@/components/landing-page/LPFeaturedContainer";
 import LPSectionHeading from "@/components/landing-page/LPSectionHeading";
@@ -7,7 +7,6 @@ import { Swiper as SwiperCore } from "swiper"; // Import SwiperCore
 
 export default function OurRecommendation() {
   const swiperRef = useRef<SwiperCore | null>(null); // Correctly type swiperRef
-  
 
   const handlePrev = () => {
     if (swiperRef.current) {
