@@ -4,7 +4,7 @@ import { apiService } from "@/components/APIService/ApiService";
 import ClipLoader from "react-spinners/ClipLoader"; // Import the clipboard loader
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaPencilAlt } from "react-icons/fa";
 export const ProfilePageDesktop = () => {
   const [user, setUser] = useState<{
@@ -41,7 +41,7 @@ export const ProfilePageDesktop = () => {
     country: "",
     pincode: 0,
   });
-
+  const navigate = useNavigate();
   const [error, setError] = useState<string | null>(null); // State to store error messages
   const [isLoading, setIsLoading] = useState(true); // State to manage loading state
   const [isLoadingAvtara, setIsLoadingAvtara] = useState(false);
@@ -173,6 +173,9 @@ export const ProfilePageDesktop = () => {
       setIsSaving(false);
     }
   };
+  const handleCancel = () => {
+    navigate("/");
+  };
 
   if (isLoading) {
     return (
@@ -189,7 +192,7 @@ export const ProfilePageDesktop = () => {
           <p className="text-red-600 text-lg">{error}</p>
           <button
             className="mt-4 px-4 py-2 bg-[#6d52ef] text-white rounded-lg"
-            onClick={() => setError(null)} // Clear the error message
+            onClick={handleCancel} // Clear the error message
           >
             Close
           </button>

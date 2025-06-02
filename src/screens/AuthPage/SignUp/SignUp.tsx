@@ -49,7 +49,7 @@ export const SignUpScreen = () => {
             <div>
               <Link to={"/"}>
                 <img
-                  src="https://bookmywarehouse.co/logo1.png"
+                  src="https://bookmywarehouse.co/assets/BMW-Ce76mDeN.svg"
                   className="w-32"
                   alt="Logo"
                 />
