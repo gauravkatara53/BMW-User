@@ -28,19 +28,20 @@ const LPFeaturedWrapper: React.FC<LPFeatured> = memo(
           {/* Added meaningful alt text */}
           <img
             src={img}
-            className="w-full sm:w-auto"
             alt={`Property image of ${propertyName}`}
+            className="w-[300px] h-[200px] object-cover rounded-md"
           />
+
           <div className="absolute bottom-4 left-4">
             <WHChip tag={tag} />
           </div>
         </div>
         {/* Combined similar class names */}
         <div className="flex flex-col items-center sm:items-start">
-          <p className="text-lg md:text-2xl text-deep-blue-1B font-medium">
+          <p className="text-lg md:text-xl text-deep-blue-1B font-medium">
             {propertyName}
           </p>
-          <p className="text-WH-dark-gray text-sm md:text-lg font-medium">
+          <p className="text-green-700 text-sm md:text-lg font-medium">
             Rs. {price}
           </p>
         </div>

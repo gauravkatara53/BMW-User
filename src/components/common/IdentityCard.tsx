@@ -1,4 +1,4 @@
-import { cn } from "@/utilities"; // Assuming cn is a utility function to concatenate class names
+import { cn } from "@/utilities";
 import React from "react";
 
 type TProps = {
@@ -10,44 +10,48 @@ type TProps = {
 };
 
 export default function LPIdentityCard({
-  size = "base",
+  size = "small",
   img = "",
-  name = "",
-  subtitle = "",
+  name = "Owner Name",
+  subtitle = "Owner",
   changeDirnSmall = false,
 }: TProps): React.JSX.Element {
   return (
     <div
-      className={cn("flex items-center", {
-        "flex-row gap-2 sm:gap-4":
-          size === "small" || (size === "base" && !changeDirnSmall),
-        "flex-col sm:flex-row gap-2 sm:gap-4":
-          size === "base" && changeDirnSmall,
-      })}
+      className={cn(
+        "flex items-center rounded-lg bg-white d p-2 sm:p-2.5 shadow-sm border border-gray-100 ",
+        {
+          "flex-row gap-2":
+            size === "small" || (size === "base" && !changeDirnSmall),
+          "flex-col sm:flex-row gap-2 sm:gap-3":
+            size === "base" && changeDirnSmall,
+        }
+      )}
     >
       {img && (
         <img
-          className={cn({
-            "w-8 h-8": size === "small",
-            "w-12 h-12 lg:w-14 lg:h-14": size === "base",
-          })}
           src={img}
-          alt={name} // Provide a meaningful alt text
+          alt={name}
+          className={cn("rounded-full object-cover ring-1 ring-gray-200 ", {
+            "w-8 h-8": size === "small",
+            "w-12 h-12": size === "base",
+          })}
         />
       )}
-      <div className="flex flex-col items-center sm:items-start">
+
+      <div className="flex flex-col justify-center">
         {name && (
           <p
-            className={cn("text-nowrap font-medium", {
-              "text-sm": size === "small",
-              "text-sm md:text-base xl:text-lg": size === "base",
+            className={cn("font-medium text-gray-800  leading-tight", {
+              "text-xs": size === "small",
+              "text-sm sm:text-base": size === "base",
             })}
           >
             {name}
           </p>
         )}
-        {size === "base" && subtitle && (
-          <p className="text-xs sm:text-sm font-medium text-WH-mild-gray">
+        {subtitle && (
+          <p className="text-[11px] sm:text-xs text-gray-500 dark:text-neutral-400 font-normal">
             {subtitle}
           </p>
         )}

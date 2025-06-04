@@ -18,6 +18,8 @@ interface Warehouse {
   areaSqFt: number;
   address: string;
   state: string;
+  totalPrice: number;
+  monthlyAmount: number;
 }
 
 export default function Hero() {
@@ -232,87 +234,67 @@ export default function Hero() {
       ) : (
         <>
           {showResults && warehouses.length > 0 ? (
-            <div className="-mt-36 mb-10 sm:ml-12 m  w-full max-w-6xl ">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  ml-0 sm:ml-0  ">
+            <div className="mx-auto -mt-20 mb-16 w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {warehouses.map((warehouse) => (
                   <div
                     key={warehouse._id}
                     onClick={() => handleWarehouseClick(warehouse._id)}
-                    className=" w-[353px] h-[200px] relative bg-white rounded-[10px] shadow-[0px_24px_96px_0px_rgba(67,67,67,0.15)]"
+                    className="cursor-pointer flex overflow-hidden rounded-2xl bg-white shadow-md hover:shadow-xl transition-shadow duration-300"
                   >
+                    {/* Left Image */}
                     <img
-                      className="w-[168px] h-[200px] left-0 top-0 absolute rounded-tl-[10px] rounded-bl-[10px]"
                       src={
                         warehouse.images[0] ||
                         "https://static.vecteezy.com/system/resources/previews/005/647/972/non_2x/isometric-illustration-concept-goods-delivery-warehouse-application-map-free-vector.jpg"
                       }
                       alt={warehouse.name}
+                      className="w-40 h-full object-cover rounded-l-2xl"
                     />
-                    <div className="h-[134px] left-[180px]  top-[8px] absolute flex-col justify-start items-start gap-[18px] inline-flex ">
-                      <div className="flex-col justify-start items-start gap-3 flex">
-                        <div className="flex-col justify-start items-start gap-2 flex">
-                          <div className="h-4 pt-px pb-0.5 justify-end items-start gap-1.5 inline-flex">
-                            <div className="w-3 h-3 relative">
-                              <FontAwesomeIcon
-                                icon={faStar}
-                                className="text-yellow-500"
-                              />
-                            </div>
-                            <div>
-                              <span className="text-[#1a1e25] text-xs font-normal leading-3">
-                                4.8
-                              </span>
-                              <span className="text-black text-xs font-normal leading-3">
-                                {" "}
-                              </span>
-                              <span className="text-[#7d7f88] text-xs font-normal leading-3">
-                                (73)
-                              </span>
-                            </div>
-                          </div>
-                          <div className="flex-col justify-start items-start gap-1 flex">
-                            <div className="w-[150px] text-[#1a1e25] text-base font-normal leading-tight">
-                              {warehouse.name}
-                            </div>
-                            <div className="text-[#7d7f88] text-[13px] font-normal leading-[16.90px] tracking-tight">
-                              {warehouse.address}, <br />
-                              {warehouse.city},{warehouse.state}
-                            </div>
-                          </div>
-                        </div>
-                        <div className="justify-start items-start gap-3 inline-flex">
-                          <div className="justify-start items-center gap-1.5 flex">
-                            <div className="w-3.5 h-3.5 relative">
-                              <FontAwesomeIcon
-                                icon={faMap}
-                                className="text-gray-500"
-                              />
-                            </div>
-                            <div>
-                              <span className="text-[#7d7f88] text-[13px] font-normal leading-[16.90px] tracking-tight">
-                                {warehouse.areaSqFt} m
-                              </span>
-                              <sup className="text-[#7d7f88] text-[13px] font-normal leading-[16.90px] tracking-tight">
-                                2
-                              </sup>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+
+                    {/* Right Content */}
+                    <div className="p-4 flex flex-col justify-between flex-1">
+                      {/* Top - Name, Address */}
                       <div>
-                        <span className="text-black text-base font-semibold leading-tight tracking-tight">
-                          ₹{warehouse.price[0].amount}
-                        </span>
-                        <span className="text-black text-xs font-normal leading-none tracking-tight">
-                          {" "}
-                        </span>
-                        <span className="text-[#7d7f88] text-xs font-normal leading-none tracking-tight">
-                          {activeTab === "Rent" && "/ month"}
+                        <div className="flex items-center gap-2 text-yellow-500 text-sm font-medium">
+                          <FontAwesomeIcon icon={faStar} />
+                          <span className="text-gray-800 font-medium">4.8</span>
+                          <span className="text-gray-500 text-sm">(73)</span>
+                        </div>
+                        <h3 className="mt-2 text-lg font-semibold text-gray-900 line-clamp-1">
+                          {warehouse.name}
+                        </h3>
+                        <p className="text-sm text-gray-600 mt-1 leading-tight line-clamp-2">
+                          {warehouse.address}, {warehouse.city},{" "}
+                          {warehouse.state}
+                        </p>
+                      </div>
+
+                      {/* Middle - Area */}
+                      <div className="flex items-center gap-2 text-sm text-gray-500 mt-3">
+                        <FontAwesomeIcon
+                          icon={faMap}
+                          className="text-gray-400 w-4 h-4"
+                        />
+                        <span>
+                          {warehouse.areaSqFt} m<sup>2</sup>
                         </span>
                       </div>
-                    </div>
-                    <div className="w-[18px] h-[18px] left-[311px] top-[131px] absolute">
-                      <div className="w-[18px] h-[18px] left-0 top-0 absolute"></div>
+
+                      {/* Bottom - Price */}
+
+                      <div className="mt-3 text-base font-bold text-black">
+                        ₹
+                        {activeTab === "Rent"
+                          ? warehouse.monthlyAmount
+                          : warehouse.totalPrice}
+                        {activeTab === "Rent" && (
+                          <span className="text-sm font-normal text-gray-500">
+                            {" "}
+                            / month
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))}
