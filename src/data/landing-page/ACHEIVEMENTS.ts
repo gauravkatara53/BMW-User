@@ -1,3 +1,4 @@
+import { LPAchievement } from "@/components/landing-page/LPAchievementCard";
 export const ACHIEVEMENTS: Array<LPAchievement> = [
   {
     _id: "LPA96946784",
