@@ -1,4 +1,4 @@
-
+import type { LPFeatured } from "@/types/landingPage";
 export const FEATURED_Rent: Array<LPFeatured> = [
   {
     _id: "LPF98675634",
@@ -50,7 +50,7 @@ export const FEATURED_Rent: Array<LPFeatured> = [
     place: "Pune, Maharashtra",
     tag: "popular",
   },
-  
+
   {
     _id: "LPF90890478",
     img: "dummy-featured4.png",

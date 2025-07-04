@@ -1,3 +1,4 @@
+import type { LPReview } from "@/types/landingPage";
 export const REVIEWS: Array<LPReview> = [
   {
     _id: "LPR87569856",

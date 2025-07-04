@@ -1,3 +1,5 @@
+import type { LPFeatured } from "@/types/landingPage";
+
 export const FEATURED_Buy: Array<LPFeatured> = [
   {
     _id: "LPF98675634",
