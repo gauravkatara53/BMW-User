@@ -9,71 +9,74 @@ declare global {
   }
 }
 
-// Load Razorpay script dynamically
-const loadRazorpayScript = () => {
-  return new Promise<void>((resolve, reject) => {
-    if (window.Razorpay) return resolve(); // Avoid duplicate script loading
-
+/* ───────────── helpers ───────────── */
+const loadRazorpayScript = () =>
+  new Promise<void>((resolve, reject) => {
+    if (window.Razorpay) return resolve();
     const script = document.createElement("script");
     script.src = "https://checkout.razorpay.com/v1/checkout.js";
     script.onload = () => resolve();
-    script.onerror = (error) => reject(error);
+    script.onerror = (err) => reject(err);
     document.body.appendChild(script);
   });
-};
 
-interface RentProps {
-  orderData: any;
+/* ───────────── types ───────────── */
+interface MonthlyPayment {
+  month: string;
+  amount: number;
+  paymentStatus: "Paid" | "Unpaid";
 }
 
+interface Order {
+  _id: string;
+  monthlyAmount: number;
+  monthlyPayment: MonthlyPayment[];
+  customerDetails?: { name?: string; email?: string; phone?: string };
+  WarehouseDetail?: { address?: string };
+}
+
+interface RentProps {
+  orderData: Order; // ✅ plain order object
+}
+
+/* ───────────── component ───────────── */
 export const Rent = ({ orderData }: RentProps) => {
-  const Order = orderData?.order;
   const [loading, setLoading] = useState(false);
 
-  // Find the first unpaid month
-  const unpaidMonth = Order?.monthlyPayment?.find(
-    (payment: any) => payment.paymentStatus === "Unpaid"
+  /* first unpaid month */
+  const unpaidMonth = orderData?.monthlyPayment?.find(
+    (p) => p.paymentStatus === "Unpaid"
   );
 
+  /* load Razorpay script once */
   useEffect(() => {
-    loadRazorpayScript();
+    loadRazorpayScript().catch((err) =>
+      console.error("Failed to load Razorpay:", err)
+    );
   }, []);
 
-  // Function to initiate rent payment
   const handleRent = async () => {
-    if (!Order || !unpaidMonth) {
-      console.error("No unpaid rent found");
-      return;
-    }
+    if (!orderData || !unpaidMonth) return;
 
     setLoading(true);
-
     try {
-      // Step 1: Create Razorpay Order via Backend
-      const response = await apiService.post<{
-        data: { updatedOrder: any; razorpayOrder: any; transaction: any };
-      }>(`/transaction/montly/rent/${Order._id}`, {});
+      /* 1 — create Razorpay order on backend */
+      const res = await apiService.post<{
+        data: { updatedOrder: Order; razorpayOrder: any; transaction: any };
+      }>(`/transaction/montly/rent/${orderData._id}`, {});
 
-      const { updatedOrder, razorpayOrder } = response.data;
+      const { updatedOrder, razorpayOrder } = res.data;
 
-      if (!updatedOrder?.monthlyAmount) {
-        console.error(
-          "Error: monthlyAmount is missing in API response",
-          updatedOrder
-        );
-        return;
-      }
-
-      // Step 2: Configure Razorpay Payment Modal
+      /* 2 — configure checkout */
       const options = {
         key: "rzp_test_u4a2EVKlaHtY6X",
-        amount: updatedOrder.monthlyAmount * 100, // Convert to paise
+        amount: updatedOrder.monthlyAmount * 100,
         currency: "INR",
         name: "BookMyWarehouse",
         image: "https://bookmywarehouse.co/logo1.png",
         description: `Payment for ${unpaidMonth.month} rent`,
-        order_id: razorpayOrder.id, // Razorpay Order ID from backend
-        handler: async function (response: any) {
+        order_id: razorpayOrder.id,
+        handler: async (response: any) => {
           await verifyPayment(
             response.razorpay_payment_id,
             response.razorpay_order_id,
@@ -81,75 +84,63 @@ export const Rent = ({ orderData }: RentProps) => {
           );
         },
         prefill: {
-          name: Order.customerDetails?.name || "",
-          email: Order.customerDetails?.email || "",
-          contact: Order.customerDetails?.phone || "",
+          name: orderData.customerDetails?.name ?? "",
+          email: orderData.customerDetails?.email ?? "",
+          contact: orderData.customerDetails?.phone ?? "",
         },
         notes: {
-          address: Order.WarehouseDetail?.address || "N/A",
+          address: orderData.WarehouseDetail?.address ?? "N/A",
         },
       };
 
-      // Step 3: Open Razorpay Checkout
-      const razorpay = new window.Razorpay(options);
-      razorpay.open();
-    } catch (error) {
-      console.error("Error initiating payment:", error);
+      /* 3 — open checkout */
+      new window.Razorpay(options).open();
+    } catch (err) {
+      console.error("Error initiating payment:", err);
     } finally {
       setLoading(false);
     }
   };
 
-  // Function to verify Razorpay payment after success
   const verifyPayment = async (
     razorpayPaymentId: string,
     razorpayOrderId: string,
     razorpaySignature: string
   ) => {
     try {
-      const response = await apiService.post("/transaction/verify/rent", {
+      await apiService.post("/transaction/verify/rent", {
         razorpayPaymentId,
         razorpayOrderId,
         razorpaySignature,
       });
-
-      console.log("Payment verified:", response);
-    } catch (error) {
-      console.error("Error verifying payment:", error);
+    } catch (err) {
+      console.error("Error verifying payment:", err);
     }
   };
+
+  /* ───────────── UI ───────────── */
+  if (!unpaidMonth) return null; // nothing due ⇒ render nothing
 
   return (
     <div className="fixed bottom-0 left-0 w-full bg-white p-4 shadow-lg">
       <div className="flex justify-between items-center">
-        {/* Display Monthly Rent Amount */}
         <div>
-          {unpaidMonth ? (
-            <div className="flex items-center gap-1">
-              <FontAwesomeIcon icon={faIndianRupee} />
-              <p className="text-xl font-normal">{unpaidMonth.amount}</p>
-            </div>
-          ) : (
-            <p className="text-xl font-normal"></p>
-          )}
-
-          {unpaidMonth?.month && (
-            <p className="text-sm text-gray-600 underline">
-              {unpaidMonth.month} Month
-            </p>
-          )}
+          <div className="flex items-center gap-1">
+            <FontAwesomeIcon icon={faIndianRupee} />
+            <p className="text-xl font-normal">{unpaidMonth.amount}</p>
+          </div>
+          <p className="text-sm text-gray-600 underline">
+            {unpaidMonth.month} Month
+          </p>
         </div>
 
-        {/* Rent Button */}
-        {unpaidMonth?.month && (
-          <button
-            className="bg-gradient-to-br from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-full font-medium disabled:opacity-50"
-            onClick={handleRent}
-            disabled={loading}
-          >
-            {loading ? "Processing..." : "Pay"}
-          </button>
-        )}
+        <button
+          className="bg-gradient-to-br from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-full font-medium disabled:opacity-50"
+          onClick={handleRent}
+          disabled={loading}
+        >
+          {loading ? "Processing..." : "Pay"}
+        </button>
       </div>
     </div>
   );

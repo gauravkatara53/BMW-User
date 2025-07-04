@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import iconMap from "./iconMap"; // Import iconMap
+import iconMap from "./iconMap";
 
 interface Facility {
   name: string;
   value: string;
-  icon: string; // Now icon is a string (matching API response)
+  icon: string;
 }
+
 interface WarehouseDetail {
   name: string;
   address: string;
@@ -19,15 +20,18 @@ interface WarehouseDetail {
 interface Order {
   WarehouseDetail: WarehouseDetail;
 }
+
 interface NearestProps {
-  orderData: {
-    order: Order;
-  };
+  orderData: Order; // ✅ plain order object now
 }
 
 export const Nearest = ({ orderData }: NearestProps) => {
-  const warehouse = orderData.order.WarehouseDetail;
-  const nearestFacility = warehouse?.nearestFacility || [];
+  if (!orderData?.WarehouseDetail) {
+    return <p className="text-gray-500">No warehouse details available</p>;
+  }
+
+  const warehouse = orderData.WarehouseDetail;
+  const nearestFacility = warehouse.nearestFacility || [];
 
   return (
     <div className="mb-8">
@@ -38,7 +42,7 @@ export const Nearest = ({ orderData }: NearestProps) => {
             <div key={index} className="flex flex-col gap-3">
               <div className="flex items-center gap-2">
                 <FontAwesomeIcon
-                  icon={iconMap[facility.icon] || iconMap["faQuestionCircle"]} // Use fallback icon if not found
+                  icon={iconMap[facility.icon] || iconMap["faQuestionCircle"]}
                   className="text-gray-700 border-gray-800 border p-2 rounded-lg"
                 />
                 <span className="text-gray-800">

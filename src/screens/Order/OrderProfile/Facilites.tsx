@@ -1,11 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import iconMap from "./iconMap"; // Import iconMap
+import iconMap from "./iconMap";
 
 interface Facility {
   name: string;
   icon: string;
   _id: string;
 }
+
 interface WarehouseDetail {
   name: string;
   address: string;
@@ -15,22 +16,25 @@ interface WarehouseDetail {
   images: string[];
   facility: Facility[];
 }
+
 interface Order {
   WarehouseDetail: WarehouseDetail;
 }
+
 interface FacilitiesProps {
-  orderData: {
-    order: Order;
-  };
+  orderData: Order; // Now it's just the plain order
 }
 
 export const Facilities = ({ orderData }: FacilitiesProps) => {
-  const warehouse = orderData.order.WarehouseDetail;
-  const facilities = warehouse?.facility || [];
+  if (!orderData?.WarehouseDetail) {
+    return <p className="text-gray-500">No warehouse details available</p>;
+  }
+
+  const warehouse = orderData.WarehouseDetail;
+  const facilities = warehouse.facility || [];
 
   return (
     <div className="mb-8">
-      {/* Facilities Section */}
       <div className="flex justify-between items-end mb-4">
         <h2 className="text-xl font-semibold">Warehouse Facilities</h2>
       </div>
@@ -39,7 +43,7 @@ export const Facilities = ({ orderData }: FacilitiesProps) => {
           facilities.map(({ name, icon, _id }) => (
             <div key={_id} className="flex items-center gap-2">
               <FontAwesomeIcon
-                icon={iconMap[icon] || iconMap["faQuestionCircle"]} // Use fallback icon
+                icon={iconMap[icon] || iconMap["faQuestionCircle"]}
                 className="text-gray-700 border-gray-800 border p-2 rounded-lg"
               />
               <span className="text-gray-800">{name}</span>

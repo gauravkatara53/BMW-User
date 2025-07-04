@@ -8,15 +8,18 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
+/* ──────── Types ──────── */
+
 interface PaymentCycle {
   month: string;
   amount: number;
   paymentStatus: "Paid" | "Unpaid" | "Processing";
 }
 
-interface PaymentCycleModalProps {
-  paymentCycles: PaymentCycle[];
-  onClose: () => void;
+interface PartnerDetails {
+  name: string;
+  phone: string;
+  avatar: string;
 }
 
 interface WarehouseDetail {
@@ -26,24 +29,14 @@ interface WarehouseDetail {
   pincode: string;
   areaSqFt: number;
   images: string[];
-  rentOrSell: string;
+  rentOrSell: "Rent" | "Sell";
 }
 
 interface Order {
   WarehouseDetail: WarehouseDetail;
-  partnerDetails: {
-    name: string;
-    phone: string;
-    avatar: string;
-  };
-
+  partnerDetails: PartnerDetails;
   monthlyPayment: PaymentCycle[];
   duration: number;
-}
-interface Order {
-  transaction: {
-    paymentStatus: string;
-  };
 }
 
 interface Transaction {
@@ -51,92 +44,86 @@ interface Transaction {
 }
 
 interface HeroProps {
-  orderData: {
-    order: Order;
-    transaction: Transaction;
-  };
+  order?: Order;
+  transaction?: Transaction;
 }
 
-export const Hero = ({ orderData }: HeroProps) => {
-  const order = orderData.order;
-  const warehouse = order.WarehouseDetail;
-  const partner = order.partnerDetails;
-  const transaction = orderData.transaction;
-  console.log(transaction);
+/* ──────── Component ──────── */
+
+export const Hero = ({ order, transaction }: HeroProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [paymentCycleModalOpen, setPaymentCycleModalOpen] = useState(false);
 
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? warehouse.images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === warehouse.images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  function handleCallClick(): void {
-    window.location.href = `tel:${partner.phone}`;
+  if (
+    !order ||
+    !order.WarehouseDetail ||
+    !order.partnerDetails ||
+    !Array.isArray(order.WarehouseDetail.images)
+  ) {
+    return null; // fallback or skeleton
   }
 
-  const completedPayments = order.monthlyPayment.filter(
-    (payment) => payment.paymentStatus === "Paid"
-  ).length;
-  const totalPayments = order.duration;
+  const { WarehouseDetail: warehouse, partnerDetails: partner } = order;
 
-  const PaymentCycleModal: React.FC<PaymentCycleModalProps> = ({
+  const handlePrev = () =>
+    setCurrentIndex((i) => (i === 0 ? warehouse.images.length - 1 : i - 1));
+
+  const handleNext = () =>
+    setCurrentIndex((i) => (i === warehouse.images.length - 1 ? 0 : i + 1));
+
+  const handleCallClick = () => {
+    window.location.href = `tel:${partner.phone}`;
+  };
+
+  const completedPayments = order.monthlyPayment.filter(
+    (p) => p.paymentStatus === "Paid"
+  ).length;
+
+  const PaymentCycleModal = ({
     paymentCycles,
     onClose,
-  }) => {
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div className="bg-white w-full max-w-lg p-6 rounded-lg relative">
-          {/* Close Button */}
-          <button
-            className="absolute top-4 right-4 text-gray-500"
-            onClick={onClose}
-          >
-            <FontAwesomeIcon icon={faTimes} />
-          </button>
-          <h2 className="text-lg font-semibold mb-4">Payment Cycles</h2>
-          <div className="grid grid-cols-1 gap-4">
-            {paymentCycles.map((cycle, index) => (
-              <div
-                key={index}
-                className="flex justify-between items-center bg-gray-100 p-3 rounded-md"
+  }: {
+    paymentCycles: PaymentCycle[];
+    onClose: () => void;
+  }) => (
+    <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+      <div className="bg-white w-full max-w-lg p-6 rounded-lg relative">
+        <button
+          className="absolute top-4 right-4 text-gray-500"
+          onClick={onClose}
+        >
+          <FontAwesomeIcon icon={faTimes} />
+        </button>
+        <h2 className="text-lg font-semibold mb-4">Payment Cycles</h2>
+        <div className="grid gap-4">
+          {paymentCycles.map((cycle) => (
+            <div
+              key={cycle.month}
+              className="flex justify-between items-center bg-gray-100 p-3 rounded-md"
+            >
+              <p className="font-semibold">{cycle.month}</p>
+              <p className="font-medium">₹{cycle.amount}</p>
+              <p
+                className={`text-sm ${
+                  cycle.paymentStatus === "Paid"
+                    ? "text-green-500"
+                    : cycle.paymentStatus === "Processing"
+                    ? "text-yellow-500"
+                    : "text-red-500"
+                }`}
               >
-                <div>
-                  <p className="font-semibold">{cycle.month}</p>
-                </div>
-                <div className="text-center">
-                  <p className="font-medium">₹{cycle.amount}</p>
-                </div>
-                <div className="text-right">
-                  <p
-                    className={`text-sm ${
-                      cycle.paymentStatus === "Paid"
-                        ? "text-green-500"
-                        : cycle.paymentStatus === "Processing"
-                        ? "text-yellow-500"
-                        : "text-red-500"
-                    }`}
-                  >
-                    {cycle.paymentStatus}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+                {cycle.paymentStatus}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
-    );
-  };
+    </div>
+  );
 
   return (
     <div className="flex flex-col md:flex-row w-full h-[400px] rounded-lg overflow-hidden mb-8">
+      {/* Image Section */}
       <div className="w-full md:w-1/2 h-full relative">
         <img
           src={warehouse.images[currentIndex]}
@@ -145,19 +132,23 @@ export const Hero = ({ orderData }: HeroProps) => {
         />
         <button
           onClick={handlePrev}
-          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full"
+          className="absolute left-2 top-1/2 -translate-y-1/2 bg-black text-white p-2 rounded-full"
         >
           &lt;
         </button>
         <button
           onClick={handleNext}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black text-white p-2 rounded-full"
+          className="absolute right-2 top-1/2 -translate-y-1/2 bg-black text-white p-2 rounded-full"
         >
           &gt;
         </button>
       </div>
+
+      {/* Info Section */}
       <div className="-mt-18 w-full md:w-1/2 flex flex-col justify-center p-6 text-black">
         <h1 className="text-2xl font-semibold mb-4">{warehouse.name}</h1>
+
+        {/* Quick Info */}
         <div className="grid grid-cols-2 gap-y-2 gap-x-6 mb-6">
           <div className="flex items-center gap-2">
             <FontAwesomeIcon icon={faStar} className="text-yellow-500" />
@@ -165,18 +156,22 @@ export const Hero = ({ orderData }: HeroProps) => {
           </div>
           <div className="flex items-center gap-2">
             <FontAwesomeIcon icon={faMapMarkerAlt} className="text-gray-400" />
-            <span className="text-gray-700 ">{`${warehouse.address}, ${warehouse.city}, ${warehouse.pincode}`}</span>
+            <span className="text-gray-700">
+              {warehouse.address}, {warehouse.city}, {warehouse.pincode}
+            </span>
           </div>
           <div className="flex items-center gap-2">
             <FontAwesomeIcon icon={faHouse} className="text-gray-400" />
             <span className="text-gray-700">{warehouse.areaSqFt} m²</span>
           </div>
         </div>
-        <div className="flex mt-10 justify-between items-center gap-4 mb-4 p-3 rounded-xl ">
+
+        {/* Payment Info */}
+        <div className="flex mt-10 justify-between items-center gap-4 mb-4 p-3 rounded-xl">
           {warehouse.rentOrSell === "Rent" ? (
             <div className="flex justify-between items-center w-full text-gray-600 bg-gray-100 p-4 rounded-xl shadow-md">
               <span className="font-medium">
-                {completedPayments}/{totalPayments} Payments Completed
+                {completedPayments}/{order.duration} Payments Completed
               </span>
               <button
                 className="text-white bg-gradient-to-br from-purple-600 to-indigo-600 px-4 py-2 rounded-xl shadow-lg hover:opacity-90 transition"
@@ -188,17 +183,18 @@ export const Hero = ({ orderData }: HeroProps) => {
           ) : (
             <div
               className={`flex justify-between text-white px-4 py-2 rounded-xl shadow-md ${
-                transaction.paymentStatus === "Completed"
+                transaction?.paymentStatus === "Completed"
                   ? "bg-green-500"
                   : "bg-red-500"
               }`}
             >
-              <span className="">Payment : </span>
-              <span>{transaction.paymentStatus}</span>
+              <span>Payment : </span>
+              <span>{transaction?.paymentStatus ?? "Unknown"}</span>
             </div>
           )}
         </div>
 
+        {/* Partner Info */}
         <div className="mt-10 flex justify-between items-center">
           <div className="flex items-center gap-3">
             <img
@@ -211,17 +207,16 @@ export const Hero = ({ orderData }: HeroProps) => {
               <p className="text-gray-600 text-sm">Property owner</p>
             </div>
           </div>
-          <div className="flex gap-3">
-            <div
-              className="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center cursor-pointer"
-              onClick={handleCallClick}
-            >
-              <FontAwesomeIcon icon={faPhone} className="text-gray-700" />
-            </div>
+          <div
+            className="w-10 h-10 bg-white rounded-lg shadow-md flex items-center justify-center cursor-pointer"
+            onClick={handleCallClick}
+          >
+            <FontAwesomeIcon icon={faPhone} className="text-gray-700" />
           </div>
         </div>
       </div>
 
+      {/* Payment Modal */}
       {paymentCycleModalOpen && (
         <PaymentCycleModal
           paymentCycles={order.monthlyPayment}
