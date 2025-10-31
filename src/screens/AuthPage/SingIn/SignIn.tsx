@@ -35,7 +35,26 @@ export const SignInScreen = () => {
         credentials: "include",
       });
 
-      const data: LoginResponse = await response.json();
+      let data: LoginResponse = {};
+      const text = await response.text();
+      console.log("Login response status:", response.status);
+      console.log("Login response ok:", response.ok);
+      console.log("Login response text:", text);
+      if (text.trim().startsWith("<!DOCTYPE html>")) {
+        // HTML error page detected
+        console.error("Received HTML error page instead of JSON:", text);
+        setError("Server error: User not found or endpoint misconfigured.");
+        showToast("User not found or server error.", "error");
+        setLoading(false);
+        return;
+      }
+      try {
+        if (text) {
+          data = JSON.parse(text);
+        }
+      } catch (jsonErr) {
+        console.error("Failed to parse JSON:", jsonErr);
+      }
 
       if (response.ok) {
         console.log("Login successful:", data);
@@ -43,6 +62,7 @@ export const SignInScreen = () => {
         navigate("/");
         window.location.reload();
       } else {
+        console.log("Login failed response:", data);
         const errorMessage = data.message || "Login failed";
         setError(errorMessage);
         showToast(errorMessage, "error");
